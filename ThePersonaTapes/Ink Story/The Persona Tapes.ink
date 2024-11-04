@@ -1,0 +1,338 @@
+VAR tapesFound = 5
+
+VAR gravyBabyTubesEaten = 0
+
+VAR ramenEaten = 0
+
+VAR currentRadioStation = "none"
+
+-> Intro
+
+=== Intro
+ "On October 28th, 2066 a small cafe in Melbourne’s business district was involved in a massive data heist. 
+
+The cafe was in the lobby of the world famous MyData corporation, a company that prided itself on the safe storage of personal user data, often considered to be the impenetrable bank of the modern world. 
+*["That is until..."]
+-The bank was infiltrated right under their very noses. Without their knowledge an Exabyte of information (1 billion gigabytes) of data began to leak from their data vaults. Later it was found that the data access point hundreds of floors below was somehow accessed through a gap in the cafe break room less than a centimetre wide.
+By the time MyData discovered the leak it was too late, the information began to circulate and MyData scrambled to release a statement- trying to manage the chaos that ensued. 
+**["But the world suffered..."]
+--Lives were lost, businesses were left open to plunder and the darkest secrets of the world’s superpowers became accessible through a simple Web search. Unable to control the situation MyData had no choice but to cut access to the Web, sending the world into a new dark age. Slowly, MyData began to rebuild the Web from the ground up.
+All evidence of what happened that day is lost to history and so the world begins to focus on survival, rather than the truth.
+***["Then we see the light..."]
+---Rumours began to spread, Web forums and indie-news began to discuss the possible existence of evidence from the heist. As the discussions continued ex-MyData employees came forward with new information, they claimed there were physical copies of data gathered from the witnesses- and so began the search for the 'Persona Tapes'."
+
+The TV presenter continued, with a sudden shift in tone from foreboding to jovial. 
+
+"-but while backwater wannabe hackers search the wide world for the so called 'Persona Tapes' you'd have a much higher chance of finding your fortune in MyData's weekly lottery! With 500k creds on the line it's everything to play for!"
+****["Enough of that garbage." (Turn off the TV)] You punch the off button on the remote and the phony grin of the presenter is wiped away. The TV screen crackles and fades to black, leaving you alone in your untidy apartment with only the distant sound of the city streets below to keep you company.
+    -> PartOneTheApartment
+
+=== PartOneTheApartment
+
+{&You sigh deeply|You stretch your limbs|You stifle a yawn} as you {&look around your dump of an apartment and wonder what to do.|think of what to do next.|ponder your options.} {&Life as an out of work Private Investigator is starting to get stale, and your apartment has the smell to go with it.|With the crime rate at an all time high you'd think a P.I. would have something better to do than wander around a trashy apartment. | As you stand among the trash you ponder- No one has the money or the guts to seek justice anymore, so what's the point of being a P.I.?}
+
+*[Grab a bite to eat] With frunk-all creds to your name you decide to eat in. Hopefully you'll have enough to pay it off come rent day. You head to the VenderKit and as the display lights up you look over the options. ->VenderKit
+
++ {VenderKit}[Another trip to the VenderKit couldn't hurt...] {&Salt is good for you, right?|Nothing else fun to do but eat!|...and I don't even have to wash the dishes after!} You poke the VenderKit screen to wake it up and survey your options...
+-> VenderKit
+
+*[Flick on the radio] ->RadioApartment
+
++ {currentRadioStation != "static"} [Change the radio station] Time for something a little different...
+->RadioApartment
+
++[Clean up your apartment] ->CleanApartment
+
+=VenderKit
+    + {not ChooseBurrito} [A Neato Burrito will fill me the hell up- and then some] You tap the 'Neato Burrito' logo on the display. The speaker plays a husky voice straight out of some B-Grade spaghetti-Western flick
+    "Hola! Choose your flavour, amigo!"
+    
+        ++[Mince Mass] You {&prod|poke|tap|press} the 'Mince Mass' option on the display.
+       -> ChooseBurrito
+       
+        ++[Cheese Volcano] Oh boy does this one live up to the name- last time you tried a Cheese Volcano it burned you so bad you had to spend half your creds on EaseABurn cream- worth it though.
+        You {&prod|poke|tap|press} the 'Cheese Volcano' option on the display.
+        ->ChooseBurrito
+        
+        ++[Avocado Smash] This one is a little more expensive- I mean, it has real synth-acado! You get what you pay for!
+        You {&prod|poke|tap|press} the 'Avocado Smash' option on the display.
+        
+        ->ChooseBurrito
+        
+        ++[Hmph, no- not today.] You recall the last time you went for a Neato Burrito. You're pretty sure you don't need a major bowel obstruction right now. ->VenderKit
+        
+         
+    + {ChooseBurrito && not ChooseBurritoAgain} [That brick in my stomach {&could|could really} use some company- more burrito!] Like Pavlov's dog the mere thought of another salty burrito sets you salivating. The raspy voice shouts out again:
+        "Hola! Choose your flavour, amigo!"
+    What flavour this time?
+    
+      ++[Mince Mass] With mild trepidation you prod the 'Mince Mass' option on the display.
+        ->ChooseBurritoAgain
+       
+        ++[Cheese Volcano] Another burrito- this time make it extra cheesy!
+        You {&prod|poke|tap|press} the 'Cheese Volcano' option on the display.
+        ->ChooseBurritoAgain
+        
+        ++[Avocado Smash] Can't get enough of that fresh Synth-acado!
+        You {&prod|poke|tap|press} the 'Avocado Smash' option on the display.
+        ->ChooseBurritoAgain
+        
+        ++[This is a really bad idea.] You tap 'back' on the display. As you cancel the order you feel as if you just dodged a bullet- well the second bullet at least.
+        ->VenderKit
+        
+    * {ChooseBurrito && ChooseBurritoAgain} [What's one more burrito? I probably have to get my stomach pumped anyway.] You begin to reach for the VenderKit screen- then you hesitate... 
+   These burritos are no joke, there's a risk that I could die here. Out of work, in a garbage dump of an apartment with three massive burritos where my guts should be.
+        ++ [It's worth the risk.] I mean, if you aren't letting yourself indulge every once in a while, are you really living?
+            +++ [But seriously?] Are you completely sure? You will probably die due to a burrito overdose.
+                ++++ [There is no better way to die] You punch the button, the raspy voice rattles like the bones of the Grim Reaper.
+            "Hola! Choose your flavour, amigo!"
+            Ah yes, amigo...
+            My dear friend.
+            You are my one and only friend, burrito. Let me embrace you one last time...
+        -> DeathByBurrito
+                ++++ [No, snap out of it!] You tear yourself away from the VenderKit- your skin wet with sweat. What is in those things?!
+                After a brief rest to recover you move on.
+                ->PartOneTheApartment
+        ++ [There's more to life than burritos... let it go.] You step back from the machine and shake yourself out of it. Why are you doing this? What the hell is in those things?!
+        You take a moment to calm down before moving on.
+         ->PartOneTheApartment
+        
+     
+        
+    + {not ChooseRamen} [Gotta go with CuppaRamen, my light in times of darkness] You tap the 'CuppaRamen' logo on the display. 
+   A chirpy voice blasts out from the in-built speaker "Caaaa-uppa RAMEN! Pick your flavour!"
+   
+        ++[Chock'a'Blocka Chicken] You recall the one time you had this flavour of CuppaRamen as a child, back then it actually tasted like chicken... at least you imagine it did- you've never had actual chicken before. You {&prod|poke|tap|press} the 'Chock'a'Blocka Chicken' option on the display.
+        ->ChooseRamen
+        
+        ++[Killer Krill] It turns out Krill is easy to manufacture, and so after the Web went down any and all seafood products were replaced with real, bonafide krill. According to the old folks it tastes like 'shellfish'.
+        You {&prod|poke|tap|press} the 'Killer Krill' option on the display.
+        ->ChooseRamen
+        
+        ++[Happy Cow Vegan Beef Sirloin] As a child you learned that beef was once one of the most popular meat products in the world. There were whole pastures dedicated to housing and feeding the cows until they fattened up enough, at which point they were killed and made into meals for the people. Plenty of food, clean air and a quick death. Lucky frunking cows.
+        Now it's all synth-beef, no more homes for cows... no more cows.
+          You {&prod|poke|tap|press} the 'Happy Cow Vegan Beef Sirloin' option on the display.
+          ->ChooseRamen
+            
+        ++[Nah, I've had enough of CuppaRamen (choose something else)] You glimpse the tower of empty CuppaRamen containers scattered around your apartment- maybe it's time for a little variety... ->VenderKit
+        
+    + {ChooseRamen} [Back to ol' faithful, one cup is never enough.] As you poke the 'CuppaRamen' option on the display you notice that some of the LEDS in that particular section seem to be dead- perhaps due to being pressed too hard... or too often.
+        You take a look at your options...
+        
+        ++[Chock'a'Blocka Chicken] I feel like chicken tonight!
+        ->ChooseRamenAgain
+        
+        ++[Killer Krill] License to Krill!
+        ->ChooseRamenAgain
+        
+        ++[Happy Cow Vegan Beef Sirloin] Where's the beef?
+          ->ChooseRamenAgain
+            
+        ++[Maybe that's enough ramen...] You decide you can have too much of a good thing. ->VenderKit
+        
+    + {not ChooseGravyBaby} [Rip into a tube or two of GravyBaby Nutri+] Well sure, this stuff is mainly marketed towards infants, but damn is it tasty. You take a look at the nutrition data for a moment... 5 or so tubes should do the trick for a grown adult. 
+    You tap the 'GravyBaby Nutri+' logo on the screen.
+    A pleasant lullaby begins to play and a soothing feminine voice says-
+    'Everthing a growing child needs, in one easy-to-use tube.'
+        ++[Up the quantity to 5] You tap on the arrow to increase the quantity and the soothing voice returns-
+        "Whose a hungry baby?"
+        -> ChooseGravyBaby
+        ++[{&On second thoughts, maybe something else?|Not really feeling that one...|Ugh, ok not that one.}]
+        ->VenderKit
+        
+    +{ChooseGravyBaby} [Get yourself some more of that delicious GravyBaby sludge] 
+    ->ChooseGravyBabyAgain
+        
+    + [On second thoughts I'm not hungry...] With a glance at the options on your VenderKit you suddenly feel less like eating.
+    
+    ->PartOneTheApartment
+    
+=ChooseBurrito
+
+     The voice rasps "Niiiice choice! Enjoy, muchacho!"
+            There's a whir as the VenderKit synthesises the order, then a satisfying 'CLUNK!' as the burrito falls from the vending chute.
+            You pick it up, tear open the foil and tuck in. The nondescript filling fills your mouth with salt and fat- you're pretty sure you can feel your pupils dilating from the sheer force of flavour.
+            As you scrunch up the empty foil packet and toss it into a corner of the room the burrito resolves itself to become a brick in the pit of your stomach. You might regret it later- but man did it hit the spot. 
+            ->PartOneTheApartment
+    
+=ChooseRamen
+    ~ ramenEaten = ramenEaten +1
+    You hear the familiar sound of the CuppaRamen falling into place, a whir and a pop as the lid is poked open and the cup filled with boiling water. The trickle of the soon-to-be salty broth is music to your ears.
+    After a moment the cup falls into place in the vending chute. You grab the attached plastic fork, peel the lid of the cup and breathe in the scent.
+    You savour every moment as you twirl the noodles onto the fork and send them to the ramen afterlife. 
+    For the briefest of moments you forget just how pointless your life is.
+    ->PartOneTheApartment
+
+=ChooseGravyBaby
+    ~ gravyBabyTubesEaten = gravyBabyTubesEaten +5
+    The VenderKit whirs and you hear the newly synthesised sludge get shot into the tubes, one by one they fall out of the vending chute.
+    You feel a small sense of shame as you rip open each tube, but as you down the delicious goo that shame fades away, taking your hunger with it. This is good shirt. Those babies know what they're talking about... 
+    Well... babbling about.
+    ->PartOneTheApartment
+
+=ChooseBurritoAgain
+    Your stomach lurches in complaint as you tear open the foil and dive in to your second, humungous, burrito. The salt hits and you're pretty sure you can feel the grease begin to make its way into your bloodstream.
+    It hurts so good.
+    ->PartOneTheApartment
+    
+=ChooseRamenAgain
+    ~ ramenEaten = ramenEaten +1
+    The cup falls into place, the whir, the pop... that soulful trickle. 
+    You can't help but feel a spark of joy in your heart as you wait for the boiling water to work it's magic.
+    The cup drops safely from the chute and once again you are comforted by the salty, warm broth of CuppaRamen.
+    Screw the haters, you can't possibly have too much ramen.
+    ->PartOneTheApartment
+
+=ChooseGravyBabyAgain
+    ~ gravyBabyTubesEaten = gravyBabyTubesEaten +5
+    Maybe your initial calculations were incorrect? 5 tubes of GravyBaby couldn't possibly be enough for an adult. You're worth at least {gravyBabyTubesEaten} babies, surely?
+    The whir of the machine, the spurt of sludge and you are the proud owner of 5 more tubes of GravyBaby Nutri+.
+    You down them like shots of ambrosia and before you know it you're out of tubes again.
+    ->PartOneTheApartment
+    
+=DeathByBurrito
+TODO Death by burrito content
+Work in Progress! Come back later to die from a burrito overdose.
+->END
+    
+
+=RadioApartment
+{& You meander over to the Media Station to use it's radio function. Unlike TV there are still a few radio stations out there that don't spout corpo garbage 24/7.| You wander back to the Media Station and consider your options. | You stand by the radio, what else is there to listen to?}
+ 
+    
+    +  {currentRadioStation != "NoiseFM"} [Time for some music- 106.5, Noise FM!] You crank the dial over to Noise FM and the scream of TechnoPunk fills the room. 
+    ~ currentRadioStation = "NoiseFM"
+    ->PartOneTheApartment
+    
+    +  {currentRadioStation != "CBA Classic"} [How about something with a bit of class? CBA Classic!] You turn the dial over to CBA Classic, Australia's premiere classical radio station.   
+    ~ currentRadioStation = "CBA Classic"
+    ->PartOneTheApartment
+    
+    +  {currentRadioStation != "PirateRadio"} [The only station with something important to say: Pirate Radio] You twiddle the dial until you find the telltale crackle of the encoded signal and switch on your decoder. It seems like they're on a station break, but the music they play isn't bad.
+    ~ currentRadioStation = "PirateRadio"
+    ->PartOneTheApartment
+    
+    + [Let's stick with the ambience of the world's most frunked up city. (no station)] Time for some radio silence.
+     ~ currentRadioStation = "none"
+     ->PartOneTheApartment
+    
+=CleanApartment
+    {You take a look around your cramped apartment. The studio apartment wasn't exactly big to begin with, then the VenderKit was installed, taking up a good chunk of space. Between that, the Media Station, the Sani Station and your single bed there's hardly room to pace around.|}
+    
+    {Strewn across it all are a few towers of empty CuppaRamen cups,{ChooseBurrito: a greasy burrito wrapper,} {ChooseBurritoAgain: followed by the SECOND greasy burrito wrapper,} {ChooseGravyBaby: {gravyBabyTubesEaten} empty tubes of GravyBaby}, and the random scraps of assorted snacks you've had to help pass the time|}
+    
+    {Maybe it's about time you gave this place a clean?|Time to get to work.|You swear you'll feel better once this trash is dealt with.|You consider the task of possibly... maybe... cleaning up.}
+    
+        *[Pace around the room] You try to pace around, just like you used to do when you were pondering a case- but the sheer amount of trash leaves you only enough space to walk in tight circle.
+        ->CleanApartment
+        
+        *[Consider the prospect of NOT cleaning up] Maybe this level of trash is normal though? Maybe it's part of the natural... city-slummer... ecosystem?
+            **[Yeah! You can't mess with the ecosystem!] That's right! If you were to remove the trash it could...
+                ***[Harm the wildlife?] Well... the roaches wouldn't be happy would they? I mean, think of the vermin for once...
+                    ****[It's just basic science.] You glance around the trash heap and as if on cue a small rat crawls out from an empty CuppaRamen cup and peers at you with it's beady eyes.
+                        *****[Ok, maybe it's time to clean up...] You sigh, pour the rat out of the cup and into the hallway and begin to clean up... 
+                        ->FindingTheTapes
+            **[What are you even saying right now?] Wow, you're great at procrastinating... but this is ridiculous.  
+            ->CleanApartment
+            
+        +[Get cleaning!] You stand up straight, clap your hands together and get to work... 
+            ->FindingTheTapes
+        
+        +[Cleaning can wait, let's do something else] Cleaning has well and truly waited, and it can wait a little longer.
+        ->PartOneTheApartment
+    
+    ->END
+
+===FindingTheTapes
+->Cleanup
+
+=Cleanup
+With a newfound sense of purpose you grab a fresh garbage bag, peel it open and look at the job that lies ahead.
+
+That is a lot of trash...
+
+* [This is going to be cathartic] This trash has smothered you for long enough, let's do this!
+    **[There is a lot of trash, though] You stand up straight and gather your willpower. You can do it! 
+    As you pick up the pace you start to fill bag after bag, tossing them into the trash compactor chute as you go. This is kind of nice, actually. 
+     *** [Keep at it!] As the amount of junk diminishes you see whole swathes of the apartment that you haven't seen in some time. For the final flourish you switch on the ChoombaRoomba to suck up any sneaky crumbs.
+     ->NoticeMail
+* [This trash is going to wish it was never born] You draw on some kind of primal strength within you. 
+Let's DO this!
+With adrenaline {PartOneTheApartment.ChooseBurrito: and burrito grease} flowing through your veins you tense up your muscles and go to town on the trash heap.
+    **[Clean that mother-frunker UP!] You crush the ramen cups, scrunch the chip packets and sweep the crumbs, stuffing them into bag after bag and throwing them into the trash compactor- where trash goes to die.
+        ***[There will be no survivors.] With one final sweep of the apartment you stuff the last, half empty bag into the compactor and switch on the ChoombaRoomba to suck up any sneaky crumbs.
+        ->NoticeMail
+        
+            
+            
+->NoticeMail
+
+=NoticeMail
+You stand proud in the centre of your apartment, surveying the results of your hard work. 
+I mean, you can see the floor now!
+As the ChoombaRoomba whirs along happily sucking up the crumbs you notice something curious.
+Just beside the door, stuffed into a milk crate is a collection of snail-mail- a few aged envelopes and one shoebox-sized cardboard box.
+    *[Now where did that come from?] You recall some time ago when you were focused on a particularly complex case ({~something about a giraffe being smuggled interstate|some guy was found pickled to death at a pickle factory|a kid lost his cat up a tree- and damn are those things rare}).
+    You must have pushed them aside while you worked the case, only to forget they even existed.
+        **[Until now...] 
+        ->ExamineMail
+
+        
+=ExamineMail
+        {You walk over to the crate, hoist it up and pour the contents out over your bed.|}
+                    *[Look at the letters] You glance over the envelopes- some bullshirt from the council about parking rates, an ad for the latest Nova-Cult and a takeaway menu for 'La'Lucky Pizzeria'.
+            All trash... except maybe that last one.
+            -> ExamineMail
+            *[Peer at the parcel] You pick up the parcel- surprisingly heavy for it's size.
+            Looking over the parcel you find no address, how the hell did this get    here? Did a courier drop this off?
+                **[It can happen...] It's not the first time you received an unmarked parcel, maybe it's that CuppaRamen Deluxe you ordered from the black market? 
+            You weigh it in your hands.
+                ...Some pretty hefty ramen...
+                You grab a knife and start cutting into the parcel. With a bit of effort you cut through the tape and manage to get a side open. There seems to be some kind of reinforced case inside, taking up the entire enterior of the box...
+                    ***[Pull out the case] You wedge your fingers into the box and slide out the case, it falls out onto your mattress.
+                    Wait a sec, that logo on the cover... that's the MyData logo...
+                    ****[What in the....] You let out a hoarse whisper, "What in the actual frunk is going on here?"
+                        *****[Open the case] Carefully, you open the latch on the case, half expecting it to immediately explode in your face.
+                        It doesn't.
+                    ->FindTapes
+            
+            
+=FindTapes
+Inside the case are 5 data cartridges, each one nestled gently within a foam lining.
+All the cartridges seem to have a little, blinking red light. There's also a coloured label on each one.
+*[Investigate the lights] As you investigate the blinking lights you notice that each cartridge actually has a strip of 6 LEDs, two red, two yellow and two green. 
+->FindTapes
+*[Read the labels] The 5 cartridges all seem to be exactly the same, save for the labels. On each coloured label is written a different name...
+'Kiera' in Bright Yellow
+'Winfred' in Powder Blue
+'Jamie' in Forest Green
+'Estelle' in Rich Purple
+'Torelin' in Rust Red
+->FindTapes
+
+* -> 
+Holy frunk-cakes, these are the frunking Persona Tapes!
+
+END OF PART ONE
+-> PartTwoThePersonaTapes
+
+===PartTwoThePersonaTapes
+{You begin to pace around the apartment, the Persona Tapes resting in the centre of your bed. What does this mean? What do you do with these things?|}
+{ |You continue to pace...}
+*[This is a chance to figure out the mystery!] You can finally know what happened that day, the day that led to the destruction of the Web and the New Dark Age. You tremble with excitement at the prospect{PartOneTheApartment.ChooseGravyBabyAgain: (and not just because you're full to the brim with {gravyBabyTubesEaten} tubes of nutrient rich goop)}. 
+This could become your greatest case yet. ->TheInvestigationBegins
++[These tapes are dangerous] You start ruminating on what would happen should MyData find out you have the tapes...
+    **[Maybe they'd reward you?] Sure, they'd be glad to get their hands on these tapes, but whose to say what happens to you after? They'd probably kill you just for laying eyes on them.
+    ->PartTwoThePersonaTapes
+    **[They'd kill me] They'd sooner shut you up than have to admit the existence of the tapes.
+     ->PartTwoThePersonaTapes
+    **[I could tell the world before MyData even found out] Sure, you could- but MyData would probably just hush it up, call it a hoax and kill you off on the sly...
+     ->PartTwoThePersonaTapes
+     ++ ->
+     {& "...perhaps if I wrote it in a friendly email..."|"...maybe they'd cut me some slack since my mum used to be on their MyData+ Plan..."|"...no, they wouldn't... would they?"}   ->PartTwoThePersonaTapes
+     
+
+
+=TheInvestigationBegins
+ 
+->END
