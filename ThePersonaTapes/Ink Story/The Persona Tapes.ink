@@ -6,30 +6,35 @@ VAR ramenEaten = 0
 
 VAR currentRadioStation = "none"
 
+VAR isConnectedToNewWeb = 1
+
 -> Intro
 
 === Intro
- "On October 28th, 2066 a small cafe in Melbourne’s business district was involved in a massive data heist. 
+ "On October 28th, 2066 a small cafe in Melbourne’s business district was involved in a massive data heist, later known as the 'Breach'. 
 
 The cafe was in the lobby of the world famous MyData corporation, a company that prided itself on the safe storage of personal user data, often considered to be the impenetrable bank of the modern world. 
 *["That is until..."]
 -The bank was infiltrated right under their very noses. Without their knowledge an Exabyte of information (1 billion gigabytes) of data began to leak from their data vaults. Later it was found that the data access point hundreds of floors below was somehow accessed through a gap in the cafe break room less than a centimetre wide.
 By the time MyData discovered the leak it was too late, the information began to circulate and MyData scrambled to release a statement- trying to manage the chaos that ensued. 
 **["But the world suffered..."]
---Lives were lost, businesses were left open to plunder and the darkest secrets of the world’s superpowers became accessible through a simple Web search. Unable to control the situation MyData had no choice but to cut access to the Web, sending the world into a new dark age. Slowly, MyData began to rebuild the Web from the ground up.
+--Lives were lost, businesses were left open to plunder and the darkest secrets of the world’s superpowers became accessible through a simple Web search. Unable to control the situation MyData had no choice but to cut access to the Web, sending the world into the New Dark Age. 
+Slowly, MyData began to rebuild the Web from the ground up.
 All evidence of what happened that day is lost to history and so the world begins to focus on survival, rather than the truth.
 ***["Then we see the light..."]
----Rumours began to spread, Web forums and indie-news began to discuss the possible existence of evidence from the heist. As the discussions continued ex-MyData employees came forward with new information, they claimed there were physical copies of data gathered from the witnesses- and so began the search for the 'Persona Tapes'."
+---But eventually, rumours began to spread. Web forums and indie-news agencies began to discuss the possible existence of evidence from the heist. As the discussions continued ex-MyData employees came forward with new information, they claimed there were physical copies of data gathered from the witnesses- and so began the search for the 'Persona Tapes'."
+The TV presenter continued, suddenly scoffing and rolling his eyes.
 
-The TV presenter continued, with a sudden shift in tone from foreboding to jovial. 
+****["Here it comes...]
+The documentary suddenly performs a tone-shift backflip and becomes an infomercial-
 
-"-but while backwater wannabe hackers search the wide world for the so called 'Persona Tapes' you'd have a much higher chance of finding your fortune in MyData's weekly lottery! With 500k creds on the line it's everything to play for!"
-****["Enough of that garbage." (Turn off the TV)] You punch the off button on the remote and the phony grin of the presenter is wiped away. The TV screen crackles and fades to black, leaving you alone in your untidy apartment with only the distant sound of the city streets below to keep you company.
+"-but while backwater wannabe hackers search the wide world for these so-called 'Persona Tapes' MyData continues to do the REAL work. Working hard to bring this New Dark Age to a Bright New Future!"
+*****["Enough of that garbage." (Turn off the TV)] You punch the off button on the remote and the phony grin of the presenter is wiped away. The TV screen crackles and fades to black, leaving you alone in your untidy apartment with only the distant sound of the city streets below to keep you company.
     -> PartOneTheApartment
 
 === PartOneTheApartment
 
-{&You sigh deeply|You stretch your limbs|You stifle a yawn} as you {&look around your dump of an apartment and wonder what to do.|think of what to do next.|ponder your options.} {&Life as an out of work Private Investigator is starting to get stale, and your apartment has the smell to go with it.|With the crime rate at an all time high you'd think a P.I. would have something better to do than wander around a trashy apartment. | As you stand among the trash you ponder- No one has the money or the guts to seek justice anymore, so what's the point of being a P.I.?}
+{&You sigh deeply|You stretch your limbs|You stifle a yawn} as you {&look around your dump of an apartment and wonder what to do.|think of what to do next.|ponder your options.} {&Life as an out of work Private Investigator is starting to get stale, and your apartment has the smell to go with it.|With the crime rate at an all time high you'd think a P.I. would have something better to do than wander around a trashy apartment. | Absentmindedly kicking a piece of trash you begin to ponder existence...|No one has the money or the guts to seek justice anymore, so what's the point of being a P.I.?}
 
 *[Grab a bite to eat] With frunk-all creds to your name you decide to eat in. Hopefully you'll have enough to pay it off come rent day. You head to the VenderKit and as the display lights up you look over the options. ->VenderKit
 
@@ -132,7 +137,7 @@ The TV presenter continued, with a sudden shift in tone from foreboding to jovia
         
     + {not ChooseGravyBaby} [Rip into a tube or two of GravyBaby Nutri+] Well sure, this stuff is mainly marketed towards infants, but damn is it tasty. You take a look at the nutrition data for a moment... 5 or so tubes should do the trick for a grown adult. 
     You tap the 'GravyBaby Nutri+' logo on the screen.
-    A pleasant lullaby begins to play and a soothing feminine voice says-
+    A pleasant lullaby begins to play and a soothing feminine voice emits from the inbuilt speaker-
     'Everthing a growing child needs, in one easy-to-use tube.'
         ++[Up the quantity to 5] You tap on the arrow to increase the quantity and the soothing voice returns-
         "Whose a hungry baby?"
@@ -217,9 +222,9 @@ Work in Progress! Come back later to die from a burrito overdose.
      ->PartOneTheApartment
     
 =CleanApartment
-    {You take a look around your cramped apartment. The studio apartment wasn't exactly big to begin with, then the VenderKit was installed, taking up a good chunk of space. Between that, the Media Station, the Sani Station and your single bed there's hardly room to pace around.|}
+    {You take a look around your cramped apartment. The studio apartment wasn't exactly big to begin with, then the VenderKit was installed, taking up a good chunk of space. Between that, the Media Station, the Sani Station the trash and your single bed there's hardly room to move around.|}
     
-    {Strewn across it all are a few towers of empty CuppaRamen cups,{ChooseBurrito: a greasy burrito wrapper,} {ChooseBurritoAgain: followed by the SECOND greasy burrito wrapper,} {ChooseGravyBaby: {gravyBabyTubesEaten} empty tubes of GravyBaby}, and the random scraps of assorted snacks you've had to help pass the time|}
+    {Strewn across the room are a few towers of empty CuppaRamen cups{ChooseBurrito:, a greasy burrito wrapper} {ChooseBurritoAgain:followed by the SECOND greasy burrito wrapper}{ChooseGravyBaby:, {gravyBabyTubesEaten} empty tubes of GravyBaby} and the random scraps from assorted snacks you've had to help pass the time|}
     
     {Maybe it's about time you gave this place a clean?|Time to get to work.|You swear you'll feel better once this trash is dealt with.|You consider the task of possibly... maybe... cleaning up.}
     
@@ -288,9 +293,9 @@ Just beside the door, stuffed into a milk crate is a collection of snail-mail- a
                 **[It can happen...] It's not the first time you received an unmarked parcel, maybe it's that CuppaRamen Deluxe you ordered from the black market? 
             You weigh it in your hands.
                 ...Some pretty hefty ramen...
-                You grab a knife and start cutting into the parcel. With a bit of effort you cut through the tape and manage to get a side open. There seems to be some kind of reinforced case inside, taking up the entire enterior of the box...
-                    ***[Pull out the case] You wedge your fingers into the box and slide out the case, it falls out onto your mattress.
-                    Wait a sec, that logo on the cover... that's the MyData logo...
+                You grab a knife and start cutting into the parcel. With a bit of effort you cut through the tape and manage to get a side open. There seems to be some kind of reinforced case inside, taking up the entire interior of the box...
+                    ***[Pull out the case] You wedge your fingers into the box and slide out the case. It falls out onto your mattress with a thump.
+                    You give it a look over... wait a sec, that logo on the cover... that's the MyData logo!
                     ****[What in the....] You let out a hoarse whisper, "What in the actual frunk is going on here?"
                         *****[Open the case] Carefully, you open the latch on the case, half expecting it to immediately explode in your face.
                         It doesn't.
@@ -311,6 +316,7 @@ All the cartridges seem to have a little, blinking red light. There's also a col
 ->FindTapes
 
 * -> 
+Your blood turns cold as you realise what these are. 
 Holy frunk-cakes, these are the frunking Persona Tapes!
 
 END OF PART ONE
@@ -319,8 +325,10 @@ END OF PART ONE
 ===PartTwoThePersonaTapes
 {You begin to pace around the apartment, the Persona Tapes resting in the centre of your bed. What does this mean? What do you do with these things?|}
 { |You continue to pace...}
-*[This is a chance to figure out the mystery!] You can finally know what happened that day, the day that led to the destruction of the Web and the New Dark Age. You tremble with excitement at the prospect{PartOneTheApartment.ChooseGravyBabyAgain: (and not just because you're full to the brim with {gravyBabyTubesEaten} tubes of nutrient rich goop)}. 
-This could become your greatest case yet. ->TheInvestigationBegins
+*[This is a chance to figure out the mystery!] You can finally know what happened that day, the day that led to the destruction of the Web and the dawn of the New Dark Age. You tremble with excitement at the prospect{PartOneTheApartment.ChooseGravyBabyAgain: (and not just because you're full to the brim with {gravyBabyTubesEaten} tubes of nutrient rich goop)}. 
+This could become your greatest case yet. Better even than {~the case of the sewer-gator|the case of the sleepwalking gang-boss|that one episode of Law and Order, the one with the monkey}.
+With that thought in mind you pull out your CompuDeck from under the bed, brush off the dust and boot it up...
+->TheInvestigationBegins
 +[These tapes are dangerous] You start ruminating on what would happen should MyData find out you have the tapes...
     **[Maybe they'd reward you?] Sure, they'd be glad to get their hands on these tapes, but whose to say what happens to you after? They'd probably kill you just for laying eyes on them.
     ->PartTwoThePersonaTapes
@@ -334,5 +342,68 @@ This could become your greatest case yet. ->TheInvestigationBegins
 
 
 =TheInvestigationBegins
- 
+
+{The screen takes a sec to get it's shirt together, but eventually you're greeted with the desktop. You take a moment to gather your thoughts. You know that the Persona Tapes hold valuable information about the 'Breach', that fateful day where the MyData vaults were infiltrated, but you don't know what kind of information it is.| }
+
+*[Punch in the data tapes!]
+->UploadTapes
+*[Let's not be too hasty, I should go over what I know first] A good investigator always takes stock of a situation, you create a new readme to gather your thoughts.
+->CaseLog
++ {isConnectedToNewWeb == 1} [Make sure you're not connected to the New Web- MyData could be watching...] 
+~ isConnectedToNewWeb = 0
+{&Your heart skips a beat as you realise how easy it would be for MyData to find you, should the tapes connect to the New Web. Best to turn it off.|No, it's too dangerous. I have to sever the connection.|My data is my data, MyData- not your data!} (you turn off the New Web link on your CompuDeck)
+->TheInvestigationBegins
++{isConnectedToNewWeb == 0} [Turn the New Web connection back on, you may need it] 
+~ isConnectedToNewWeb = 1
+You switch on the connection and the signal returns. (you turn on the New Web link on your CompuDeck)
+->TheInvestigationBegins
+
+=UploadTapes
+TODO upload tapes section
+->END
+
+=CaseLog
+TODO caselog for current clues related to the case
+What topic would you like to check?
+
++{UploadTapes} [The Witnesses] {You add a new entry to the case log...| } \ { |You read the entry...}
+TODO  The Witnesses case log entry
+Blah blah tapes
+...
+->CaseLog
+
+*{UploadTapes} [Recollective Investigation] {You add a new entry to the case log...| } \ { |You read the entry...}
+TODO  Recollective Investigation case log entry
+Blah blah recollective investigation
+...
+->CaseLog
+
++[MyData] \ {You add a new entry to the case log...| } \ { |You read the entry...}
+MyData/Corporation
+MyData is the world's forefront data storage service, and has been since the early 2000's, when they began providing free internet usage to the globe. 
+As the human race became more reliant on technology it was MyData who provided the access to these new technologies. Soon enough it was almost impossible to interface with the world without a connection to MyData's 'Web'.
+As the corpo became more powerful it became clear that they were not providing a service to the people, but instead attempting to control them. Unfortunately, by the time the world became aware it was too late. The world had come to rely on the Web, to disconnect from the Web would be to disconnect from society.
+So the people continued to live under MyData's rule... that is until the day of the Breach. Now MyData is only a shred of what it once was, and as the corporation attempts to rebuild the Web (see: the New Web) they slowly attempt to return to power.
+...
+->CaseLog
+
++[The Breach]\ {You add a new entry to the case log...| } \ { |You read the entry...}
+The Breach/Event
+On October 28th, 2066 a small cafe in Melbourne’s business district was involved in a massive data heist, later known as the 'Breach' this event would go down in history as the day MyData fell out of global power. 
+
+According to a press release from MyData the heist was performed without their knowledge, and by the time they discovered evidence that the data leak had begun the culprits had vanished without a trace.
+
+The same press release explained that the 'terrorists' had infiltrated their data vault by creating a gap less than a centimetre wide in the walls of the cafe above, allowing them to somehow reach the access point and begin leaking data.
+
+A week later Web users around the globe began to report their personal information had been shared illegaly, and days after that sensitive information surrounding businesses, governments and corporations began to surface. The sudden influx of data caused a worldwide panic and MyData decided to cut access to the Web in order to prevent further catastrophe.
+The world went quiet, almost all technology had relied on the Web to function and now the Web was no more.
+The event known as the Breach had far reaching consequences, but other than the meagre amount of information provided by MyData, not much is known about why or how the Breach took place.
+...
+->CaseLog
+
++[The Persona Tapes]\ {You add a new entry to the case log...| } \ { |You read the entry...}
+The Persona Tapes/Item
+TODO Persona Tapes Case Log entry
+...
+->CaseLog
 ->END
