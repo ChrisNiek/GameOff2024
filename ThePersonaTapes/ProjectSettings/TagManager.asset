@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Transition Plane
+  - ForegroundPlane
+  - FrontMidgroundPlane
+  - RearMidgroundPlane
+  - BackgroundPlane
   layers:
   - Default
   - TransparentFX
@@ -40,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 3594740877
     locked: 0
