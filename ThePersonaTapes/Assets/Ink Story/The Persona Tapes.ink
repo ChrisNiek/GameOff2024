@@ -23,11 +23,11 @@ VAR isConnectedToNewWeb = 1
 --"Alas, the people did not acknowledge the statement and follow <b>MyData</b>'s guidance. Lives were lost, businesses were left open to plunder and the darkest secrets of the world’s superpowers became accessible through a simple <b>Web</b> search."
 "Unable to control the rabble <b>MyData</b> had no choice but to cut access to the <b>Web</b>, sending the world into the <b>New Dark Age</b>." 
 "Slowly but surely, <b>MyData</b> began to rebuild the <b>Web</b>, and the world, from the ground up."
-"Thanks to the hard work of <b>MyData</b>, the world started to leave that horrible event in the past, and began to look to the future."
+"Thanks to the hard work of <b>MyData</b>, the people started to leave that horrible event in the past, and began to look to the future."
 ***["Then we see the light..."]
 --- "But eventually, rumours began to spread. Illegal and primitive 'Pirate Radio' stations and indie-news agencies began to discuss the possible existence of so-called <i>evidence</i> from the <b>"Breach"</b>." 
-"As the ramble went on, corrupted ex-<b>MyData</b> employees came forward with further misinformation. Before their termination they <i>claimed</i> there were physical copies of data gathered from the witnesses- and so began the laughable search for the <b>'Persona Tapes'</b>." 
-The TV presenter continued, scoffing and rolling his eyes.
+"As the rambling went on, corrupted ex-<b>MyData</b> employees came forward with further misinformation. Before their termination they <i>claimed</i> there were physical copies of data gathered from the witnesses- and so began the laughable search for the <b>'Persona Tapes'</b>." 
+<i>The TV presenter continued, scoffing and rolling his eyes.</i>
 ****["The tapes..."]
 "While backwater wannabe hackers search the wide world for these ridiculous 'Persona Tapes' <b>MyData</b> continues to do the REAL work. Working hard to bring this <b>New Dark Age</b> to a <b>Bright New Future</b>!"
 "Stop thinking about the past, log into your MyData+ account and join us on the New Web forums. Become part of the <i>FUTURE</i>!" 
@@ -164,7 +164,7 @@ The TV presenter continued, scoffing and rolling his eyes.
 =ChooseRamen
     ~ ramenEaten = ramenEaten +1
     You hear the familiar sound of the CuppaRamen falling into place, a whir and a pop as the lid is poked open and the cup filled with boiling water. The trickle of the soon-to-be salty broth is music to your ears.
-    After a moment the cup falls into place in the vending chute. You grab the attached plastic fork, peel the lid of the cup and breathe in the scent.
+    After a moment the cup falls into place in the vending chute. You grab the attached plastic fork, peel the lid off the cup and breathe in the scent.
     You savour every moment as you twirl the noodles onto the fork and send them to the ramen afterlife. 
     For the briefest of moments you forget just how pointless your life is.#scene:ApartmentMessy
     ->PartOneTheApartment
@@ -306,7 +306,7 @@ Just beside the door, stuffed into a milk crate is a collection of snail-mail- a
 =FindTapes
 {Inside the case are 5 data cartridges, each one nestled gently within a foam lining.|}
 {All the cartridges seem to have a little, blinking red light. There's also a coloured label on each one.|}
-{|You start to shake, you think you might know what these are... but it's safer to be sure}
+{|You start to shake, you think you might know what these are... but it's safer to be sure...|}
 *[Investigate the lights] As you investigate the blinking lights you notice that each cartridge actually has a strip of 6 LEDs, two red, two yellow and two green. Currently, only one red light is lit up on each of the cartridges.
 ->FindTapes
 *[Read the labels] The 5 cartridges all seem to be exactly the same, save for the labels. On each coloured label is written a different name...
@@ -348,13 +348,13 @@ With that thought in mind you pull out your CompuDeck from under the bed, brush 
 ->UploadTapes
 *[Let's not be too hasty, I should go over what I know first] A good investigator always takes stock of a situation, you create a new readme to gather your thoughts.
 ->CaseLog
-+ {isConnectedToNewWeb == 1} [Make sure you're not connected to the New <b>Web</b>- <b>MyData</b> could be watching...] 
++ {isConnectedToNewWeb == 1} [Make sure you're not connected to the <b>New Web</b>- <b>MyData</b> could be watching...]
 ~ isConnectedToNewWeb = 0
-{&Your heart skips a beat as you realise how easy it would be for <b>MyData</b> to find you, should the tapes connect to the New <b>Web</b>. Best to turn it off.|No, it's too dangerous. I have to sever the connection.|My data is my data, <b>MyData</b>- not your data!} (you turn off the New <b>Web</b> link on your CompuDeck)
+{&Your heart skips a beat as you realise how easy it would be for <b>MyData</b> to find you, should the tapes connect to the  <b>New Web</b>. Best to turn it off.|No, it's too dangerous. I have to sever the connection.|My data is my data, <b>MyData</b>- not your data!} (you turn off the  <b>New Web</b> link on your CompuDeck)
 ->TheInvestigationBegins
-+{isConnectedToNewWeb == 0} [Turn the New <b>Web</b> connection back on, you may need it] 
++{isConnectedToNewWeb == 0} [Turn the  <b>New Web</b> connection back on, you may need it] 
 ~ isConnectedToNewWeb = 1
-You switch on the connection and the signal returns. (you turn on the New <b>Web</b> link on your CompuDeck)
+You switch on the connection and the signal returns. (you turn on the  <b>New Web</b> link on your CompuDeck)
 ->TheInvestigationBegins
 
 =UploadTapes
@@ -363,7 +363,7 @@ TODO upload tapes section
 
 =CaseLog
 TODO caselog for current clues related to the case
-What topic would you like to check?
+You peruse the Case Log. What topic would you like to check?
 
 +{UploadTapes} [The Witnesses] {You add a new entry to the case log...| } \ { |You read the entry...}
 TODO  The Witnesses case log entry
@@ -382,7 +382,7 @@ Blah blah recollective investigation
 <b>MyData</b> is the world's forefront data storage service, and has been since the early 2000's, when they began providing free internet usage to the globe. 
 As the human race became more reliant on technology it was <b>MyData</b> who provided the access to these new technologies. Soon enough it was almost impossible to interface with the world without a connection to <b>MyData</b>'s '<b>Web</b>'.
 As the corpo became more powerful it became clear that they were not providing a service to the people, but instead attempting to control them. Unfortunately, by the time the world became aware it was too late. The world had come to rely on the <b>Web</b>, to disconnect from the <b>Web</b> would be to disconnect from society.
-So the people continued to live under <b>MyData</b>'s rule... that is until the day of the Breach. Now <b>MyData</b> is only a shred of what it once was, and as the corporation attempts to rebuild the <b>Web</b> (see: the New <b>Web</b>) they slowly attempt to return to power.
+So the people continued to live under <b>MyData</b>'s rule... that is until the day of the Breach. Now <b>MyData</b> is only a shred of what it once was, and as the corporation attempts to rebuild the <b>Web</b> (see: the  <b>New Web</b>) they slowly attempt to return to power.
 ...
 ->CaseLog
 
@@ -405,4 +405,6 @@ The Persona Tapes/Item
 TODO Persona Tapes Case Log entry
 ...
 ->CaseLog
+
++[Close the Case Log] Ctrl+S, Alt+F4...
 ->END

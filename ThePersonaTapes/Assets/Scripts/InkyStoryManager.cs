@@ -20,13 +20,20 @@ public class InkyStoryManager : MonoBehaviour
 
     public List<SceneData> sceneLibrary = new List<SceneData>(); // List of scenes that can be modified in the Inspector
 
+    public AudioSource typewriterAudioSource;
+    public AudioClip typewriterSound;
+    public float minPitch = 0.9f;
+    public float maxPitch = 1.1f;
+
     private Story inkStory;
     private Coroutine fadeInCoroutine;
-    private string currentSceneName = ""; // To keep track of the current scene
+    private string currentScene;
 
     void Start()
     {
         inkStory = new Story(inkJSONAsset.text);
+        transitionPlane.SetActive(true);
+        StartCoroutine(FadeOutTransitionPlane());  // Fade out on start
         StartCoroutine(DisplayCurrentParagraph());
     }
 
@@ -37,23 +44,38 @@ public class InkyStoryManager : MonoBehaviour
         if (inkStory.canContinue)
         {
             string paragraph = inkStory.Continue();
-            storyText.text = paragraph;
+            storyText.text = "";
 
-            // Check for tags and handle scene changes
             ProcessTags(inkStory.currentTags);
 
-            // Start fading in the story text
             CanvasGroup storyCanvasGroup = storyText.GetComponent<CanvasGroup>();
             if (storyCanvasGroup == null)
             {
                 storyCanvasGroup = storyText.gameObject.AddComponent<CanvasGroup>();
             }
-            storyCanvasGroup.alpha = 0f;
+            storyCanvasGroup.alpha = 1f;
 
-            yield return StartCoroutine(FadeInText(storyCanvasGroup, 0.50f));
+            yield return StartCoroutine(TypewriterEffect(paragraph));
 
-            // After text is fully displayed, refresh choices
             RefreshChoices();
+        }
+    }
+
+    private IEnumerator TypewriterEffect(string text)
+    {
+        storyText.text = "";
+
+        for (int i = 0; i < text.Length; i++)
+        {
+            storyText.text += text[i];
+
+            if (!char.IsWhiteSpace(text[i]) && typewriterAudioSource && typewriterSound)
+            {
+                typewriterAudioSource.pitch = Random.Range(minPitch, maxPitch);
+                typewriterAudioSource.PlayOneShot(typewriterSound);
+            }
+
+            yield return new WaitForSeconds(0.01f); // Speed of typewriter effect
         }
     }
 
@@ -61,30 +83,24 @@ public class InkyStoryManager : MonoBehaviour
     {
         foreach (string tag in tags)
         {
-            // Check for scene change tags (e.g., #scene:Beach)
             if (tag.StartsWith("scene:"))
             {
-                string sceneName = tag.Substring(6);  // Extract scene name after "scene:"
-                Debug.Log("Scene change detected: " + sceneName);
-                ChangeScene(sceneName);  // Pass scene name to SceneChanger
+                string sceneName = tag.Substring(6);
+                if (sceneName != currentScene)
+                {
+                    currentScene = sceneName;
+                    ChangeScene(sceneName);
+                }
             }
         }
     }
 
     private void ChangeScene(string sceneName)
     {
-        // Check if the new scene name is different from the current one
-        if (sceneName == currentSceneName)
-        {
-            Debug.Log("Scene transition skipped, already in scene: " + sceneName);
-            return; // Skip the transition if the scene is the same
-        }
-
         SceneData sceneData = sceneLibrary.Find(scene => scene.sceneName == sceneName);
 
         if (sceneData != null)
         {
-            currentSceneName = sceneName; // Update current scene name
             StartCoroutine(FadeAndApplyScene(sceneData));
         }
         else
@@ -93,70 +109,74 @@ public class InkyStoryManager : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeAndApplyScene(SceneData sceneData)
+    private IEnumerator FadeOutTransitionPlane()
     {
-        // Ensure transition plane has a CanvasGroup for fading
         CanvasGroup transitionCanvasGroup = transitionPlane.GetComponent<CanvasGroup>();
         if (transitionCanvasGroup == null)
         {
             transitionCanvasGroup = transitionPlane.AddComponent<CanvasGroup>();
         }
+        transitionCanvasGroup.alpha = 1f;
 
-        float duration = 1f; // Duration of each fade in/out transition
+        float duration = 1f;
         float elapsedTime = 0f;
 
-        // Check if transition alpha is already 1 (for initial load fade-out)
-        if (transitionCanvasGroup.alpha < 1f)
-        {
-            // Fade in transition
-            transitionPlane.SetActive(true);
-            transitionCanvasGroup.alpha = 0f;
-
-            while (elapsedTime < duration)
-            {
-                transitionCanvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / duration);
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-            transitionCanvasGroup.alpha = 1f;
-        }
-        else
-        {
-            // If alpha is already 1, keep transition plane active and reset elapsedTime
-            transitionPlane.SetActive(true);
-            elapsedTime = 0f;
-        }
-
-        // Set new textures for planes
-        foregroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.foreground;
-        frontMidgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.frontMidground;
-        rearMidgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.rearMidground;
-        backgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.background;
-
-        // Fade out transition
-        elapsedTime = 0f;
         while (elapsedTime < duration)
         {
             transitionCanvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
         transitionCanvasGroup.alpha = 0f;
-        transitionPlane.SetActive(false);  // Hide transition plane after fade
+        transitionPlane.SetActive(false);
     }
 
-
-    private IEnumerator FadeInText(CanvasGroup canvasGroup, float duration)
+    private IEnumerator FadeAndApplyScene(SceneData sceneData)
     {
-        float elapsedTime = 0f;
-        while (elapsedTime < duration)
+        CanvasGroup transitionCanvasGroup = transitionPlane.GetComponent<CanvasGroup>();
+        if (transitionCanvasGroup == null)
         {
-            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
+            transitionCanvasGroup = transitionPlane.AddComponent<CanvasGroup>();
+        }
+
+        transitionPlane.SetActive(true);
+
+        // Only fade in if the alpha is not already 1
+        if (transitionCanvasGroup.alpha < 1f)
+        {
+            float fadeInDuration = 1f;
+            float fadeInElapsedTime = 0f;
+
+            while (fadeInElapsedTime < fadeInDuration)
+            {
+                transitionCanvasGroup.alpha = Mathf.Lerp(0f, 1f, fadeInElapsedTime / fadeInDuration);
+                fadeInElapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            transitionCanvasGroup.alpha = 1f;
+        }
+
+        // Apply new textures to scene planes
+        foregroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.foreground;
+        frontMidgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.frontMidground;
+        rearMidgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.rearMidground;
+        backgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.background;
+
+        // Fade out after scene change
+        float fadeOutDuration = 1f;
+        float fadeOutElapsedTime = 0f;
+
+        while (fadeOutElapsedTime < fadeOutDuration)
+        {
+            transitionCanvasGroup.alpha = Mathf.Lerp(1f, 0f, fadeOutElapsedTime / fadeOutDuration);
+            fadeOutElapsedTime += Time.deltaTime;
             yield return null;
         }
-        canvasGroup.alpha = 1f;
+        transitionCanvasGroup.alpha = 0f;
+        transitionPlane.SetActive(false);  // Hide transition plane after fade out
     }
+
 
     private void RefreshChoices()
     {
@@ -252,7 +272,7 @@ public class InkyStoryManager : MonoBehaviour
 [System.Serializable]
 public class SceneData
 {
-    public string sceneName;  // Scene name to identify the scene in Ink
+    public string sceneName;
     public Texture2D foreground;
     public Texture2D frontMidground;
     public Texture2D rearMidground;

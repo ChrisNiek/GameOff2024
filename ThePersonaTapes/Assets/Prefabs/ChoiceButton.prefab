@@ -68,8 +68,8 @@ MonoBehaviour:
   m_text: Let's stick with the background noise of the world's most frunked up city
     (leave the radio turned off)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bae3c35f6e38fba4d8f5cd6ac2db0225, type: 2}
-  m_sharedMaterial: {fileID: -3746722717426633290, guid: bae3c35f6e38fba4d8f5cd6ac2db0225, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 365c1aa7b4e29d34fab54c7c78c3400a, type: 2}
+  m_sharedMaterial: {fileID: -5752495498309583731, guid: 365c1aa7b4e29d34fab54c7c78c3400a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -93,19 +93,19 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 19.56
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 55
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -53.12
+  m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -173,7 +173,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -1080}
-  m_SizeDelta: {x: 602.7, y: 75.33}
+  m_SizeDelta: {x: 602.7, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &710639274062059246
 CanvasRenderer:
