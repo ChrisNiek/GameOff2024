@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3efb1f3a7520b043ae58eee6e4167e0, type: 3}
+  m_Name: EarthClose
+  m_EditorClassIdentifier: 
+  sceneName: EarthClose
+  foreground: {fileID: 2800000, guid: ec4be633add9bdb419616952f238b9f3, type: 3}
+  frontMidground: {fileID: 2800000, guid: aefce88f810e8b049a5c53f47e7aa455, type: 3}
+  rearMidground: {fileID: 2800000, guid: ec4be633add9bdb419616952f238b9f3, type: 3}
+  background: {fileID: 2800000, guid: 1e8e60fb51c300845950db4e642d8f3f, type: 3}

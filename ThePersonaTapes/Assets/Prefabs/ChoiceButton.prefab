@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1350934606117542541}
   - component: {fileID: 922892323989093564}
   - component: {fileID: 4517497138249902746}
+  - component: {fileID: 5629661341783409326}
   m_Layer: 5
   m_Name: ChoiceButton
   m_TagString: Untagged
@@ -269,3 +270,17 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5629661341783409326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075010741468331134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b303547cce3a52e4d8356f80b565aa75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 8300000, guid: c9271aa9df25aaa4896b9f23a5952f97, type: 3}
+  clickSound: {fileID: 8300000, guid: bf1d12985ef5d00488ca8984709dbd96, type: 3}

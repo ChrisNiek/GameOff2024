@@ -11,25 +11,31 @@ VAR isConnectedToNewWeb = 1
 -> Intro
 
 === Intro
- #scene:TVPresenterIntro
+TODO Add MyData Spacejunk in intro images
+#scene:EarthFar
  "On October 28th, 2066 a small cafe in Melbourne’s business district was involved in a massive data heist, later known as the 'Breach'."
-
-"The cafe was in the lobby of the world famous <b>MyData</b> corporation, a company that prides itself on the safe storage of personal user data, but no one - <i>not even <b>MyData</b></i>- could have prevented what came next."
+#scene:Earth
+"The cafe was in the lobby of the powerful <b>MyData</b> corporation, a company that prides itself on the safe storage of personal user data, but no one - <i>not even <b>MyData</b></i>- could have prevented what came next."
 *["The heist of the century..."]
+#scene:EarthClose
 -"The bank was infiltrated using underhanded tactics. In a swift and inhuman act an Exabyte of information (1 billion gigabytes) of data began to leak from the data vaults."
+#scene:Australia
 "Later it was found that the data access point, safely nestled hundreds of floors below, was somehow accessed through a gap in the cafe break room less than a centimetre wide."
-"By the time <b>MyData</b> discovered the leak it was too late, the data had fallen into the hands of the populace and had begun to circulate on the <b>Web</b>. <b>MyData</b> quickly released a statement- doing their best to prevent the world falling into chaos."
+#scene:Melbourne
+"By the time <b>MyData</b> discovered the leak it was too late, the information had fallen into the hands of the populace and was beginning to circulate on the <b>Web</b>. <b>MyData</b> quickly released a statement- doing their best to prevent the world falling into chaos."
 **["But they failed..."]
+ #scene:IntroApartmentCity
 --"Alas, the people did not acknowledge the statement and follow <b>MyData</b>'s guidance. Lives were lost, businesses were left open to plunder and the darkest secrets of the world’s superpowers became accessible through a simple <b>Web</b> search."
+#scene:ApartmentCloseCity
 "Unable to control the rabble <b>MyData</b> had no choice but to cut access to the <b>Web</b>, sending the world into the <b>New Dark Age</b>." 
 "Slowly but surely, <b>MyData</b> began to rebuild the <b>Web</b>, and the world, from the ground up."
 "Thanks to the hard work of <b>MyData</b>, the people started to leave that horrible event in the past, and began to look to the future."
 ***["Then we see the light..."]
+#scene:TVPresenterIntro
 --- "But eventually, rumours began to spread. Illegal and primitive 'Pirate Radio' stations and indie-news agencies began to discuss the possible existence of so-called <i>evidence</i> from the <b>"Breach"</b>." 
 "As the rambling went on, corrupted ex-<b>MyData</b> employees came forward with further misinformation. Before their termination they <i>claimed</i> there were physical copies of data gathered from the witnesses- and so began the laughable search for the <b>'Persona Tapes'</b>." 
 <i>The TV presenter continued, scoffing and rolling his eyes.</i>
 ****["The tapes..."]
-"While backwater wannabe hackers search the wide world for these ridiculous 'Persona Tapes' <b>MyData</b> continues to do the REAL work. Working hard to bring this <b>New Dark Age</b> to a <b>Bright New Future</b>!"
 "Stop thinking about the past, log into your MyData+ account and join us on the New Web forums. Become part of the <i>FUTURE</i>!" 
 *****["Enough of that garbage." (Turn off the TV)] You punch the off button on the remote and the phony grin of the presenter is wiped away. The TV screen crackles and fades to black, leaving you alone in your untidy apartment with only the distant sound of the Melbourne city streets below keeping you company.#scene:ApartmentMessy 
     -> PartOneTheApartment
@@ -45,7 +51,7 @@ VAR isConnectedToNewWeb = 1
 
 + {currentRadioStation == "none"} [Flick on the radio] ->RadioApartment
 
-+ {currentRadioStation != "none"} [Change the radio station] Time for something a little different...#scene:MediaStationOff
++ {currentRadioStation != "none"} [Change the radio station] Time for something a little different...
 ->RadioApartment
 
 +[Clean up your apartment] ->CleanApartment
@@ -88,7 +94,7 @@ VAR isConnectedToNewWeb = 1
         ->VenderKit
         
     * {ChooseBurrito && ChooseBurritoAgain} [What's one more burrito? I probably have to get my stomach pumped anyway.] You begin to reach for the <b>VenderKit</b> screen- then you hesitate... 
-   These burritos are no joke, there's a risk that I could die here. Out of work, in a garbage dump of an apartment with three massive burritos where my guts should be.
+   These burritos are no joke, there's a risk that you could die here. Out of work, in a garbage dump of an apartment with three massive burritos where your guts should be.
         ++ [It's worth the risk.] I mean, if you aren't letting yourself indulge every once in a while, are you really living?
             +++ [But seriously?] Are you completely sure? You will probably die due to a burrito overdose.
                 ++++ [There is no better way to die] You punch the button, the raspy voice rattles like the bones of the Grim Reaper.
@@ -203,7 +209,7 @@ Work in Progress! Come back later to die from a burrito overdose.
     
 
 =RadioApartment
-{& You meander over to the Media Station to use it's radio function. Unlike TV there are still a few radio stations out there that don't spout corpo garbage 24/7.| You wander back to the Media Station and consider your options. | You stand by the radio, what else is there to listen to?}
+{& You meander over to the Media Station to use it's radio function. Unlike TV there are still a few radio stations out there that don't spout corpo garbage 24/7.| You wander back to the Media Station and consider your options. | You stand by the radio, what else is there to listen to?}#scene:MediaStation
  
     
     +  {currentRadioStation != "NoiseFM"} [Time for some music- 106.5, Noise FM!] You crank the dial over to Noise FM and the scream of TechnoPunk fills the room. #scene:ApartmentMessy
@@ -225,7 +231,7 @@ Work in Progress! Come back later to die from a burrito overdose.
 =CleanApartment
     {You take a look around your cramped apartment. The studio apartment wasn't exactly big to begin with, then the <b>VenderKit</b> was installed, taking up a good chunk of space. Between that, the Media Station, the Sani Station, the trash and your single bed there's hardly room to move around.|}
     
-    {Strewn across the room are a few towers of empty CuppaRamen cups{ChooseBurrito:, a greasy burrito wrapper} {ChooseBurritoAgain:followed by the SECOND greasy burrito wrapper}{ChooseGravyBaby:, {gravyBabyTubesEaten} empty tubes of GravyBaby} and the random scraps from assorted snacks you've had to help pass the time|}
+    {Strewn across the room are a few towers of empty CuppaRamen cups{ChooseBurrito:, a greasy burrito wrapper} {ChooseBurritoAgain:followed by the SECOND greasy burrito wrapper}{ChooseGravyBaby:, {gravyBabyTubesEaten} empty tubes of GravyBaby}, laundry in various states of reuse and the random scraps from assorted snacks you've had to help pass the time|}
     
     {Maybe it's about time you gave this place a clean?|Time to get to work.|You swear you'll feel better once this trash is dealt with.|You consider the task of possibly... maybe... cleaning up.}
     
@@ -260,13 +266,13 @@ That is a lot of trash...
 * [This is going to be cathartic] This trash has smothered you for long enough, let's do this!
     **[There is a lot of trash, though] You stand up straight and gather your willpower. You can do it! 
     As you pick up the pace you start to fill bag after bag, tossing them into the trash compactor chute as you go. This is kind of nice, actually. 
-     *** [Keep at it!] As the amount of junk diminishes you see whole swathes of the apartment that you haven't seen in some time. For the final flourish you switch on the ChoombaRoomba to suck up any sneaky crumbs.
+     *** [Keep at it!] As the amount of junk diminishes you see whole swathes of the apartment that you haven't seen in some time. For the final flourish you switch on the ChoombaRoomba to suck up any sneaky crumbs.#scene:ApartmentClean
      ->NoticeMail
 * [This trash is going to wish it was never born] You draw on some kind of primal strength within you. 
 Let's DO this!
 With adrenaline {PartOneTheApartment.ChooseBurrito: and burrito grease} flowing through your veins you tense up your muscles and go to town on the trash heap.
     **[Clean that mother-frunker UP!] You crush the ramen cups, scrunch the chip packets and sweep the crumbs, stuffing them into bag after bag and throwing them into the trash compactor- where trash goes to die.
-        ***[There will be no survivors.] With one final sweep of the apartment you stuff the last, half empty bag into the compactor and switch on the ChoombaRoomba to suck up any sneaky crumbs.
+        ***[There will be no survivors.] With one final sweep of the apartment you stuff the last, half empty bag into the compactor and switch on the ChoombaRoomba to suck up any sneaky crumbs.#scene:ApartmentClean
         ->NoticeMail
         
             
@@ -277,7 +283,7 @@ With adrenaline {PartOneTheApartment.ChooseBurrito: and burrito grease} flowing 
 You stand proud in the centre of your apartment, surveying the results of your hard work. 
 I mean, you can see the floor now!
 As the ChoombaRoomba whirs along happily sucking up the crumbs you notice something curious.
-Just beside the door, stuffed into a milk crate is a collection of snail-mail- a few aged envelopes and one shoebox-sized cardboard box.#scene:ApartmentClean
+Just beside the door, stuffed into a milk crate is a collection of snail-mail- a few aged envelopes and one shoebox-sized cardboard box.
     *[Now where did that come from?] You recall some time ago when you were focused on a particularly complex case ({~something about a giraffe being smuggled interstate|some guy was found pickled to death at a pickle factory|a kid lost his cat up a tree- and damn are those things rare}).
     You must have pushed them aside while you worked the case, only to forget they even existed.
         **[Until now...]
@@ -285,6 +291,7 @@ Just beside the door, stuffed into a milk crate is a collection of snail-mail- a
 
         
 =ExamineMail
+#scene:PackagesOne
         {You walk over to the crate, hoist it up and pour the contents out over your bed.|}
                     *[Look at the letters] You glance over the envelopes- some bullshirt from MyCouncil about parking rates, an ad for the latest Nova-Cult and a takeaway menu for 'La'Lucky Pizzeria'.
             All trash... except maybe that last one.
@@ -294,8 +301,8 @@ Just beside the door, stuffed into a milk crate is a collection of snail-mail- a
                 **[It can happen...] It's not the first time you received an unmarked parcel, maybe it's that CuppaRamen Deluxe you ordered from the black market? 
             You weigh it in your hands.
                 ...Some pretty hefty ramen...
-                You grab a knife and start cutting into the parcel. With a bit of effort you cut through the tape and manage to get a side open. There seems to be some kind of reinforced case inside, taking up the entire interior of the box...
-                    ***[Pull out the case] You wedge your fingers into the box and slide out the case. It falls out onto your mattress with a thump.
+                You grab a knife and start cutting into the parcel. With a bit of effort you cut through the tape and manage to get a side open. There seems to be some kind of reinforced case inside, taking up the entire interior of the box...#scene:PackagesTwo
+                    ***[Pull out the case] You wedge your fingers into the box and slide out the case. It falls out onto your mattress with a thump.#scene:PackagesThree
                     You give it a look over... wait a sec, that logo on the cover... that's the <b>MyData</b> logo! This isn't good, only <b>MyData</b> employees are allowed to own something like this.
                     ****[What in the....] You let out a hoarse whisper, "What in the actual frunk is going on here?"
                         *****[Open the case] Carefully, you open the latch on the case, half expecting it to immediately explode in your face.
@@ -304,25 +311,25 @@ Just beside the door, stuffed into a milk crate is a collection of snail-mail- a
             
             
 =FindTapes
-{Inside the case are 5 data cartridges, each one nestled gently within a foam lining.|}
-{All the cartridges seem to have a little, blinking red light. There's also a coloured label on each one.|}
-{|You start to shake, you think you might know what these are... but it's safer to be sure...|}
+#scene:PersonaTapesCase
+{Inside the case are 5 data cartridges, each one nestled gently within a foam lining. All the cartridges seem to have a little, blinking red light. There's also a coloured label on each one.|You start to shake, you think you might know what these are... but it's safer to be sure...}
 *[Investigate the lights] As you investigate the blinking lights you notice that each cartridge actually has a strip of 6 LEDs, two red, two yellow and two green. Currently, only one red light is lit up on each of the cartridges.
 ->FindTapes
 *[Read the labels] The 5 cartridges all seem to be exactly the same, save for the labels. On each coloured label is written a different name...
 'Kiera' in Bright Yellow
 'Winfred' in Powder Blue
 'Jamie' in Forest Green
-'Estelle' in Rich Purple
+'Estelle' in Bright Magenta
 'Torelin' in Rust Red
 ->FindTapes
 
 * -> 
-Your blood turns cold as you realise what these are. 
-Holy frunk-cakes, these are the frunking Persona Tapes!
+Your blood turns cold as you realise what these are... 
+Holy frunk-cakes! These are the frunking Persona Tapes!
 -> PartTwoThePersonaTapes
 
 ===PartTwoThePersonaTapes
+#scene:TapesApartment
 {You begin to pace around the apartment, the Persona Tapes resting in the centre of your bed. What does this mean? What do you do with these things?|}
 { |You continue to pace...}
 *[This is a chance to figure out the mystery!] You can finally know what happened that day, the day that led to the destruction of the <b>Web</b> and the dawn of the <b>New Dark Age</b>. You tremble with excitement at the prospect{PartOneTheApartment.ChooseGravyBabyAgain: (and not just because you're full to the brim with {gravyBabyTubesEaten} tubes of nutrient rich goop)}. 

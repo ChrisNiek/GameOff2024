@@ -18,7 +18,7 @@ public class InkyStoryManager : MonoBehaviour
     public GameObject backgroundPlane;
     public GameObject transitionPlane;
 
-    public List<SceneData> sceneLibrary = new List<SceneData>(); // List of scenes that can be modified in the Inspector
+    public List<SceneDataSO> sceneLibrary = new List<SceneDataSO>(); // Reference to Scriptable Object
 
     public AudioSource typewriterAudioSource;
     public AudioClip typewriterSound;
@@ -28,6 +28,7 @@ public class InkyStoryManager : MonoBehaviour
     private Story inkStory;
     private Coroutine fadeInCoroutine;
     private string currentScene;
+    private bool isTyping = false;  // Flag to track if the typewriter effect is active
 
     void Start()
     {
@@ -35,6 +36,18 @@ public class InkyStoryManager : MonoBehaviour
         transitionPlane.SetActive(true);
         StartCoroutine(FadeOutTransitionPlane());  // Fade out on start
         StartCoroutine(DisplayCurrentParagraph());
+    }
+
+    void Update()
+    {
+        // Check for left mouse click (button 0 is the left mouse button)
+        if (Input.GetMouseButtonDown(0) && isTyping)
+        {
+            // Skip the typewriter effect on click
+            StopCoroutine(TypewriterEffect(inkStory.currentText));
+            storyText.text = inkStory.currentText; // Immediately display full text
+            isTyping = false;  // End typing effect
+        }
     }
 
     private IEnumerator DisplayCurrentParagraph()
@@ -55,6 +68,7 @@ public class InkyStoryManager : MonoBehaviour
             }
             storyCanvasGroup.alpha = 1f;
 
+            // Start typewriter effect
             yield return StartCoroutine(TypewriterEffect(paragraph));
 
             RefreshChoices();
@@ -63,10 +77,13 @@ public class InkyStoryManager : MonoBehaviour
 
     private IEnumerator TypewriterEffect(string text)
     {
+        isTyping = true; // Start typing
         storyText.text = "";
 
         for (int i = 0; i < text.Length; i++)
         {
+            if (!isTyping) break; // Exit early if user clicks and skips
+
             storyText.text += text[i];
 
             if (!char.IsWhiteSpace(text[i]) && typewriterAudioSource && typewriterSound)
@@ -77,6 +94,14 @@ public class InkyStoryManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f); // Speed of typewriter effect
         }
+
+        // If typing is interrupted, show the whole text immediately
+        if (isTyping)
+        {
+            storyText.text = text;
+        }
+
+        isTyping = false; // End typing effect
     }
 
     private void ProcessTags(List<string> tags)
@@ -97,7 +122,7 @@ public class InkyStoryManager : MonoBehaviour
 
     private void ChangeScene(string sceneName)
     {
-        SceneData sceneData = sceneLibrary.Find(scene => scene.sceneName == sceneName);
+        SceneDataSO sceneData = sceneLibrary.Find(scene => scene.sceneName == sceneName);
 
         if (sceneData != null)
         {
@@ -132,7 +157,7 @@ public class InkyStoryManager : MonoBehaviour
         transitionPlane.SetActive(false);
     }
 
-    private IEnumerator FadeAndApplyScene(SceneData sceneData)
+    private IEnumerator FadeAndApplyScene(SceneDataSO sceneData)
     {
         CanvasGroup transitionCanvasGroup = transitionPlane.GetComponent<CanvasGroup>();
         if (transitionCanvasGroup == null)
@@ -142,20 +167,18 @@ public class InkyStoryManager : MonoBehaviour
 
         transitionPlane.SetActive(true);
 
-        // Only fade in if the alpha is not already 1
-        if (transitionCanvasGroup.alpha < 1f)
-        {
-            float fadeInDuration = 1f;
-            float fadeInElapsedTime = 0f;
+        // Define opacity steps for chunky fade effect (20% increments)
+        float[] fadeSteps = { 0.2f, 0.4f, 0.6f, 0.8f, 1.0f };
 
-            while (fadeInElapsedTime < fadeInDuration)
-            {
-                transitionCanvasGroup.alpha = Mathf.Lerp(0f, 1f, fadeInElapsedTime / fadeInDuration);
-                fadeInElapsedTime += Time.deltaTime;
-                yield return null;
-            }
-            transitionCanvasGroup.alpha = 1f;
+        // Fade in using chunky steps
+        for (int i = 0; i < fadeSteps.Length; i++)
+        {
+            transitionCanvasGroup.alpha = fadeSteps[i];
+            yield return new WaitForSeconds(0.1f); // Pause between steps for the chunky effect
         }
+
+        // Pause at full opacity to indicate the scene change
+        yield return new WaitForSeconds(0.5f);
 
         // Apply new textures to scene planes
         foregroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.foreground;
@@ -163,20 +186,16 @@ public class InkyStoryManager : MonoBehaviour
         rearMidgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.rearMidground;
         backgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.background;
 
-        // Fade out after scene change
-        float fadeOutDuration = 1f;
-        float fadeOutElapsedTime = 0f;
-
-        while (fadeOutElapsedTime < fadeOutDuration)
+        // Fade out in chunky steps
+        for (int i = fadeSteps.Length - 1; i >= 0; i--)
         {
-            transitionCanvasGroup.alpha = Mathf.Lerp(1f, 0f, fadeOutElapsedTime / fadeOutDuration);
-            fadeOutElapsedTime += Time.deltaTime;
-            yield return null;
+            transitionCanvasGroup.alpha = fadeSteps[i];
+            yield return new WaitForSeconds(0.1f); // Pause between steps for the chunky effect
         }
-        transitionCanvasGroup.alpha = 0f;
-        transitionPlane.SetActive(false);  // Hide transition plane after fade out
-    }
 
+        transitionCanvasGroup.alpha = 0f;
+        transitionPlane.SetActive(false); // Hide transition plane after fade out
+    }
 
     private void RefreshChoices()
     {
@@ -266,24 +285,5 @@ public class InkyStoryManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-    }
-}
-
-[System.Serializable]
-public class SceneData
-{
-    public string sceneName;
-    public Texture2D foreground;
-    public Texture2D frontMidground;
-    public Texture2D rearMidground;
-    public Texture2D background;
-
-    public SceneData(string sceneName, Texture2D foreground, Texture2D frontMidground, Texture2D rearMidground, Texture2D background)
-    {
-        this.sceneName = sceneName;
-        this.foreground = foreground;
-        this.frontMidground = frontMidground;
-        this.rearMidground = rearMidground;
-        this.background = background;
     }
 }

@@ -10,14 +10,13 @@ public class ResolutionManager : MonoBehaviour
         // Ensure this object persists across scenes
         DontDestroyOnLoad(gameObject);
 
-        // Set initial resolution
+        // Set initial resolution and aspect ratio
         SetResolution();
 
         // Subscribe to scene loaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         Cursor.visible = false;
-
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -28,8 +27,13 @@ public class ResolutionManager : MonoBehaviour
 
     void SetResolution()
     {
+        // Check if we're in WebGL to avoid using unsupported screen modes
+#if UNITY_WEBGL
+            AdjustAspectRatio();
+#else
         Screen.SetResolution(1280, 960, FullScreenMode.FullScreenWindow);
         AdjustAspectRatio();
+#endif
     }
 
     void AdjustAspectRatio()
@@ -37,7 +41,7 @@ public class ResolutionManager : MonoBehaviour
         float windowAspect = (float)Screen.width / (float)Screen.height;
         float scaleHeight = windowAspect / targetAspect;
 
-        Camera mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
+        Camera mainCamera = GameObject.Find("MainCamera")?.GetComponent<Camera>();
         if (mainCamera == null)
         {
             Debug.LogError("MainCamera not found! Make sure your camera is named 'MainCamera'.");
