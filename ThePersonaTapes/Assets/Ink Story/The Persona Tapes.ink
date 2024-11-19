@@ -8,10 +8,15 @@ VAR currentRadioStation = "none"
 
 VAR isConnectedToNewWeb = 1
 
+LIST tapesUploaded = kiera,winfred,jamie,estelle,torelin
+
+VAR neuralInterfaced = 0
+
 -> Intro
 
 === Intro
 TODO Add MyData Spacejunk in intro images
+#music: TheNewDarkAge
 #scene:EarthFar
  "On October 28th, 2066 a small cafe in Melbourne’s business district was involved in a massive data heist, later known as the 'Breach'."
 #scene:Earth
@@ -21,10 +26,10 @@ TODO Add MyData Spacejunk in intro images
 -"The bank was infiltrated using underhanded tactics. In a swift and inhuman act an Exabyte of information (1 billion gigabytes) of data began to leak from the data vaults."
 #scene:Australia
 "Later it was found that the data access point, safely nestled hundreds of floors below, was somehow accessed through a gap in the cafe break room less than a centimetre wide."
-#scene:Melbourne
+#scene:Peninsula
 "By the time <b>MyData</b> discovered the leak it was too late, the information had fallen into the hands of the populace and was beginning to circulate on the <b>Web</b>. <b>MyData</b> quickly released a statement- doing their best to prevent the world falling into chaos."
 **["But they failed..."]
- #scene:IntroApartmentCity
+ #scene:Melbourne
 --"Alas, the people did not acknowledge the statement and follow <b>MyData</b>'s guidance. Lives were lost, businesses were left open to plunder and the darkest secrets of the world’s superpowers became accessible through a simple <b>Web</b> search."
 #scene:ApartmentCloseCity
 "Unable to control the rabble <b>MyData</b> had no choice but to cut access to the <b>Web</b>, sending the world into the <b>New Dark Age</b>." 
@@ -33,11 +38,12 @@ TODO Add MyData Spacejunk in intro images
 ***["Then we see the light..."]
 #scene:TVPresenterIntro
 --- "But eventually, rumours began to spread. Illegal and primitive 'Pirate Radio' stations and indie-news agencies began to discuss the possible existence of so-called <i>evidence</i> from the <b>"Breach"</b>." 
+TODO simplify this paragraph
 "As the rambling went on, corrupted ex-<b>MyData</b> employees came forward with further misinformation. Before their termination they <i>claimed</i> there were physical copies of data gathered from the witnesses- and so began the laughable search for the <b>'Persona Tapes'</b>." 
 <i>The TV presenter continued, scoffing and rolling his eyes.</i>
 ****["The tapes..."]
 "Stop thinking about the past, log into your MyData+ account and join us on the New Web forums. Become part of the <i>FUTURE</i>!" 
-*****["Enough of that garbage." (Turn off the TV)] You punch the off button on the remote and the phony grin of the presenter is wiped away. The TV screen crackles and fades to black, leaving you alone in your untidy apartment with only the distant sound of the Melbourne city streets below keeping you company.#scene:ApartmentMessy 
+*****["Enough of that garbage." (Turn off the TV)] You punch the off button on the remote and the phony grin of the presenter is wiped away. The TV screen crackles and fades to black, leaving you alone in your untidy apartment with only the distant sound of the Melbourne city streets below keeping you company.#scene:ApartmentMessy #music: ApartmentBeat
     -> PartOneTheApartment
 
 === PartOneTheApartment
@@ -93,21 +99,21 @@ TODO Add MyData Spacejunk in intro images
         ++[This is a really bad idea.] You tap 'back' on the display. As you cancel the order you feel as if you just dodged a bullet- well the second bullet at least.
         ->VenderKit
         
-    * {ChooseBurrito && ChooseBurritoAgain} [What's one more burrito? I probably have to get my stomach pumped anyway.] You begin to reach for the <b>VenderKit</b> screen- then you hesitate... 
+    * {ChooseBurrito && ChooseBurritoAgain} [What's one more burrito? I probably have to get my stomach pumped anyway.] You begin to reach for the <b>VenderKit</b> screen- then you hesitate... #music: WorrisomeWinfred
    These burritos are no joke, there's a risk that you could die here. Out of work, in a garbage dump of an apartment with three massive burritos where your guts should be.
         ++ [It's worth the risk.] I mean, if you aren't letting yourself indulge every once in a while, are you really living?
-            +++ [But seriously?] Are you completely sure? You will probably die due to a burrito overdose.
-                ++++ [There is no better way to die] You punch the button, the raspy voice rattles like the bones of the Grim Reaper.
+            +++ [But seriously?] Are you completely sure? You will probably die due to a burrito overdose. 
+                ++++ [There is no better way to die] You punch the button, the raspy voice rattles like the bones of the Grim Reaper. 
             "Hola! Choose your flavour, amigo!"
             Ah yes, amigo...
             My dear friend.
             You are my one and only friend, burrito. Let me embrace you one last time...
         -> DeathByBurrito
                 ++++ [No, snap out of it!] You tear yourself away from the <b>VenderKit</b>- your skin wet with sweat. What is in those things?!
-                After a brief rest to recover you move on. #scene:ApartmentMessy
+                After a brief rest to recover you move on. #scene:ApartmentMessy #music: ApartmentBeat
                 ->PartOneTheApartment
-        ++ [There's more to life than burritos... let it go.] You step back from the machine and shake yourself out of it. Why are you doing this? What the hell is in those things?!
-        You take a moment to calm down before moving on. #scene:ApartmentMessy
+        ++ [There's more to life than burritos... let it go.] You step back from the machine and shake yourself out of it. Why are you doing this? What the hell is in those things?! 
+        You take a moment to calm down before moving on. #scene:ApartmentMessy #music: ApartmentBeat
          ->PartOneTheApartment
         
      
@@ -312,7 +318,7 @@ Just beside the door, stuffed into a milk crate is a collection of snail-mail- a
             
 =FindTapes
 #scene:PersonaTapesCase
-{Inside the case are 5 data cartridges, each one nestled gently within a foam lining. All the cartridges seem to have a little, blinking red light. There's also a coloured label on each one.|You start to shake, you think you might know what these are... but it's safer to be sure...}
+{Inside the case are 5 data cartridges, each one nestled gently within a foam lining. All the cartridges seem to have a little, blinking red light. There's also a coloured label on each one.|You start to shake, you think you might know what these are... but it's safer to be sure...|Your blood turns cold as you realise what these are...Holy frunk-cakes! These are the frunking Persona Tapes!}
 *[Investigate the lights] As you investigate the blinking lights you notice that each cartridge actually has a strip of 6 LEDs, two red, two yellow and two green. Currently, only one red light is lit up on each of the cartridges.
 ->FindTapes
 *[Read the labels] The 5 cartridges all seem to be exactly the same, save for the labels. On each coloured label is written a different name...
@@ -323,10 +329,7 @@ Just beside the door, stuffed into a milk crate is a collection of snail-mail- a
 'Torelin' in Rust Red
 ->FindTapes
 
-* -> 
-Your blood turns cold as you realise what these are... 
-Holy frunk-cakes! These are the frunking Persona Tapes!
--> PartTwoThePersonaTapes
+* -> PartTwoThePersonaTapes
 
 ===PartTwoThePersonaTapes
 #scene:TapesApartment
@@ -354,7 +357,7 @@ With that thought in mind you pull out your CompuDeck from under the bed, brush 
 *[Punch in the data tapes!]
 ->UploadTapes
 *[Let's not be too hasty, I should go over what I know first] A good investigator always takes stock of a situation, you create a new readme to gather your thoughts.
-->CaseLog
+->CaseLog->TheInvestigationBegins
 + {isConnectedToNewWeb == 1} [Make sure you're not connected to the <b>New Web</b>- <b>MyData</b> could be watching...]
 ~ isConnectedToNewWeb = 0
 {&Your heart skips a beat as you realise how easy it would be for <b>MyData</b> to find you, should the tapes connect to the  <b>New Web</b>. Best to turn it off.|No, it's too dangerous. I have to sever the connection.|My data is my data, <b>MyData</b>- not your data!} (you turn off the  <b>New Web</b> link on your CompuDeck)
@@ -366,7 +369,21 @@ You switch on the connection and the signal returns. (you turn on the  <b>New We
 
 =UploadTapes
 TODO upload tapes section
-->END
+{Which tape would you like to start with?|Which tape is next?}
++['Kiera']You slide the tape out from the case and plug it into your Compudeck, which immediately starts whirring as the data accessed.
+->Personas.KieraCompuDeck
++['Winfred']You pull the tape from it's foam housing and place it firmly in the CompuDeck data port.
+->Personas.WinfredCompuDeck
++['Jamie']Sliding the tape out from it's casing, you place it into the data port on your CompuDeck.
+->Personas.JamieCompuDeck
++['Estelle']You take the tape from the case and slot into the data port on your CompuDeck.
+->Personas.EstelleCompuDeck
++['Torelin']The tape comes out of its' casing smoothly, and you plug it in to the data port on your CompuDeck.
+->Personas.TorelinCompuDeck
+
+
+
+
 
 =CaseLog
 TODO caselog for current clues related to the case
@@ -414,4 +431,63 @@ TODO Persona Tapes Case Log entry
 ->CaseLog
 
 +[Close the Case Log] Ctrl+S, Alt+F4...
+->->
+
+
+===Personas
+
+=KieraCompuDeck
+CASEFILE LOADED <br>PERSONA LOADED <br>READ CASEFILE OR BEGIN RECOLLECTIVE INVESTIGATION?
++[Read the 'Case File' first]>READ CASEFILE<br>Subject: Kiera Welles<br>Occupation: Vagrant<br>Personality Traits: Imaginative, Playful, Resourceful, Delusional
+From interviews with witnesses Kiera Welles seemed to be an unexceptional orphan. According to local restaurant and cafe staff Kiera was claiming to be the child of a wealthy EurekaTek business woman. Hospitality staff would provide her with food and water out of fear of angering her mother. 
+After many attempts to find Kiera's family for questioning and incarceration it was found that she had no living relatives. Kiera was last seen at the incident and no trace of her has been found since. 
+    ->KieraCompuDeck
++[Begin 'Recollective Investigation']
+TODO Fix the false and true statements showing
+>BEGIN RECOLLECTIVE INVESTIGATION<br>CONNECTING TO NEURAL INTERFACE
+{{neuralInterfaced == 1} You prepare yourself as the tape begins it's connection with your mind...|Here we go again!}
+{neuralInterfaced == 0}Before you realise what's happening the tape hijacks your neural interface through the CompuDeck and you get the telltale itchy feeling behind your eyeballs. The tape is interfacing with your mind! 
+~ neuralInterfaced = 1
+    ->Kiera
+
+=WinfredCompuDeck
+CASEFILE LOADED <br>PERSONA LOADED <br>READ CASEFILE OR BEGIN RECOLLECTIVE INVESTIGATION?
++[Read the 'Case File' first]>READ CASEFILE<br>Subject: Winfred Oakey<br>Occupation: MyData Researcher<br>Personality Traits: Capable, Intelligent, Subservient
+Winfred was hired as a MyData Researcher in the field of Surveillance two years prior to the incident. He was a capable employee, and was one of the first to be fitted with the MyData 'MySmile' personality regulator.
+Once the regulator was fitted Winfred excelled in his position, eventually arriving at the role of Head Researcher, a role he maintained until the date of the incident.
+    ->WinfredCompuDeck
++[Begin 'Recollective Investigation']
+>BEGIN RECOLLECTIVE INVESTIGATION<br>CONNECTING TO NEURAL INTERFACE
+TODO Fix the false and true statements showing
+{neuralInterfaced == 1} {You prepare yourself as the tape begins it's connection with your mind...|Here we go again!}
+{neuralInterfaced == 0}Before you realise what's happening the tape hijacks your neural interface through the CompuDeck and you get the telltale itchy feeling behind your eyeballs. The tape is interfacing with your mind! 
+~ neuralInterfaced = 1
+
+    ->Winfred
+
+->END
+
+=JamieCompuDeck
+TODO initial upload
+
+->END
+
+=EstelleCompuDeck
+TODO  initial upload
+
+->END
+
+=TorelinCompuDeck
+TODO initial upload
+
+->END
+
+=== Kiera
+TODO Kiera
+This is where you play as Kiera
+->END
+
+=== Winfred
+TODO Winfred
+This is where you play as Winfred
 ->END

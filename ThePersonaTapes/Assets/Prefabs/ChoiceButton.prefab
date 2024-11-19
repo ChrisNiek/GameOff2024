@@ -282,5 +282,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b303547cce3a52e4d8356f80b565aa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSound: {fileID: 8300000, guid: c9271aa9df25aaa4896b9f23a5952f97, type: 3}
-  clickSound: {fileID: 8300000, guid: bf1d12985ef5d00488ca8984709dbd96, type: 3}
+  useDefaultSounds: 1

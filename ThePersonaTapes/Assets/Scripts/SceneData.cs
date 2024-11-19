@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor;
 
 [CreateAssetMenu(fileName = "NewSceneData", menuName = "SceneData")]
 public class SceneDataSO : ScriptableObject
@@ -13,11 +12,13 @@ public class SceneDataSO : ScriptableObject
     // Automatically set the scene name to the asset's file name when created or modified in the editor
     private void OnValidate()
     {
+#if UNITY_EDITOR
         // Ensure this is done only in the editor (not at runtime)
         if (string.IsNullOrEmpty(sceneName))
         {
-            sceneName = AssetDatabase.GetAssetPath(this);
+            sceneName = UnityEditor.AssetDatabase.GetAssetPath(this);
             sceneName = System.IO.Path.GetFileNameWithoutExtension(sceneName);
         }
+#endif
     }
 }

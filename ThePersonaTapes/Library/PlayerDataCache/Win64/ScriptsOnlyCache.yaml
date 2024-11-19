@@ -1,17 +1,37 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AdaptiveMusicManager
     - BrewedInk.CRT.CRTCameraBehaviour
     - ButtonSound
     - CameraTilt
+    - GameRestart
     - InkyStoryManager
-    - SaveLoadManager
+    - SaveAndExit
+    - SceneDataSO
     - SoundManager
+    - TogglePanel
     - UICursor
     InkEditor.dll:
     - Ink.UnityIntegration.InkCompiler
     - Ink.UnityIntegration.InkLibrary
     - Ink.UnityIntegration.InkPlayerWindow
+    Unity.Postprocessing.Runtime.dll:
+    - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
+    - UnityEngine.Rendering.PostProcessing.AutoExposure
+    - UnityEngine.Rendering.PostProcessing.Bloom
+    - UnityEngine.Rendering.PostProcessing.ChromaticAberration
+    - UnityEngine.Rendering.PostProcessing.ColorGrading
+    - UnityEngine.Rendering.PostProcessing.DepthOfField
+    - UnityEngine.Rendering.PostProcessing.Grain
+    - UnityEngine.Rendering.PostProcessing.LensDistortion
+    - UnityEngine.Rendering.PostProcessing.MotionBlur
+    - UnityEngine.Rendering.PostProcessing.PostProcessLayer
+    - UnityEngine.Rendering.PostProcessing.PostProcessProfile
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources
+    - UnityEngine.Rendering.PostProcessing.PostProcessVolume
+    - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
+    - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
@@ -52,6 +72,26 @@ ScriptsOnlyBuild:
     - BrewedInk.CRT.ColorChannels
     - BrewedInk.CRT.ColorScan
     - BrewedInk.CRT.ScreenDimensions
+    Unity.Postprocessing.Runtime:
+    - UnityEngine.Rendering.PostProcessing.BoolParameter
+    - UnityEngine.Rendering.PostProcessing.ColorParameter
+    - UnityEngine.Rendering.PostProcessing.FastApproximateAntialiasing
+    - UnityEngine.Rendering.PostProcessing.FloatParameter
+    - UnityEngine.Rendering.PostProcessing.Fog
+    - UnityEngine.Rendering.PostProcessing.HistogramMonitor
+    - UnityEngine.Rendering.PostProcessing.LightMeterMonitor
+    - UnityEngine.Rendering.PostProcessing.PostProcessDebugLayer
+    - UnityEngine.Rendering.PostProcessing.PostProcessDebugLayer/OverlaySettings
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/ComputeShaders
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/SMAALuts
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/Shaders
+    - UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing
+    - UnityEngine.Rendering.PostProcessing.TemporalAntialiasing
+    - UnityEngine.Rendering.PostProcessing.TextureParameter
+    - UnityEngine.Rendering.PostProcessing.Vector2Parameter
+    - UnityEngine.Rendering.PostProcessing.VectorscopeMonitor
+    - UnityEngine.Rendering.PostProcessing.VignetteModeParameter
+    - UnityEngine.Rendering.PostProcessing.WaveformMonitor
     Unity.TextMeshPro:
     - TMPro.FaceInfo_Legacy
     - TMPro.FontAssetCreationSettings
@@ -68,7 +108,9 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Style
     - TMPro.VertexGradient
     UnityEngine.CoreModule:
+    - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
+    - UnityEngine.Events.PersistentListenerMode
     - UnityEngine.RectOffset
     UnityEngine.TextCoreFontEngineModule:
     - UnityEngine.TextCore.FaceInfo
@@ -82,9 +124,21 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.SpriteState
-  methodsToPreserve: []
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: SaveAndExit
+    methodName: ExitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: GameRestart
+    methodName: LoadLevel
+  - assembly: Assembly-CSharp
+    fullTypeName: TogglePanel
+    methodName: Toggle
+  - assembly: Assembly-CSharp
+    fullTypeName: TogglePanel
+    methodName: Toggle
   sceneClasses:
-    Assets/Scenes/VisualTest.unity:
+    Assets/Scenes/MainLevel.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -107,6 +161,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
+    - Class: 72
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 82
@@ -122,49 +178,69 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16652}
-    - Class: 114
       Script: {instanceID: 16658}
     - Class: 114
-      Script: {instanceID: 16702}
+      Script: {instanceID: 16664}
     - Class: 114
-      Script: {instanceID: 17084}
+      Script: {instanceID: 16708}
     - Class: 114
-      Script: {instanceID: 17302}
+      Script: {instanceID: 17090}
     - Class: 114
-      Script: {instanceID: 17312}
+      Script: {instanceID: 17308}
     - Class: 114
-      Script: {instanceID: 17438}
+      Script: {instanceID: 17318}
     - Class: 114
-      Script: {instanceID: 17752}
+      Script: {instanceID: 17348}
     - Class: 114
-      Script: {instanceID: 17960}
+      Script: {instanceID: 17446}
     - Class: 114
-      Script: {instanceID: 18500}
+      Script: {instanceID: 17760}
     - Class: 114
-      Script: {instanceID: 19052}
+      Script: {instanceID: 17968}
     - Class: 114
-      Script: {instanceID: 19178}
+      Script: {instanceID: 18012}
     - Class: 114
-      Script: {instanceID: 19286}
+      Script: {instanceID: 18510}
     - Class: 114
-      Script: {instanceID: 19548}
+      Script: {instanceID: 19062}
     - Class: 114
-      Script: {instanceID: 20286}
+      Script: {instanceID: 19190}
     - Class: 114
-      Script: {instanceID: 21008}
+      Script: {instanceID: 19298}
     - Class: 114
-      Script: {instanceID: 21342}
+      Script: {instanceID: 19560}
     - Class: 114
-      Script: {instanceID: 21760}
+      Script: {instanceID: 19968}
     - Class: 114
-      Script: {instanceID: 21932}
+      Script: {instanceID: 20300}
     - Class: 114
-      Script: {instanceID: 21984}
+      Script: {instanceID: 21022}
     - Class: 114
-      Script: {instanceID: 22012}
+      Script: {instanceID: 21356}
     - Class: 114
-      Script: {instanceID: 42756}
+      Script: {instanceID: 21580}
+    - Class: 114
+      Script: {instanceID: 21776}
+    - Class: 114
+      Script: {instanceID: 21948}
+    - Class: 114
+      Script: {instanceID: 22000}
+    - Class: 114
+      Script: {instanceID: 22028}
+    - Class: 114
+      Script: {instanceID: 23100}
+    - Class: 114
+      Script: {instanceID: 29730}
+    - Class: 114
+      Script: {instanceID: 29734}
+    - Class: 114
+      Script: {instanceID: 29818}
+    - Class: 114
+      Script: {instanceID: 29930}
+    - Class: 114
+      Script: {instanceID: 30006}
+    - Class: 114
+      Script: {instanceID: 30074}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -182,6 +258,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 225
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -312,6 +394,12 @@ ScriptsOnlyBuild:
     className: UnityOnPointerUpMessageListener
   - hash:
       serializedVersion: 2
+      Hash: a22f213ecc8684dfdc4f2bd518c8cc9b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TogglePanel
+  - hash:
+      serializedVersion: 2
       Hash: 7e93247d600e115dac0cdd880de94e99
     assemblyName: UnityEngine.TestRunner
     namespaceName: UnityEngine.TestTools.TestRunner
@@ -412,6 +500,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: e6234c8cd9a3da9a6ad5e6b8fb631474
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameRestart
   - hash:
       serializedVersion: 2
       Hash: 3b5263a98bcc71d9a9d1d78a31b34ced
@@ -642,6 +736,12 @@ ScriptsOnlyBuild:
     className: QuitGameOnKeypress
   - hash:
       serializedVersion: 2
+      Hash: 3e2c06d0bb2375ea0bfa50713a6b58e9
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SongData
+  - hash:
+      serializedVersion: 2
       Hash: 4718916586b3818eb69bf65df61f0f3a
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -784,6 +884,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 6a486f840bb94637dfb6446b287d2fc5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SceneDataSO
   - hash:
       serializedVersion: 2
       Hash: ceeb6c51b89f022a3deb7b3408c66745
@@ -1014,6 +1120,12 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: ea54e4d4882a9322e8513a58ad3aa4e5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: AdaptiveMusicManager
+  - hash:
+      serializedVersion: 2
       Hash: 7fdd3ee28e9042c3ec83463d0bb3b230
     assemblyName: Assembly-CSharp
     namespaceName: TMPro.Examples
@@ -1104,7 +1216,7 @@ ScriptsOnlyBuild:
     className: AudioPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: f4cfc66bba985fd3bb36d5d1a5974206
+      Hash: d4f6d3e418608511f7c6b3033c464ef2
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: InkyStoryManager
@@ -1266,6 +1378,12 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: fc5a8d839c7bfaa888798c2ee725e180
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SaveAndExit
+  - hash:
+      serializedVersion: 2
       Hash: 02a47340661d2ea7c6d30e292cfef403
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1302,11 +1420,107 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 9d5222e88a6131a5729a47739c066f48
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: SaveLoadManager
+      Hash: b6792907b61f32faaf3e23f55e750107
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessResources
+  - hash:
+      serializedVersion: 2
+      Hash: 4ea1bf258a208f00f70cf744bd7e56ce
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: Vignette
+  - hash:
+      serializedVersion: 2
+      Hash: fe111e830148f07e5735ebe7620f752e
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: ChromaticAberration
+  - hash:
+      serializedVersion: 2
+      Hash: 76aa43cc6adae8454a66255a8113266d
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: AmbientOcclusion
+  - hash:
+      serializedVersion: 2
+      Hash: e9bfee93ebf3a7afacd9b5a36a892fc0
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: AutoExposure
+  - hash:
+      serializedVersion: 2
+      Hash: ff086b2fc4609f8b094e7c0435c6db0a
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessLayer
+  - hash:
+      serializedVersion: 2
+      Hash: c65fb8f721cc4462e7a642974c37d3c0
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: DepthOfField
+  - hash:
+      serializedVersion: 2
+      Hash: 429ce0b58f9d2275bbc4ed740bee78ec
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessDebug
+  - hash:
+      serializedVersion: 2
+      Hash: 424074d3010ce4ec3d155fbdba52a3b3
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: Grain
+  - hash:
+      serializedVersion: 2
+      Hash: b462ce9b96d7f3f3a8a18557fbf44071
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: Bloom
+  - hash:
+      serializedVersion: 2
+      Hash: 9f92e751d2286296361a1d06b9e90c1e
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: MotionBlur
+  - hash:
+      serializedVersion: 2
+      Hash: 80a72b656b55a7a1fc92e1a02151ea22
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: ScreenSpaceReflections
+  - hash:
+      serializedVersion: 2
+      Hash: ffaaa6b08bc8a8928411e8e402432358
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessVolume
+  - hash:
+      serializedVersion: 2
+      Hash: fb91b0f531b5adecb53c856ab1c2f0aa
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: LensDistortion
+  - hash:
+      serializedVersion: 2
+      Hash: 110aa327d5a5138dcfcbacb388ae0acc
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessEffectSettings
+  - hash:
+      serializedVersion: 2
+      Hash: 0237607a3a697cf130c195c13cb63a88
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: ColorGrading
+  - hash:
+      serializedVersion: 2
+      Hash: 2fd42819c69acefd80a2bbcd49cbe8cf
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessProfile
   platform: 19
   scenePathNames:
-  - Assets/Scenes/VisualTest.unity
+  - Assets/Scenes/MainLevel.unity
   playerPath: G:/Chris/Games/GameOff2024/ThePersonaTapes/PT Build/The Persona Tapes.exe

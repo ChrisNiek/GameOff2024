@@ -25,6 +25,10 @@ public class InkyStoryManager : MonoBehaviour
     public float minPitch = 0.9f;
     public float maxPitch = 1.1f;
 
+    public Material specialEffectMaterial; // Material with shader for special effects
+
+    public AdaptiveMusicManager musicManager; // Reference to AdaptiveMusicManager
+
     private Story inkStory;
     private Coroutine fadeInCoroutine;
     private string currentScene;
@@ -40,13 +44,11 @@ public class InkyStoryManager : MonoBehaviour
 
     void Update()
     {
-        // Check for left mouse click (button 0 is the left mouse button)
         if (Input.GetMouseButtonDown(0) && isTyping)
         {
-            // Skip the typewriter effect on click
             StopCoroutine(TypewriterEffect(inkStory.currentText));
-            storyText.text = inkStory.currentText; // Immediately display full text
-            isTyping = false;  // End typing effect
+            storyText.text = inkStory.currentText;
+            isTyping = false;
         }
     }
 
@@ -59,7 +61,7 @@ public class InkyStoryManager : MonoBehaviour
             string paragraph = inkStory.Continue();
             storyText.text = "";
 
-            ProcessTags(inkStory.currentTags);
+            ProcessTags(inkStory.currentTags); // Process tags including music triggers
 
             CanvasGroup storyCanvasGroup = storyText.GetComponent<CanvasGroup>();
             if (storyCanvasGroup == null)
@@ -68,7 +70,6 @@ public class InkyStoryManager : MonoBehaviour
             }
             storyCanvasGroup.alpha = 1f;
 
-            // Start typewriter effect
             yield return StartCoroutine(TypewriterEffect(paragraph));
 
             RefreshChoices();
@@ -77,12 +78,12 @@ public class InkyStoryManager : MonoBehaviour
 
     private IEnumerator TypewriterEffect(string text)
     {
-        isTyping = true; // Start typing
+        isTyping = true;
         storyText.text = "";
 
         for (int i = 0; i < text.Length; i++)
         {
-            if (!isTyping) break; // Exit early if user clicks and skips
+            if (!isTyping) break;
 
             storyText.text += text[i];
 
@@ -92,16 +93,15 @@ public class InkyStoryManager : MonoBehaviour
                 typewriterAudioSource.PlayOneShot(typewriterSound);
             }
 
-            yield return new WaitForSeconds(0.01f); // Speed of typewriter effect
+            yield return new WaitForSeconds(0.01f);
         }
 
-        // If typing is interrupted, show the whole text immediately
         if (isTyping)
         {
             storyText.text = text;
         }
 
-        isTyping = false; // End typing effect
+        isTyping = false;
     }
 
     private void ProcessTags(List<string> tags)
@@ -117,10 +117,24 @@ public class InkyStoryManager : MonoBehaviour
                     ChangeScene(sceneName);
                 }
             }
+
+            // Inside InkyStoryManager
+
+            // Check for #music trigger in the tags
+            if (tag.StartsWith("music:"))
+            {
+                string songName = tag.Substring(7); // Extract song name after #music:
+
+                // Trigger the music change in the AdaptiveMusicManager
+                musicManager.TriggerMusic(songName); // Trigger music using the song's name
+            }
+
+
+
         }
     }
 
-    private void ChangeScene(string sceneName)
+        private void ChangeScene(string sceneName)
     {
         SceneDataSO sceneData = sceneLibrary.Find(scene => scene.sceneName == sceneName);
 
@@ -167,34 +181,29 @@ public class InkyStoryManager : MonoBehaviour
 
         transitionPlane.SetActive(true);
 
-        // Define opacity steps for chunky fade effect (20% increments)
         float[] fadeSteps = { 0.2f, 0.4f, 0.6f, 0.8f, 1.0f };
 
-        // Fade in using chunky steps
         for (int i = 0; i < fadeSteps.Length; i++)
         {
             transitionCanvasGroup.alpha = fadeSteps[i];
-            yield return new WaitForSeconds(0.1f); // Pause between steps for the chunky effect
+            yield return new WaitForSeconds(0.1f);
         }
 
-        // Pause at full opacity to indicate the scene change
         yield return new WaitForSeconds(0.5f);
 
-        // Apply new textures to scene planes
         foregroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.foreground;
         frontMidgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.frontMidground;
         rearMidgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.rearMidground;
         backgroundPlane.GetComponent<Renderer>().material.mainTexture = sceneData.background;
 
-        // Fade out in chunky steps
         for (int i = fadeSteps.Length - 1; i >= 0; i--)
         {
             transitionCanvasGroup.alpha = fadeSteps[i];
-            yield return new WaitForSeconds(0.1f); // Pause between steps for the chunky effect
+            yield return new WaitForSeconds(0.1f);
         }
 
         transitionCanvasGroup.alpha = 0f;
-        transitionPlane.SetActive(false); // Hide transition plane after fade out
+        transitionPlane.SetActive(false);
     }
 
     private void RefreshChoices()
@@ -208,6 +217,15 @@ public class InkyStoryManager : MonoBehaviour
                 Button choiceButton = Instantiate(choiceButtonPrefab, choicesContainer.transform);
                 TextMeshProUGUI buttonText = choiceButton.GetComponentInChildren<TextMeshProUGUI>();
                 buttonText.text = choice.text;
+
+                if (inkStory.currentTags.Contains("bfx:") && specialEffectMaterial != null)
+                {
+                    Image buttonImage = choiceButton.GetComponent<Image>();
+                    if (buttonImage != null)
+                    {
+                        buttonImage.material = specialEffectMaterial;
+                    }
+                }
 
                 choiceButton.onClick.AddListener(() => OnChoiceSelected(choice));
 
