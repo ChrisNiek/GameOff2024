@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
+using UnityEngine.SceneManagement;
 
 public class InkyStoryManager : MonoBehaviour
 {
+    public ColorManager colorManager;
     public TextMeshProUGUI storyText;
     public GameObject choicesContainer;
     public Button choiceButtonPrefab;
     public TextAsset inkJSONAsset;
+    public SoundEffectsManager soundEffectsManager; // Reference to SoundEffectsManager
 
     public GameObject foregroundPlane;
     public GameObject frontMidgroundPlane;
@@ -40,6 +43,7 @@ public class InkyStoryManager : MonoBehaviour
         transitionPlane.SetActive(true);
         StartCoroutine(FadeOutTransitionPlane());  // Fade out on start
         StartCoroutine(DisplayCurrentParagraph());
+        Cursor.visible = false;
     }
 
     void Update()
@@ -93,7 +97,7 @@ public class InkyStoryManager : MonoBehaviour
                 typewriterAudioSource.PlayOneShot(typewriterSound);
             }
 
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.001f);
         }
 
         if (isTyping)
@@ -124,17 +128,32 @@ public class InkyStoryManager : MonoBehaviour
             if (tag.StartsWith("music:"))
             {
                 string songName = tag.Substring(7); // Extract song name after #music:
-
-                // Trigger the music change in the AdaptiveMusicManager
-                musicManager.TriggerMusic(songName); // Trigger music using the song's name
+                musicManager.TriggerMusic(songName); // Trigger the music change in the AdaptiveMusicManager
             }
 
+            // Check for #colour trigger in the tags
+            if (tag.StartsWith("colour:"))
+            {
+                string paletteName = tag.Substring(8); // Extract palette name after #colour:
+                colorManager.SwitchPaletteByName(paletteName); // Switch to the palette by name
+            }
 
+            if (tag.StartsWith("RESTART"))
+            {
+                // Reload the current scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
 
+            if (tag.StartsWith("sfx:"))
+            {
+                string sfxName = tag.Substring(4); // Extract the sound effect name after #sfx:
+                soundEffectsManager.PlaySFX(sfxName); // Play the sound effect
+            }
         }
     }
 
-        private void ChangeScene(string sceneName)
+
+    private void ChangeScene(string sceneName)
     {
         SceneDataSO sceneData = sceneLibrary.Find(scene => scene.sceneName == sceneName);
 
@@ -218,6 +237,11 @@ public class InkyStoryManager : MonoBehaviour
                 TextMeshProUGUI buttonText = choiceButton.GetComponentInChildren<TextMeshProUGUI>();
                 buttonText.text = choice.text;
 
+                // Apply color to the button and text
+                colorManager.ApplyColorToButton(choiceButton); // Apply color to the button
+                colorManager.ApplyColorToText(buttonText); // Apply color to the text
+
+                // Special effect for the button (if applicable)
                 if (inkStory.currentTags.Contains("bfx:") && specialEffectMaterial != null)
                 {
                     Image buttonImage = choiceButton.GetComponent<Image>();
@@ -227,8 +251,10 @@ public class InkyStoryManager : MonoBehaviour
                     }
                 }
 
+                // Add listener for the button click
                 choiceButton.onClick.AddListener(() => OnChoiceSelected(choice));
 
+                // Setup CanvasGroup for fading
                 CanvasGroup canvasGroup = choiceButton.GetComponent<CanvasGroup>();
                 if (canvasGroup == null)
                     canvasGroup = choiceButton.gameObject.AddComponent<CanvasGroup>();
@@ -242,8 +268,14 @@ public class InkyStoryManager : MonoBehaviour
             Button continueButton = Instantiate(choiceButtonPrefab, choicesContainer.transform);
             TextMeshProUGUI continueButtonText = continueButton.GetComponentInChildren<TextMeshProUGUI>();
             continueButtonText.text = "Click to continue";
+
+            // Apply color to the continue button and text
+            colorManager.ApplyColorToButton(continueButton); // Apply color to the button
+            colorManager.ApplyColorToText(continueButtonText); // Apply color to the text
+
             continueButton.onClick.AddListener(OnContinueClicked);
 
+            // Setup CanvasGroup for fading
             CanvasGroup canvasGroup = continueButton.GetComponent<CanvasGroup>();
             if (canvasGroup == null)
                 canvasGroup = continueButton.gameObject.AddComponent<CanvasGroup>();
@@ -252,6 +284,7 @@ public class InkyStoryManager : MonoBehaviour
             fadeInCoroutine = StartCoroutine(FadeInChoices());
         }
     }
+
 
     private IEnumerator FadeInChoices()
     {

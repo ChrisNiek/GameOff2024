@@ -24,63 +24,63 @@ MonoBehaviour:
     - type: 0
       content: Add MyData Spacejunk in intro images
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 18
+      lineNumber: 35
     - type: 0
-      content: simplify this paragraph
+      content: maybe add some clean apartment music?
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 41
-    - type: 0
-      content: Death by burrito content
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 212
-    - type: 0
-      content: upload tapes section
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 371
+      lineNumber: 72
     - type: 0
       content: caselog for current clues related to the case
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 389
-    - type: 0
-      content: The Witnesses case log entry
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 393
-    - type: 0
-      content: Recollective Investigation case log entry
       relativeFilePath: The Persona Tapes.ink
       lineNumber: 399
     - type: 0
       content: Persona Tapes Case Log entry
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 429
+      lineNumber: 430
     - type: 0
-      content: Fix the false and true statements showing
+      content: The Witnesses case log entry
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 446
+      lineNumber: 436
     - type: 0
-      content: Fix the false and true statements showing
+      content: Recollective Investigation case log entry
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 461
+      lineNumber: 443
     - type: 0
-      content: initial upload
+      content: Jamies case file
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 471
+      lineNumber: 495
     - type: 0
-      content: initial upload
+      content: Jamie bio
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 476
+      lineNumber: 498
     - type: 0
-      content: initial upload
+      content: Estelles case file
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 481
+      lineNumber: 507
+    - type: 0
+      content: Torelins case file
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 522
     - type: 0
       content: Kiera
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 486
+      lineNumber: 535
     - type: 0
       content: Winfred
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 491
+      lineNumber: 540
+    - type: 0
+      content: Jamie
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 545
+    - type: 0
+      content: Estelle
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 550
+    - type: 0
+      content: Torelin
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 555
     masterInkAssets: []
     localIncludePaths: []
     includes: []

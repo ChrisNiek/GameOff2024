@@ -1,9 +1,16 @@
 Library\Bee\artifacts\mvdfrm\Unity.2D.PixelPerfect.Editor.ref.dll_77CC498456856650.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.2D.PixelPerfect.ref.dll_81141996E1438371.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Addressables.Editor.ref.dll_25599A53198BCE24.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Addressables.ref.dll_08EDE5DCD823AE5D.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.EditorCoroutines.Editor.ref.dll_63B9EB35A0645901.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Performance.Profile-Analyzer.Editor.ref.dll_C0422B8CE3C1BDD1.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.PlasticSCM.Editor.ref.dll_9B6D9940AFF80C3C.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Postprocessing.Editor.ref.dll_68E058FF39A70156.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Postprocessing.Runtime.ref.dll_591CFE2FB1206075.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.ResourceManager.ref.dll_4F37F032E393A1ED.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Rider.Editor.ref.dll_BB682F4C994978A9.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.ScriptableBuildPipeline.Editor.ref.dll_B38B4706F48A9708.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.ScriptableBuildPipeline.ref.dll_5694DD008534A739.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.ref.dll_A9B4CA1AA14E26F9.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.ref.dll_C83781DD64A29266.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.TestTools.CodeCoverage.Editor.ref.dll_33A4BA77A8412D3F.mvfrm

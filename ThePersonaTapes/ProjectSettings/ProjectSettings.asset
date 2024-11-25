@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Chris Niekamp
   productName: The Persona Tapes
-  defaultCursor: {fileID: 2800000, guid: 8fce2c6ebfc8a954c95903eb4fc8949b, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.019607844, g: 0.11764706, b: 0.27058825, a: 1}
   m_ShowUnitySplashScreen: 1

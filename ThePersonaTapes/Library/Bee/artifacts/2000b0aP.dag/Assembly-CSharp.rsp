@@ -90,6 +90,7 @@
 -define:ENABLE_TIMELINE
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:UNITY_POST_PROCESSING_STACK_V2
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"G:/Program Files/2022.3.22f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll"
@@ -281,6 +282,10 @@
 -r:"Library/PackageCache/com.unity.visualscripting@1.9.2/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/2000b0aP.dag/Ink-Libraries.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aP.dag/Unity.2D.PixelPerfect.ref.dll"
+-r:"Library/Bee/artifacts/2000b0aP.dag/Unity.Addressables.ref.dll"
+-r:"Library/Bee/artifacts/2000b0aP.dag/Unity.Postprocessing.Runtime.ref.dll"
+-r:"Library/Bee/artifacts/2000b0aP.dag/Unity.ResourceManager.ref.dll"
+-r:"Library/Bee/artifacts/2000b0aP.dag/Unity.ScriptableBuildPipeline.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aP.dag/Unity.TextMeshPro.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aP.dag/Unity.Timeline.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aP.dag/Unity.VisualScripting.Core.ref.dll"
@@ -295,13 +300,24 @@
 "Assets/CRT-Free/Scripts/CRTRenderSettingsObject.cs"
 "Assets/Ink/Demos/Basic Demo/Scripts/BasicInkExample.cs"
 "Assets/Ink/Demos/Basic Demo/Scripts/QuitGameOnKeypress.cs"
+"Assets/Scripts/AdaptiveMusicManager.cs"
 "Assets/Scripts/AspectRatioEnforcer.cs"
 "Assets/Scripts/ButtonSounds.cs"
+"Assets/Scripts/CameraDolly.cs"
 "Assets/Scripts/CameraTilt.cs"
+"Assets/Scripts/ColorPalette.cs"
+"Assets/Scripts/ColourManager.cs"
+"Assets/Scripts/FadeOut.cs"
 "Assets/Scripts/InkTestingScript.cs"
 "Assets/Scripts/InkyStoryManager.cs"
-"Assets/Scripts/SaveLoadManager.cs"
+"Assets/Scripts/LightFlicker.cs"
+"Assets/Scripts/RestartGame.cs"
+"Assets/Scripts/SaveExitButton.cs"
+"Assets/Scripts/SceneData.cs"
+"Assets/Scripts/SceneTransitionCamera.cs"
+"Assets/Scripts/SoundEffectsManager.cs"
 "Assets/Scripts/SoundManager.cs"
+"Assets/Scripts/TogglePanel.cs"
 "Assets/Scripts/UICursor.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"

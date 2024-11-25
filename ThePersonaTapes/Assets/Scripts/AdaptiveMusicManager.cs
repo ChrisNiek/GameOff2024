@@ -43,13 +43,14 @@ public class AdaptiveMusicManager : MonoBehaviour
         }
 
         // If the new song is the same as the current one, do nothing
-        if (newClip == currentClip)
+        if (newClip == currentClip && audioSource.isPlaying)
         {
             Debug.Log("Requested song is already playing.");
             return;
         }
 
-        // Start the fade-out and fade-in process
+        // Update the current clip to the new clip and start the fade-out and fade-in process
+        currentClip = newClip;
         StartCoroutine(FadeOutIn(audioSource, newClip));
     }
 
@@ -58,18 +59,18 @@ public class AdaptiveMusicManager : MonoBehaviour
     {
         // Fade out the current song
         float startVolume = source.volume;
-        float targetVolume = 0f;
         float timeElapsed = 0f;
 
         while (timeElapsed < fadeDuration)
         {
-            source.volume = Mathf.Lerp(startVolume, targetVolume, timeElapsed / fadeDuration);
+            source.volume = Mathf.Lerp(startVolume, 0f, timeElapsed / fadeDuration);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
 
-        // Ensure final volume level is zero
+        // Ensure final volume level is zero and stop the current song
         source.volume = 0f;
+        source.Stop();
 
         // Change to the new clip and start playing
         source.clip = newClip;
