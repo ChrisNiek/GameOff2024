@@ -8,15 +8,14 @@ VAR currentRadioStation = "none"
 
 VAR isConnectedToNewWeb = 1
 
-LIST tapesUploaded = kiera,winfred,jamie,estelle,torelin
-
 VAR neuralInterfaced = 0
 
 ->PowerOn
 
 ===PowerOn
 #colour: Blank
-WELCOME NEW USER!
+#sfx:power
+WELCOME, USER!
 YOU HAVE PERMISSION TO LOAD ONE (1) PROGRAM
 *[LOAD PROGRAM PTRI.PNA]PROGRAM LOADED, PRESS CONTINUE TO BEGIN...
     **[CONTINUE]->Intro
@@ -33,6 +32,7 @@ YOU HAVE PERMISSION TO LOAD ONE (1) PROGRAM
 
 === Intro
 TODO Add MyData Spacejunk in intro images
+#autosave
 #music: TheNewDarkAge
 #scene:EarthFar
 #colour: MyData
@@ -56,13 +56,11 @@ TODO Add MyData Spacejunk in intro images
 "Slowly but surely, <b>MyData</b> began to rebuild the <b>Web</b>, and the world, from the ground up."
 "Thanks to the hard work of <b>MyData</b>, the people started to leave that horrible event in the past, and began to look to the future."
 ***["Then we see the light..."]
-***[Skip Intro]->PartOneTheApartment
 #scene:TVPresenterIntro
 --- "But eventually, rumours began to spread. Illegal and primitive 'Pirate Radio' stations and indie-news agencies began to discuss the possible existence of so-called <i>evidence</i> from the <b>"Breach"</b>." 
 "As the babbling went on, ex-<b>MyData</b> employees came forward with further misinformation. They <i>claimed</i> there were physical copies of data gathered from the witnesses- and so began the search for the <b>'Persona Tapes'</b>." 
 <i>The TV presenter continued, scoffing and rolling his eyes.</i>
 ****["The tapes..."]
-****[Skip Intro]->PartOneTheApartment
  ----"Instead of hunting for imaginary evidence why not log into your MyData+ account and join us on the New Web forums. Where we discuss the future, and say goodbye to the past!"
 *****["Enough of that garbage." (Turn off the TV)] You punch the off button on the remote and the phony grin of the presenter is wiped away. The TV screen crackles and fades to black, leaving you alone in your untidy apartment with only the distant sound of the Melbourne city streets below to keep you company.#scene:ApartmentMessy #music: ApartmentBlues
     -> PartOneTheApartment
@@ -80,6 +78,21 @@ TODO maybe add some clean apartment music?
 ->RadioApartment
 
 + {not Cleanup}[Clean up your apartment] ->CleanApartment
+
++ [Sleep away your boredom...] No work, nothing interesting to do... no internet worth looking at since the Breach... time for a sleep maybe?
+    ++ [Yeah, nap time...]{Cleanup: You pull up your freshly made sheets and lie in for a rest...}{not Cleanup:You tuck yourself in to an unmade bed...and prepare to sleep...}
+    ->MailArrives
+    ++ [I've got some more things to do!]You give your bed the sideye... but decide to stay up for now.
+    ->PartOneTheApartment
+    
++ [Head out for a walk]Stuck in your apartment you feel like a goldfish in a bowl... this goldfish is going for a walk!
+You walk up to the door and it beeps as it recognises your neural identifier. The door sweeps open and the cold winter air rushes past you and in to your stuffy apartment. It's night, but that doesn't mean much in a city these days.
+->Walk->
+->PartOneTheApartment
+
++ [Surf the New Web]Since the Breach MyData has kept total control over any web content- you'd be lucky to find any 'waves' to 'surf' these days... unless you find heavily moderated corpo-worshipping chat rooms interesting.
+    ++ [Check it out anyway]->VisitNewWeb->PartOneTheApartment
+    ++ [I wonder what the old web was like...]There used to be something called 'content'... maybe that was short for contention? Imagine being allowed to argue on the internet...->PartOneTheApartment
 
 =VenderKit
 #scene:VenderKit
@@ -252,13 +265,29 @@ REINITIATE?
     ~ currentRadioStation = "HowlRadio" 
     ->PartOneTheApartment
     
+    +  {currentRadioStation == "HowlRadio"}#sfx:HowlRadio [Keep on a'howlin!] You can't help but nod along to the technopunk. Check out these lyrics!
+    "<i>{~Fill my life with|Stuff your digital heart with|Electrify my brain with} {~your dead batteries,|the stink of gasoline,|the glitch of the dead screen,}<br>{~Take my iron hand|Pull away my face|Steal away my steel} {~as you turn away from life|when I meant to say your name|as we fall away from origin point}.</i>"
+   That one really hits home.
+    ~ currentRadioStation = "HowlRadio" 
+    ->PartOneTheApartment
+    
     +  {currentRadioStation != "CBA Classic"} #sfx:CBAClassic[How about something with a bit of class? CBA Classic!] You turn the dial over to CBA Classic, Australia's premiere classical radio station.
+     "<i>{~...and that was|...coming up we have a brilliant piece by|...I must say, one of my favourite pieces by} {~Bedřich Smetana|Chopin|Debussy|Camille Saint-Saëns}, one of their {~earliest works|most well known works|least renowned yet definitely deserving works}... {~I hope you enjoy it just as much as I do...|But first, a short and delightful tune as performed by the Melbourne Symphony Orchestra...|Would you agree? Send a message through the MyData MyMsg app or direct link through your neural interface...}</i>"
+    ~ currentRadioStation = "CBA Classic"
+    ->PartOneTheApartment
+    
+    + {currentRadioStation == "CBA Classic"}[Keep listening to CBA Classic] There's nothing this world needs more right now than to remember it's humanity. #sfx:CBAClassic
     "<i>{~...and that was|...coming up we have a brilliant piece by|...I must say, one of my favourite pieces by} {~Bedřich Smetana|Chopin|Debussy|Camille Saint-Saëns}, one of their {~earliest works|most well known works|least renowned yet definitely deserving works}... {~I hope you enjoy it just as much as I do...|But first, a short and delightful tune as performed by the Melbourne Symphony Orchestra...|Would you agree? Send a message through the MyData MyMsg app or direct link through your neural interface...}</i>"
     ~ currentRadioStation = "CBA Classic"
     ->PartOneTheApartment
     
     +  {currentRadioStation != "PirateRadio"} [The only station with something important to say: Pirate Radio] You twiddle the dial until you find the telltale crackle of the encoded signal and switch on your decoder. It seems like they're on a station break, but the music they play isn't bad-
     A classic tune plays: "<i>{~I feel, a bad-uh moon a-risin'!|...people are strange, when you're a stranger...|It's a god-awful small affair, to the girl with the mousy hair...|...we are the robots...we are the robots...|Awoooo! Werewolves of london...|Wake me up, before you go-go!|...never gonna give you up, never gonna let you down...}</i>"<br> You feel like you've gone back in time listening to this stuff.
+    ~ currentRadioStation = "PirateRadio" 
+    ->PartOneTheApartment
+    
+        +  {currentRadioStation == "PirateRadio"} [Arr, Pirate Radio stays!] You keep an ear out for some info from Pirate Radio, but for now it's just the music...
+    "<i>{~I feel, a bad-uh moon a-risin'!|...people are strange, when you're a stranger...|It's a god-awful small affair, to the girl with the mousy hair...|...we are the robots...we are the robots...|Awoooo! Werewolves of london...|Wake me up, before you go-go!|...never gonna give you up, never gonna let you down...}</i>"<br> Damn, I wish I had that one on vinyl...
     ~ currentRadioStation = "PirateRadio" 
     ->PartOneTheApartment
     
@@ -273,6 +302,10 @@ REINITIATE?
     
     {Maybe it's about time you gave this place a clean?|Time to get to work.|You swear you'll feel better once this trash is dealt with.|You consider the task of possibly... maybe... cleaning up.}
     
+           
+        +[Get cleaning!] You stand up straight, clap your hands together and get to work... 
+            ->Cleanup
+    
         *[Pace around the room] You try to pace around, just like you used to do when you were pondering a case- but the sheer amount of trash leaves you only enough space to walk in tight circle.
         ->CleanApartment
         
@@ -280,13 +313,13 @@ REINITIATE?
             **[Yeah! You can't mess with the ecosystem!] That's right! If you were to remove the trash it could...
                 ***[Harm the wildlife?] Well... the roaches wouldn't be happy would they? I mean, think of the vermin for once...
                     ****[It's just basic science.] You glance around the trash heap and as if on cue a small rat crawls out from an empty CuppaRamen cup and peers at you with it's beady eyes.
-                        *****[Ok, maybe it's time to clean up...] You sigh, pour the rat out of the cup and into the hallway and begin to clean up... 
-                        ->Cleanup
+                        *****[Ok, <i>maybe</i> it <i>might</i> be time to clean up...] You sigh and open the door to toss the rat out, as you pour the rat from the empty CuppaRamen cup the cool night air reminds you how stale and cramped your apartment is.
+                        ******[Yeah, it's definitely time to clean up.]->Cleanup
+                        ******[The cool air is refreshing, let's go for a walk!]->Walk->MailArrives
+                        ******[Find something else to do.]->PartOneTheApartment
             **[What are you even saying right now?] Wow, you're great at procrastinating... but this is ridiculous.  
             ->CleanApartment
-            
-        +[Get cleaning!] You stand up straight, clap your hands together and get to work... 
-            ->Cleanup
+     
         
         +[Cleaning can wait, let's do something else] Cleaning has well and truly waited, and it can wait a little longer.
         ->PartOneTheApartment
@@ -400,7 +433,7 @@ TODO caselog for current clues related to the case
 You peruse the Case Log. What topic would you like to check?
 
 +[Corporations]You scroll down to your section titled 'Corporations'...
-    +++[<b>MyData</b>] \ {You add a new entry to the case log...| } \ { |You read the entry...}
+    ++[<b>MyData</b>] \ {You add a new entry to the case log...| } \ { |You read the entry...}
 <b>MyData</b>/Corporation
 <b>MyData</b> is the world's forefront data storage service, and has been since the early 2000's, when they began providing free internet usage to the globe. 
 As the human race became more reliant on technology it was <b>MyData</b> who provided the access to these new technologies. Soon enough it was almost impossible to interface with the world without a connection to <b>MyData</b>'s '<b>Web</b>'.
@@ -448,20 +481,26 @@ Blah blah recollective investigation
 +[Close the Case Log] Ctrl+S, Alt+F4...
 ->->
 
+->->
 
 ===UploadTapes
 #scene:PersonaTapesCase
 {Which tape would you like to start with?|Which tape?}
 +#scene:CompuDeckTapes #sfx:Tape1['Kiera']You slide the tape out from the case and plug it into your Compudeck, which immediately starts whirring as the data accessed. 
 ->PersonaCompuDeck.KieraCompuDeck
-+#scene:CompuDeckTapes #sfx:Tape1['Winfred']You pull the tape from it's foam housing and place it firmly in the CompuDeck data port. 
-->PersonaCompuDeck.WinfredCompuDeck
-+ #scene:CompuDeckTapes #sfx:Tape1['Jamie']Sliding the tape out from it's casing, you place it into the data port on your CompuDeck.
-->PersonaCompuDeck.JamieCompuDeck
-+ #scene:CompuDeckTapes #sfx:Tape1['Estelle']You take the tape from the case and slot into the data port on your CompuDeck.
-->PersonaCompuDeck.EstelleCompuDeck
-+#scene:CompuDeckTapes #sfx:Tape1['Torelin']The tape comes out of its' casing smoothly, and you plug it in to the data port on your CompuDeck. 
-->PersonaCompuDeck.TorelinCompuDeck
+TODO Update persona options as they are completed
++#scene:CompuDeckTapes #sfx:Tape1['Winfred' <i>Not Available Yet!</i>]You pull the tape from it's foam housing and place it firmly in the CompuDeck data port.
+WORK IN PROGRESS, SECTION UNAVAILABLE
+->UploadTapes
++ #scene:CompuDeckTapes #sfx:Tape1['Jamie' <i>Not Available Yet!</i>]Sliding the tape out from it's casing, you place it into the data port on your CompuDeck.
+WORK IN PROGRESS, SECTION UNAVAILABLE
+->UploadTapes
++ #scene:CompuDeckTapes #sfx:Tape1['Estelle' <i>Not Available Yet!</i>]You take the tape from the case and slot into the data port on your CompuDeck.
+WORK IN PROGRESS, SECTION UNAVAILABLE
+->UploadTapes
++#scene:CompuDeckTapes #sfx:Tape1['Torelin' <i>Not Available Yet!</i>]The tape comes out of its' casing smoothly, and you plug it in to the data port on your CompuDeck. 
+WORK IN PROGRESS, SECTION UNAVAILABLE
+->UploadTapes
 +[Head back to your CompuDeck]->PartTwoThePersonaTapes.TheInvestigationBegins
 
 ===PersonaCompuDeck
@@ -559,13 +598,15 @@ This is where you play as Torelin
 === RecollectiveInvestigation ===
  #colour: White
  #scene:NeuralInterface
+ #music: NeuralInterface
  >BEGIN RECOLLECTIVE INVESTIGATION<br>CONNECTING TO NEURAL INTERFACE
 {neuralInterfaced == 1: You calm yourself as the tape begins it's connection with your mind...  ->->} 
 {neuralInterfaced == 0:Before you realise what's happening the tape hi-jacks your neural interface through the CompuDeck and you get the telltale tickly feeling on your brain. The tape is interfacing with your mind!} 
-~ neuralInterfaced = 1
-    +[Relax your mind, let it happen]->->
+
+    {neuralInterfaced == 1:+[Relax your mind, let it happen]->->}
     +[Fight back!]
-         {You attempt to overcome the data flowing into your mind, but much like an unwelcome thought it refuses to retreat.|}
+        ~ neuralInterfaced = 1
+        {You attempt to overcome the data flowing into your mind, but much like an unwelcome thought it refuses to retreat.|}
  {The sensation of hundreds of thoughts and memories that are not your own assails the inner sanctum of your mind, and you begin to feel your 'self' slipping away.|}
  Think! Maybe you could retain control if you recall some powerful memory? But what would be strong enough?
 
@@ -625,10 +666,25 @@ This is where you play as Torelin
     ---****[Try harder!]But it's no use... the data flows into your mind, washing away any semblance of self you once had...
     ->->
     
+===Walk
+TODO Walk sequence that describes the setting a bit
+Looking out from the balcony you can see the street lights bathing the city in a cold and unnatural glow. Even among the streets the multitude of neon signs never stop vying for the attention of passersby. 
+In the distance you can see the city proper, glowing like a blister with the MyData building standing tall in it's centre.
+*[The city is alight, let's explore]You duck inside for a moment to get a coat and gloves, rug up and hit the streets... hopefully they won't hit you back...
+You start heading over to the elevator. It seems most of the other denizens of the city have wisely decided to stay indoors, but you do notice some kids playing street hockey in a parking lot far below.
+You notice many of the doorways of your neighbours apartments are filled with litter and dirt that hasn't been disturbed in some time. It's cheaper and safer to stay indoors and live off of synthesised junk food, especially with Flash-Grifters prowling the streets... but your security protected neural interface should be safe from a digital mugging.
+You arrive at the elevator, call it and wait for the lift to reach the 30th floor... as you do your mind starts to wander... you look out across the city in the distance... you can hear the distant sounds of cars honking in the streets below and some drunken ramblings on one of the floors above...
+    **[It's a challenge...living in the city...]
+    **[Check your pockets for your old service revolver...]
+        ***[]
+            ****[]
+            ->->
+*[The outside world is a cold and dangerous place, stay home]You take a moment to let the stale air out of your apartment, then hurry back inside before you are attacked by anything more than the cold winter air.
+->->
 
-
-
- 
+===VisitNewWeb
+TODO Show how horrible MyDatas new web is
+ ->->
  
  
  

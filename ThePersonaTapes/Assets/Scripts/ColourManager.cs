@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using UnityEngine.Rendering.PostProcessing; // Include PostProcessing namespace
 
 public class ColorManager : MonoBehaviour
@@ -10,24 +11,32 @@ public class ColorManager : MonoBehaviour
     private int currentPaletteIndex = 0; // Index of the current color palette
 
     // References to UI elements and objects to update
-    public Camera[] cameras; // Array to hold multiple cameras
+    public Camera[] cameras;
     public TextMeshProUGUI[] textObjects;
     public RawImage[] rawImages;
     public Image[] buttonImages;
     public Button[] buttons;
+    public Slider[] sliders; // Added reference for sliders
     public SpriteRenderer[] sprites;
-    public Image[] panelImages; // Add this for Panel UI Image components
-    public Image cursorImage; // Add this for the mouse cursor image
+    public Image[] panelImages;
+    public Image cursorImage;
 
     // Indices for each object type to determine which color to use
     public int textColorIndex = 0;
     public int rawImageColorIndex = 1;
     public int buttonNormalColorIndex = 2;
+    public int buttonPressedColorIndex = 1;  // New index for highlighted color
+    public int buttonSelectedColorIndex = 2;  // New index for highlighted color
+    public int buttonHighlightColorIndex = 3;  // New index for highlighted color
+    public int sliderBackgroundColorIndex = 4; // New index for slider background color
     public int spriteColorIndex = 3;
-    public int cursorColorIndex = 3; // Add an index for cursor color
+    public int cursorColorIndex = 3;
+
+    // Transition duration
+    public float transitionDuration = 1.0f;
 
     // References for PostProcessing effects
-    public PostProcessVolume postProcessVolume; // Reference to the PostProcessVolume component
+    public PostProcessVolume postProcessVolume;
     private Vignette vignetteEffect;
     private Bloom bloomEffect;
 
@@ -37,24 +46,54 @@ public class ColorManager : MonoBehaviour
         ApplyColorPalette(currentPaletteIndex);
     }
 
+    // Add these methods inside the ColorManager class:
+    public void ApplyColorToButton(Button button)
+    {
+        if (button != null)
+        {
+            var colors = button.colors;
+            colors.normalColor = colorPalettes[currentPaletteIndex].colors[buttonNormalColorIndex];
+            colors.highlightedColor = colorPalettes[currentPaletteIndex].colors[buttonHighlightColorIndex];
+            colors.pressedColor = colorPalettes[currentPaletteIndex].colors[buttonPressedColorIndex];
+            colors.selectedColor = colorPalettes[currentPaletteIndex].colors[buttonSelectedColorIndex];
+            button.colors = colors;
+        }
+    }
+
+    public void ApplyColorToText(TextMeshProUGUI text)
+    {
+        if (text != null)
+        {
+            text.color = colorPalettes[currentPaletteIndex].colors[textColorIndex];
+        }
+    }
+
+    public void ApplyColorToSlider(Slider slider)
+    {
+        if (slider != null)
+        {
+            // Apply background color to the slider
+            ColorBlock colors = slider.colors;
+            colors.normalColor = colorPalettes[currentPaletteIndex].colors[sliderBackgroundColorIndex];
+            slider.colors = colors;
+        }
+    }
+
     public void SwitchPaletteByName(string paletteName)
     {
-        // Look for the palette by name
         for (int i = 0; i < colorPalettes.Length; i++)
         {
             if (colorPalettes[i].name == paletteName)
             {
-                ChangePalette(i); // Switch to the palette at the found index
+                ChangePalette(i);
                 return;
             }
         }
-
-        Debug.LogError("Color palette not found: " + paletteName); // Log an error if the palette wasn't found
+        Debug.LogError("Color palette not found: " + paletteName);
     }
 
     public void ChangePalette(int paletteIndex)
     {
-        // Ensure the palette index is within bounds
         if (paletteIndex >= 0 && paletteIndex < colorPalettes.Length)
         {
             currentPaletteIndex = paletteIndex;
@@ -64,117 +103,150 @@ public class ColorManager : MonoBehaviour
 
     private void ApplyColorPalette(int paletteIndex)
     {
-        // Get the selected palette
         ColorPalette palette = colorPalettes[paletteIndex];
 
-        // Update background color for each camera
         foreach (var camera in cameras)
         {
             if (camera != null)
             {
-                camera.backgroundColor = palette.colors[0];  // Use the first color for background
+                StartCoroutine(LerpCameraColor(camera, palette.colors[0]));
             }
         }
 
-        // Update TextMeshPro text color using the selected index
         foreach (var text in textObjects)
         {
-            text.color = palette.colors[textColorIndex];  // Use text color index
+            StartCoroutine(LerpTextColor(text, palette.colors[textColorIndex]));
         }
 
-        // Update RawImage colors using the selected index
         foreach (var rawImage in rawImages)
         {
-            rawImage.color = palette.colors[rawImageColorIndex];  // Use raw image color index
+            StartCoroutine(LerpImageColor(rawImage, palette.colors[rawImageColorIndex]));
         }
 
-        // Update Button colors (normal, highlighted, pressed) using selected indices
         foreach (var button in buttons)
         {
-            var colors = button.colors;
-            colors.normalColor = palette.colors[buttonNormalColorIndex];  // Use button normal color index
-            colors.highlightedColor = palette.colors[1];  // You can choose a different index for highlighted
-            colors.pressedColor = palette.colors[2];  // You can choose a different index for pressed
-            button.colors = colors;
+            StartCoroutine(LerpButtonColor(button, palette));
         }
 
-        // Update Image components (for sprites) using the selected index
         foreach (var image in buttonImages)
         {
-            image.color = palette.colors[buttonNormalColorIndex];  // Use the same button color
+            StartCoroutine(LerpImageColor(image, palette.colors[buttonNormalColorIndex]));
         }
 
-        // Update SpriteRenderer components using the selected index
+        foreach (var slider in sliders) // Apply color change to sliders
+        {
+            ApplyColorToSlider(slider);
+        }
+
         foreach (var sprite in sprites)
         {
-            sprite.color = palette.colors[spriteColorIndex];  // Use sprite color index
+            StartCoroutine(LerpSpriteColor(sprite, palette.colors[spriteColorIndex]));
         }
 
-        // Update Panel Image components using the selected color
         foreach (var panelImage in panelImages)
         {
-            panelImage.color = palette.colors[rawImageColorIndex];  // Apply the same color for Panel Image
+            StartCoroutine(LerpImageColor(panelImage, palette.colors[rawImageColorIndex]));
         }
 
-        // Update Cursor Image color
         if (cursorImage != null)
         {
-            cursorImage.color = palette.colors[cursorColorIndex];  // Apply cursor color from the palette
+            StartCoroutine(LerpImageColor(cursorImage, palette.colors[cursorColorIndex]));
         }
 
-        // Update PostProcessing effects (Vignette and Bloom)
+        UpdatePostProcessingEffects(palette);
+    }
+
+    private void UpdatePostProcessingEffects(ColorPalette palette)
+    {
         if (postProcessVolume != null)
         {
-            // Check if the Vignette effect is enabled and update its color
             if (postProcessVolume.profile.TryGetSettings(out vignetteEffect))
             {
-                vignetteEffect.color.value = palette.colors[1]; // Use the first color for vignette
+                vignetteEffect.color.value = palette.colors[1];
             }
-
-            // Check if the Bloom effect is enabled and update its color
             if (postProcessVolume.profile.TryGetSettings(out bloomEffect))
             {
-                bloomEffect.color.value = palette.colors[3]; // Use the second color for bloom
+                bloomEffect.color.value = palette.colors[3];
             }
         }
     }
 
-    // Apply color to newly instantiated TextMeshProUGUI
-    public void ApplyColorToText(TextMeshProUGUI newText)
+    // Coroutine to smoothly transition button colors
+    private IEnumerator LerpButtonColor(Button button, ColorPalette palette)
     {
-        ColorPalette palette = colorPalettes[currentPaletteIndex];
-        newText.color = palette.colors[textColorIndex];
-    }
+        var colors = button.colors;
+        Color startNormalColor = colors.normalColor;
+        Color startHighlightColor = colors.highlightedColor;
 
-    // Apply color to newly instantiated Button
-    public void ApplyColorToButton(Button newButton)
-    {
-        ColorPalette palette = colorPalettes[currentPaletteIndex];
-        var colors = newButton.colors;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < transitionDuration)
+        {
+            colors.normalColor = Color.Lerp(startNormalColor, palette.colors[buttonNormalColorIndex], elapsedTime / transitionDuration);
+            colors.highlightedColor = Color.Lerp(startHighlightColor, palette.colors[buttonHighlightColorIndex], elapsedTime / transitionDuration);
+            button.colors = colors;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
         colors.normalColor = palette.colors[buttonNormalColorIndex];
-        colors.highlightedColor = palette.colors[1];  // Choose an appropriate index
-        colors.pressedColor = palette.colors[2];  // Choose an appropriate index
-        newButton.colors = colors;
+        colors.highlightedColor = palette.colors[buttonHighlightColorIndex];
+        colors.pressedColor = palette.colors[buttonPressedColorIndex];
+        colors.selectedColor = palette.colors[buttonSelectedColorIndex];
+        button.colors = colors;
     }
 
-    // Apply color to newly instantiated RawImage
-    public void ApplyColorToRawImage(RawImage newRawImage)
+    // Smooth transitions for other elements
+    private IEnumerator LerpCameraColor(Camera camera, Color targetColor)
     {
-        ColorPalette palette = colorPalettes[currentPaletteIndex];
-        newRawImage.color = palette.colors[rawImageColorIndex];
+        Color startColor = camera.backgroundColor;
+        float elapsedTime = 0f;
+        while (elapsedTime < transitionDuration)
+        {
+            camera.backgroundColor = Color.Lerp(startColor, targetColor, elapsedTime / transitionDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        camera.backgroundColor = targetColor;
     }
 
-    // Apply color to newly instantiated SpriteRenderer
-    public void ApplyColorToSprite(SpriteRenderer newSprite)
+    private IEnumerator LerpTextColor(TextMeshProUGUI text, Color targetColor)
     {
-        ColorPalette palette = colorPalettes[currentPaletteIndex];
-        newSprite.color = palette.colors[spriteColorIndex];
+        Color startColor = text.color;
+        float elapsedTime = 0f;
+        while (elapsedTime < transitionDuration)
+        {
+            text.color = Color.Lerp(startColor, targetColor, elapsedTime / transitionDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        text.color = targetColor;
     }
 
-    // Apply color to newly instantiated Panel Image
-    public void ApplyColorToPanelImage(Image newPanelImage)
+    private IEnumerator LerpImageColor(Graphic image, Color targetColor)
     {
-        ColorPalette palette = colorPalettes[currentPaletteIndex];
-        newPanelImage.color = palette.colors[rawImageColorIndex];
+        Color startColor = image.color;
+        float elapsedTime = 0f;
+        while (elapsedTime < transitionDuration)
+        {
+            image.color = Color.Lerp(startColor, targetColor, elapsedTime / transitionDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        image.color = targetColor;
+    }
+
+    private IEnumerator LerpSpriteColor(SpriteRenderer sprite, Color targetColor)
+    {
+        Color startColor = sprite.color;
+        float elapsedTime = 0f;
+        while (elapsedTime < transitionDuration)
+        {
+            sprite.color = Color.Lerp(startColor, targetColor, elapsedTime / transitionDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        sprite.color = targetColor;
     }
 }

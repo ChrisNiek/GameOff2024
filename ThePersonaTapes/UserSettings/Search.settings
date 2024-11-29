@@ -11,6 +11,9 @@ scopes = {
 	"last_search.310DEAF3" = "p:t:TextureImporter filtermode=0"
 	"OpenInspectorPreview.310DEAF3" = "0"
 	"currentGroup.310DEAF3" = "all"
+	"last_search.FD7A1EDD" = "ref=\"Assets/Resources/Audio/Sound Effects/MyData1.wav\""
+	"OpenInspectorPreview.FD7A1EDD" = "0"
+	"currentGroup.FD7A1EDD" = "all"
 }
 providers = {
 	asset = {
