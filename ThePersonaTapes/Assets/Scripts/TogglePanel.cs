@@ -13,6 +13,14 @@ public class TogglePanel : MonoBehaviour
         }
     }
 
+    public void MenuClose()
+    {
+        if (panel.activeSelf) // Check if the panel is currently active
+        {
+            Toggle(); // Call the Toggle function to close the menu
+        }
+    }
+
     public void Toggle()
     {
         panel.SetActive(!panel.activeSelf); // Toggle the active state

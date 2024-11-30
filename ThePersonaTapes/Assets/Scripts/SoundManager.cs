@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance; // Singleton instance of SoundManager
-
     private AudioSource audioSource; // The AudioSource for playing sounds
 
     // Sounds to be assigned in the Inspector
@@ -16,20 +14,6 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        // Ensure that only one instance of SoundManager exists
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // Keep this object alive across scenes
-        DontDestroyOnLoad(gameObject);
-
         // Create an AudioSource if none exists
         audioSource = gameObject.AddComponent<AudioSource>();
     }

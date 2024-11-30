@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class InkyStoryManager : MonoBehaviour
 {
+    public Button restartButton;
+    public Button menuButton; // Reference to the menu button that will flash
+    public float textRevertDelay = 3f; // Time before reverting the button text
+    public SecretUnlockManager secretUnlockManager;
     public ColorManager colorManager;
     public TextMeshProUGUI storyText;
     public GameObject choicesContainer;
@@ -39,12 +43,25 @@ public class InkyStoryManager : MonoBehaviour
 
     void Start()
     {
-        inkStory = new Story(inkJSONAsset.text);
+        inkStory = new Story(inkJSONAsset.text); // Initialize the Ink story with the JSON asset
+        string savedData = SaveManager.Instance.LoadSave(); // Load the saved data from PlayerPrefs
+
+        if (!string.IsNullOrEmpty(savedData))
+        {
+            inkStory.state.LoadJson(savedData); // Load the saved state into the Ink story
+        }
+
+        if (restartButton != null)
+        {
+            restartButton.onClick.AddListener(RestartStory);
+        }
+
         transitionPlane.SetActive(true);
         StartCoroutine(FadeOutTransitionPlane());  // Fade out on start
         StartCoroutine(DisplayCurrentParagraph());
         Cursor.visible = false;
     }
+
 
     void Update()
     {
@@ -140,8 +157,7 @@ public class InkyStoryManager : MonoBehaviour
 
             if (tag.StartsWith("RESTART"))
             {
-                // Reload the current scene
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                RestartStory(); // Direct method call if not a coroutine
             }
 
             if (tag.StartsWith("sfx:"))
@@ -149,6 +165,19 @@ public class InkyStoryManager : MonoBehaviour
                 string sfxName = tag.Substring(4); // Extract the sound effect name after #sfx:
                 soundEffectsManager.PlaySFX(sfxName); // Play the sound effect
             }
+
+              if (tag.StartsWith("secret:"))
+        {
+            string secretKey = tag.Substring(7); // Extract the secret key
+            secretUnlockManager.UnlockSecret(secretKey); // Notify the SecretUnlockManager
+        }
+
+            if (tag.StartsWith("autosave"))
+            {
+                string saveData = inkStory.state.ToJson(); // Save the current state of the Ink story
+                SaveManager.Instance.AutoSave(saveData); // Call SaveManager to save
+            }
+
         }
     }
 
@@ -337,4 +366,116 @@ public class InkyStoryManager : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
+
+    public void ReloadStory()
+    {
+        // Reset the Ink story by reloading the Ink JSON text
+        inkStory = new Story(inkJSONAsset.text); // Initialize the Ink story with the JSON asset
+        string savedData = SaveManager.Instance.LoadSave(); // Load the saved data from PlayerPrefs
+
+        if (!string.IsNullOrEmpty(savedData))
+        {
+            inkStory.state.LoadJson(savedData); // Load the saved state into the Ink story
+        }
+
+        /* Optionally reset other game variables like secrets, colors, or sound effects
+        if (secretUnlockManager != null)
+        {
+            secretUnlockManager.ResetSecrets(); // Reset secrets
+        }
+        else
+        {
+            Debug.LogWarning("SecretUnlockManager is not assigned.");
+        }
+        */
+
+        if (colorManager != null)
+        {
+            colorManager.ResetPalette(); // Reset the color palette
+        }
+        else
+        {
+            Debug.LogWarning("ColorManager is not assigned.");
+        }
+
+        // Reset UI elements if needed
+        if (storyText != null)
+        {
+            storyText.text = ""; // Clear the story text
+        }
+
+
+
+        ClearChoices(); // Make sure this method exists to clear any displayed choices
+
+        // Restart the story by displaying the first paragraph
+        StartCoroutine(DisplayCurrentParagraph());
+
+        // Optionally, reset music, effects, or other UI elements
+        if (musicManager != null)
+        {
+            musicManager.StopMusic(); // Stop any music currently playing
+        }
+        else
+        {
+            Debug.LogWarning("MusicManager is not assigned.");
+        }
+
+    }
+public void RestartStory()
+{
+    // Reset the Ink story by reloading the Ink JSON text
+    if (inkJSONAsset != null)
+    {
+        inkStory = new Story(inkJSONAsset.text); // Reload the story from JSON
+    }
+    else
+    {
+        Debug.LogError("Ink JSON asset is missing or not assigned.");
+    }
+
+    /* Optionally reset other game variables like secrets, colors, or sound effects
+    if (secretUnlockManager != null)
+    {
+        secretUnlockManager.ResetSecrets(); // Reset secrets
+    }
+    else
+    {
+        Debug.LogWarning("SecretUnlockManager is not assigned.");
+    }
+    */
+
+    if (colorManager != null)
+    {
+        colorManager.ResetPalette(); // Reset the color palette
+    }
+    else
+    {
+        Debug.LogWarning("ColorManager is not assigned.");
+    }
+
+    // Reset UI elements if needed
+    if (storyText != null)
+    {
+        storyText.text = ""; // Clear the story text
+    }
+
+    ClearChoices(); // Make sure this method exists to clear any displayed choices
+
+        // Optionally, reset music, effects, or other UI elements
+    if (musicManager != null)
+    {
+        musicManager.StopMusic(); // Stop any music currently playing
+    }
+    else
+    {
+        Debug.LogWarning("MusicManager is not assigned.");
+    }
+
+    // Restart the story by displaying the first paragraph
+    StartCoroutine(DisplayCurrentParagraph());
+}
+
+
+
 }

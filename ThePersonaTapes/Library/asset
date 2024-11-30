@@ -19,95 +19,80 @@ MonoBehaviour:
     unhandledCompileErrors: []
     recursiveIncludeErrorPaths: []
     errors: []
-    warnings:
-    - type: 1
-      content: 'Choice is completely empty. Interpretting as a default fallback choice.
-        Add a divert arrow to remove this warning: * ->'
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 679
-    - type: 1
-      content: 'Choice is completely empty. Interpretting as a default fallback choice.
-        Add a divert arrow to remove this warning: * ->'
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 680
-    - type: 1
-      content: Apparent loose end exists where the flow runs out. Do you need a '->
-        DONE' statement, choice or divert?
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 677
+    warnings: []
     todos:
     - type: 0
       content: Add MyData Spacejunk in intro images
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 34
+      lineNumber: 35
     - type: 0
       content: maybe add some clean apartment music?
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 70
+      lineNumber: 68
     - type: 0
       content: caselog for current clues related to the case
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 432
+      lineNumber: 437
     - type: 0
       content: Persona Tapes Case Log entry
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 463
+      lineNumber: 468
     - type: 0
       content: The Witnesses case log entry
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 469
+      lineNumber: 474
     - type: 0
       content: Recollective Investigation case log entry
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 476
+      lineNumber: 481
     - type: 0
       content: Update persona options as they are completed
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 491
+      lineNumber: 496
     - type: 0
       content: Jamies case file
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 534
+      lineNumber: 539
     - type: 0
       content: Jamie bio
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 537
+      lineNumber: 542
     - type: 0
       content: Estelles case file
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 546
+      lineNumber: 551
     - type: 0
       content: Torelins case file
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 561
+      lineNumber: 566
     - type: 0
       content: Kiera
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 574
+      lineNumber: 579
     - type: 0
       content: Winfred
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 579
+      lineNumber: 584
     - type: 0
       content: Jamie
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 584
+      lineNumber: 589
     - type: 0
       content: Estelle
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 589
+      lineNumber: 594
     - type: 0
       content: Torelin
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 594
+      lineNumber: 599
     - type: 0
       content: Walk sequence that describes the setting a bit
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 670
+      lineNumber: 681
     - type: 0
       content: Show how horrible MyDatas new web is
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 686
+      lineNumber: 698
     masterInkAssets: []
     localIncludePaths: []
     includes: []

@@ -4,24 +4,36 @@ using UnityEngine.EventSystems;
 
 public class ButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
-    // You can optionally expose sounds for each button in the Inspector if needed
     [SerializeField] private bool useDefaultSounds = true;
+    private SoundManager soundManager; // Reference to SoundManager
+
+    void Start()
+    {
+        // Find the SoundManager in the scene
+        soundManager = FindObjectOfType<SoundManager>();
+
+        // Optional: Log an error if SoundManager is not found
+        if (soundManager == null)
+        {
+            Debug.LogError("SoundManager not found in the scene!");
+        }
+    }
 
     // Play sound on hover
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (useDefaultSounds)
+        if (useDefaultSounds && soundManager != null)
         {
-            SoundManager.Instance.PlayHoverSound(); // Play the hover sound using SoundManager
+            soundManager.PlayHoverSound();  // Use the instance reference
         }
     }
 
     // Play sound on click
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (useDefaultSounds)
+        if (useDefaultSounds && soundManager != null)
         {
-            SoundManager.Instance.PlayClickSound(); // Play the click sound using SoundManager
+            soundManager.PlayClickSound();  // Use the instance reference
         }
     }
 }

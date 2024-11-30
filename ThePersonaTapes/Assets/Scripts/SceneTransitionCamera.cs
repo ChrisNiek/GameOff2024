@@ -6,18 +6,17 @@ using System.Collections;
 public class SceneTransitionScript : MonoBehaviour
 {
     public Camera mainCamera;            // Reference to the camera
-    public Image fadeImage;             // UI Image used for fade effect
-    public AudioSource backgroundMusic; // AudioSource for background music to fade out
-    public float zoomDuration = 2f;     // Time to increase the FOV
-    public float maxFov = 80f;          // Max field of view (zoomed in)
-    public float fadeDuration = 2f;     // Time for fade to black
+    public Image fadeImage;              // UI Image used for fade effect
+    public AudioSource backgroundMusic;  // AudioSource for background music to fade out
+    public float zoomDuration = 2f;      // Time to increase the FOV
+    public float maxFov = 80f;           // Max field of view (zoomed in)
+    public float fadeDuration = 2f;      // Time for fade to black
     public float musicFadeDuration = 2f; // Duration for fading out music
     public string sceneToLoad = "SceneName"; // The name of the scene to load after transition
-    public Button playButton;           // Reference to the play button (optional)
+    public Button playButton;            // Reference to the play button (optional)
 
-    private float targetFov;            // The target field of view
-    private float currentFov;           // The current field of view
-    private float fadeAlpha = 0f;       // Alpha for fade effect
+    private float targetFov;             // The target field of view
+    private float currentFov;            // The current field of view
     private bool isTransitioning = false; // Flag to track if the transition is happening
 
     private void Start()
@@ -66,7 +65,7 @@ public class SceneTransitionScript : MonoBehaviour
         targetFov = maxFov;
         currentFov = mainCamera.fieldOfView;
 
-        float fadeAlpha = 0f;
+        float fadeAlpha = 0f; // Local variable for fade effect
         float musicVolumeStart = backgroundMusic ? backgroundMusic.volume : 0f;
 
         float elapsedTime = 0f;

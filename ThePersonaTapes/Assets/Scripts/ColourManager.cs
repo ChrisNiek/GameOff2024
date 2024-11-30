@@ -249,4 +249,11 @@ public class ColorManager : MonoBehaviour
         }
         sprite.color = targetColor;
     }
+
+    public void ResetPalette()
+    {
+        // Reset to the first palette or a default palette index
+        ChangePalette(0); // Assuming the first palette is the default
+    }
+
 }

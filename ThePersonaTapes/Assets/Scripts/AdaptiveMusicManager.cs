@@ -88,4 +88,16 @@ public class AdaptiveMusicManager : MonoBehaviour
         // Ensure final volume level is full
         source.volume = startVolume;
     }
+
+    public void StopMusic()
+    {
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        // Set the currently playing track to 'none'
+        currentClip = null;
+    }
+
 }

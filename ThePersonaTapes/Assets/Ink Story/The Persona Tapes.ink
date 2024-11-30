@@ -14,10 +14,11 @@ VAR neuralInterfaced = 0
 
 ===PowerOn
 #colour: Blank
+#scene:Blank
 #sfx:power
 WELCOME, USER!
 YOU HAVE PERMISSION TO LOAD ONE (1) PROGRAM
-*[LOAD PROGRAM PTRI.PNA]PROGRAM LOADED, PRESS CONTINUE TO BEGIN...
+*[LOAD PROGRAM PTRI.PNA]PROGRAM LOADED, PRESS CONTINUE TO BEGIN... #sfx:Loaded
     **[CONTINUE]->Intro
 
 === PaletteTest
@@ -32,38 +33,35 @@ YOU HAVE PERMISSION TO LOAD ONE (1) PROGRAM
 
 === Intro
 TODO Add MyData Spacejunk in intro images
-#autosave
 #music: TheNewDarkAge
 #scene:EarthFar
 #colour: MyData
  "On October 28th, 2066 a small cafe in Melbourne’s business district was involved in a massive data heist, later known as the 'Breach'."
-#scene:Earth
-"The cafe was in the lobby of the powerful <b>MyData</b> corporation, a company that prides itself on the safe storage of personal user data, but no one - <i>not even <b>MyData</b></i>- could have prevented what came next."
+"The cafe was in the lobby of the powerful <b>MyData</b> corporation, a company that prides itself on the safe storage of personal user data, but no one - <i>not even <b>MyData</b></i>- could have prevented what came next." #scene:Earth
 *["The heist of the century..."]
 *[Skip Intro]->PartOneTheApartment
-#scene:EarthClose
 -"The bank was infiltrated using underhanded tactics. In a swift and inhuman act an Exabyte of information (1 billion gigabytes) of data began to leak from the data vaults."
-#scene:Australia
+#scene:EarthClose
 "Later it was found that the data access point, safely nestled hundreds of floors below, was somehow accessed through a gap in the cafe break room less than a centimetre wide."
-#scene:Peninsula
+#scene:Australia
 "By the time <b>MyData</b> discovered the leak it was too late, the information had fallen into the hands of the populace and was beginning to circulate on the <b>Web</b>. <b>MyData</b> quickly released a statement- doing their best to prevent the world falling into chaos."
 **["But they failed..."]
-**[Skip Intro]->PartOneTheApartment
- #scene:Melbourne
+ #scene:Peninsula
 --"Alas, the people did not acknowledge the statement and follow <b>MyData</b>'s guidance. Lives were lost, businesses were left open to plunder and the darkest secrets of the world’s superpowers became accessible through a simple <b>Web</b> search."
-#scene:ApartmentCloseCity
+ #scene:Melbourne
 "Unable to control the rabble <b>MyData</b> had no choice but to cut access to the <b>Web</b>, sending the world into the <b>New Dark Age</b>." 
 "Slowly but surely, <b>MyData</b> began to rebuild the <b>Web</b>, and the world, from the ground up."
+#scene:ApartmentCloseCity
 "Thanks to the hard work of <b>MyData</b>, the people started to leave that horrible event in the past, and began to look to the future."
 ***["Then we see the light..."]
-#scene:TVPresenterIntro
+
 --- "But eventually, rumours began to spread. Illegal and primitive 'Pirate Radio' stations and indie-news agencies began to discuss the possible existence of so-called <i>evidence</i> from the <b>"Breach"</b>." 
 "As the babbling went on, ex-<b>MyData</b> employees came forward with further misinformation. They <i>claimed</i> there were physical copies of data gathered from the witnesses- and so began the search for the <b>'Persona Tapes'</b>." 
-<i>The TV presenter continued, scoffing and rolling his eyes.</i>
+<i>The TV presenter continued, scoffing and rolling his eyes.</i> #scene:TVPresenterIntro
 ****["The tapes..."]
  ----"Instead of hunting for imaginary evidence why not log into your MyData+ account and join us on the New Web forums. Where we discuss the future, and say goodbye to the past!"
 *****["Enough of that garbage." (Turn off the TV)] You punch the off button on the remote and the phony grin of the presenter is wiped away. The TV screen crackles and fades to black, leaving you alone in your untidy apartment with only the distant sound of the Melbourne city streets below to keep you company.#scene:ApartmentMessy #music: ApartmentBlues
-    -> PartOneTheApartment
+-> PartOneTheApartment
 
 === PartOneTheApartment
 {TURNS_SINCE(-> Intro) > 10:->MailArrives}{not Cleanup:{~You sigh deeply|You stretch your limbs|You stifle a yawn} as you {~look around your dump of an apartment and wonder what to do.|think of what to do next.|ponder your options.} {&Life as an out of work Private Investigator is starting to get stale, and your apartment has the smell to go with it.|With the crime rate at an all time high you'd think a Private Investigator would have something better to do than wander around a trashy apartment. | Absentmindedly kicking a piece of trash you begin to ponder existence...|No one has the money or the guts to seek justice anymore, so what's the point of being a P.I.?}#scene:ApartmentMessy #music: ApartmentBlues}{Cleanup:{~You rub your hands together|You take a deep breath|You feel a small sense of accomplishment} as you {~appreciate your newly cleaned apartment.|think of what to do next.|ponder your options.} {~At least now you're not tripping over empty CuppaRamen cups.|The ChoombaRoomba hums gently along, content to be cleaning. | What to do... what to do...|You silently wish someone would just come up to your door and offer you a crime to solve...}#scene:ApartmentClean #music: ApartmentBlues}
@@ -134,7 +132,7 @@ You walk up to the door and it beeps as it recognises your neural identifier. Th
         ++[This is a really bad idea.] You tap 'back' on the display. As you cancel the order you feel as if you just dodged a bullet- well the second bullet at least.
         ->VenderKit
         
-    * {ChooseBurrito && ChooseBurritoAgain} [What's one more burrito? I probably have to get my stomach pumped anyway.] You begin to reach for the <b>VenderKit</b> screen- then you hesitate... #music: WorrisomeWinfred
+    * {ChooseBurrito && ChooseBurritoAgain} [What's one more burrito? I probably have to get my stomach pumped anyway.] You begin to reach for the <b>VenderKit</b> screen- then you hesitate... #music: Tension
    These burritos are no joke, there's a risk that you could die here. Out of work, in a garbage dump of an apartment with three massive burritos where your guts should be.
         ++ [It's worth the risk.] I mean, if you aren't letting yourself indulge every once in a while, are you really living?
             +++ [But seriously?] Are you completely sure? You will probably die due to a burrito overdose. 
@@ -249,7 +247,7 @@ You walk up to the door and it beeps as it recognises your neural identifier. Th
 You hold the horrid burrito in your hands, the craving too much to bear. Mouthful after labored mouthful you begin to consume the wretched thing, your manic hunger taking control.
 You barely make it through half of the burrito before your gut starts to fight back. A stabbing pain sends you to the floor writhing in burrito induced suffering.
 The addictive chemicals that the company had illegally added to their burrito recipe start to work a little too well and as you die your last thought is... 
-'Man, that was <i>so</i> worth it.'
+'Man, that was <i>so</i> worth it.' #secret:deathbyburrito
 FATAL ERROR - PROGRAM TERMINATED
 REINITIATE?
 *REINITIATE PROGRAM #RESTART
@@ -334,19 +332,23 @@ That is a lot of trash...
 * [This is going to be cathartic] This trash has smothered you for long enough, let's do this!
     **[There is a lot of trash, though] You stand up straight and gather your willpower. You can do it! 
     As you pick up the pace you start to fill bag after bag, tossing them into the trash compactor chute as you go. This is kind of nice, actually. 
-     *** [Keep at it!] As the amount of junk diminishes you see whole swathes of the apartment that you haven't seen in some time. For the final flourish you switch on the ChoombaRoomba to suck up any sneaky crumbs.#scene:ApartmentClean
+     *** [Keep at it!] As the amount of junk diminishes you see whole swathes of the apartment that you haven't seen in some time. For the final flourish you switch on the ChoombaRoomba to suck up any sneaky crumbs.#scene:ApartmentClean #secret:sparkingjoy
      ->PartOneTheApartment
 * [This trash is going to wish it was never born] You draw on some kind of primal strength within you. 
 Let's DO this!
 With adrenaline {PartOneTheApartment.ChooseBurrito:and burrito grease} flowing through your veins you tense up your muscles and go to town on the trash heap.
     **[Clean that mother-frunker UP!] You crush the ramen cups, scrunch the chip packets and sweep the crumbs, stuffing them into bag after bag and throwing them into the trash compactor- where trash goes to die.
-        ***[There will be no survivors.] With one final sweep of the apartment you stuff the last, half empty bag into the compactor and switch on the ChoombaRoomba to suck up any sneaky crumbs.#scene:ApartmentClean
+        ***[There will be no survivors.] With one final sweep of the apartment you stuff the last, half empty bag into the compactor and switch on the ChoombaRoomba to suck up any sneaky crumbs.#scene:ApartmentClean #secret:sparkingjoy
         ->PartOneTheApartment
 
-=MailArrives
-
-
-Suddenly the {currentRadioStation == "HowlRadio": scream of the radio is}{currentRadioStation == "CBA Classic": dulcet tones of the radio are}{currentRadioStation == "PirateRadio": retro beats of the radio are}{currentRadioStation == "none": relative silence of the apartment is} interrupted by a loud 'BZZZT!' from the Media Station.
+===MailArrives
+Autosaved! #autosave #sfx:Loaded
+->Begin
+=Begin
+#scene:MediaStationBuzz
+#music: GotMail
+#sfx:Buzz
+Suddenly the {currentRadioStation == "HowlRadio": scream of the radio is}{currentRadioStation == "CBA Classic": dulcet tones of the radio are}{currentRadioStation == "PirateRadio": retro beats of the radio are}{currentRadioStation == "none": relative silence of the apartment is} interrupted by the drone of an incoming call from the Media Station.
  An audio message bursts through and a mellow, uncaring voice says...
 "Apartment 314, you got some snail-mail. Sendin' it up."
 Moments later a small pile of junk mail tumbles out of the delivery chute at the back of the room and into a milk crate you've placed underneath. 
@@ -368,7 +370,7 @@ You're surprised to find the usual junk mail is followed by the heavy thud of a 
                 You grab a knife and start cutting into the parcel. With a bit of effort you cut through the tape and manage to get a side open. There seems to be some kind of reinforced case inside, taking up the entire interior of the box...#scene:PackagesTwo
                     ***[Pull out the case] You wedge your fingers into the box and slide out the case. It falls out onto your mattress with a thump.#scene:PackagesThree
                     You give it a look over... wait a sec, that logo on the cover... that's the <b>MyData</b> logo! This isn't good, only <b>MyData</b> employees are allowed to own something like this.
-                    ****[What in the....] You let out a hoarse whisper, "What in the actual frunk is going on here?" #music: WorrisomeWinfred
+                    ****[What in the....] You let out a hoarse whisper, "What in the actual frunk is going on here?" #music: Tension
                         *****[Open the case] Carefully, you open the latch on the case, half expecting it to immediately explode in your face.
                         It doesn't.
                     ->FindTapes
@@ -377,7 +379,7 @@ You're surprised to find the usual junk mail is followed by the heavy thud of a 
 =FindTapes
 #scene:PersonaTapesCase
 #colour: MyData
-#music: WorrisomeWinfred
+#music: Tension
 {Inside the case are 5 data cartridges, each one nestled gently within a foam lining. All the cartridges seem to have a little, blinking red light. There's also a coloured label on each one.|You start to shake, you think you might know what these are... but it's safer to be sure...|Your blood turns cold as you realise what these are...Holy frunk-cakes! These are the frunking Persona Tapes!}
 *[Investigate the lights] As you investigate the blinking lights you notice that each cartridge actually has a strip of 6 LEDs, two red, two yellow and two green. Currently, only one red light is lit up on each of the cartridges.
 ->FindTapes
@@ -388,7 +390,7 @@ You're surprised to find the usual junk mail is followed by the heavy thud of a 
 'Estelle' in Bright Magenta #colour: Estelle #scene:EstelleTapes
 'Torelin' in a Rusty Orange #colour: Torelin #scene:TorelinTapes
 ->FindTapes
-* -> PartTwoThePersonaTapes
+*->PartTwoThePersonaTapes
 
 ===PartTwoThePersonaTapes
 {not PartOneTheApartment.Cleanup:#scene:TapesApartmentMessy}{PartOneTheApartment.Cleanup:#scene:TapesApartment}
@@ -406,23 +408,26 @@ With that thought in mind you pull out your CompuDeck from under the bed, brush 
      {& "...perhaps if I wrote it in a friendly email..."|"...maybe they'd cut me some slack since my mum used to be on their <b>MyData</b>+ Plan..."|"...no, they wouldn't... would they?"}   ->PartTwoThePersonaTapes
      
 
-
 =TheInvestigationBegins
+Autosaved! #autosave #sfx:Loaded
+->InvestigationCompuDeck
+
+=InvestigationCompuDeck
 #scene:CompuDeck #music: ThePersonaTapes
 {The screen takes a sec to get it's shirt together, but eventually you're greeted with the desktop. You take a moment to gather your thoughts.|}
 {You know that the Persona Tapes hold valuable information about the 'Breach', that fateful day where the <b>MyData</b> vaults were infiltrated, but you don't know what kind of information it is.| } You poise your fingers over the keys of the CompuDeck...
 +[Punch in the data tapes!]
 ->UploadTapes
 +[Let's go over the info we have] {A good investigator always takes stock of a situation, you create a new readme to gather your thoughts.|You return to your readme file to investigate what you know so far...}
-->CaseLog->TheInvestigationBegins
-+ {isConnectedToNewWeb == 1} [Make sure you're not connected to the <b>New Web</b>- <b>MyData</b> could be watching...]
+->CaseLog->InvestigationCompuDeck
++ {isConnectedToNewWeb == 1} [Disconnect from the New Web]
 ~ isConnectedToNewWeb = 0
 {&Your heart skips a beat as you realise how easy it would be for <b>MyData</b> to find you, should the tapes connect to the  <b>New Web</b>. Best to turn it off.|No, it's too dangerous. I have to sever the connection.|My data is my data, <b>MyData</b>- not your data!} (you turn off the  <b>New Web</b> link on your CompuDeck)
-->TheInvestigationBegins
+->InvestigationCompuDeck
 +{isConnectedToNewWeb == 0} [Turn the  <b>New Web</b> connection back on, you may need it] 
 ~ isConnectedToNewWeb = 1
 You switch on the connection and the signal returns. (you turn on the  <b>New Web</b> link on your CompuDeck)
-->TheInvestigationBegins
+->InvestigationCompuDeck
 
 
 
@@ -596,9 +601,13 @@ This is where you play as Torelin
 ->END
 
 === RecollectiveInvestigation ===
+ Autosaved! #autosave
+ ->NeuralInterface
+ =NeuralInterface
  #colour: White
  #scene:NeuralInterface
  #music: NeuralInterface
+
  >BEGIN RECOLLECTIVE INVESTIGATION<br>CONNECTING TO NEURAL INTERFACE
 {neuralInterfaced == 1: You calm yourself as the tape begins it's connection with your mind...  ->->} 
 {neuralInterfaced == 0:Before you realise what's happening the tape hi-jacks your neural interface through the CompuDeck and you get the telltale tickly feeling on your brain. The tape is interfacing with your mind!} 
@@ -606,6 +615,7 @@ This is where you play as Torelin
     {neuralInterfaced == 1:+[Relax your mind, let it happen]->->}
     +[Fight back!]
         ~ neuralInterfaced = 1
+        #secret:memories
         {You attempt to overcome the data flowing into your mind, but much like an unwelcome thought it refuses to retreat.|}
  {The sensation of hundreds of thoughts and memories that are not your own assails the inner sanctum of your mind, and you begin to feel your 'self' slipping away.|}
  Think! Maybe you could retain control if you recall some powerful memory? But what would be strong enough?
@@ -667,8 +677,10 @@ This is where you play as Torelin
     ->->
     
 ===Walk
+->->
 TODO Walk sequence that describes the setting a bit
-Looking out from the balcony you can see the street lights bathing the city in a cold and unnatural glow. Even among the streets the multitude of neon signs never stop vying for the attention of passersby. 
+/*
+Looking out from the balcony you can see the street lights bathing the city in a cold and unnatural glow. Even among the streets below the multitude of neon signs never stop vying for the attention of passersby. 
 In the distance you can see the city proper, glowing like a blister with the MyData building standing tall in it's centre.
 *[The city is alight, let's explore]You duck inside for a moment to get a coat and gloves, rug up and hit the streets... hopefully they won't hit you back...
 You start heading over to the elevator. It seems most of the other denizens of the city have wisely decided to stay indoors, but you do notice some kids playing street hockey in a parking lot far below.
@@ -678,7 +690,7 @@ You arrive at the elevator, call it and wait for the lift to reach the 30th floo
     **[Check your pockets for your old service revolver...]
         ***[]
             ****[]
-            ->->
+            ->->*/
 *[The outside world is a cold and dangerous place, stay home]You take a moment to let the stale air out of your apartment, then hurry back inside before you are attacked by anything more than the cold winter air.
 ->->
 

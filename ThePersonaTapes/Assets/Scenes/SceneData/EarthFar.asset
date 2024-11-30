@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EarthFar
   m_EditorClassIdentifier: 
   sceneName: EarthFar
-  foreground: {fileID: 2800000, guid: aa785e11dfb47e548af76ac545e8c302, type: 3}
-  frontMidground: {fileID: 2800000, guid: ec4be633add9bdb419616952f238b9f3, type: 3}
+  foreground: {fileID: 2800000, guid: a70d80bd7127233499cf9d9db31e7513, type: 3}
+  frontMidground: {fileID: 2800000, guid: aa785e11dfb47e548af76ac545e8c302, type: 3}
   rearMidground: {fileID: 2800000, guid: 624c820605786d04d9a052d53dea9115, type: 3}
   background: {fileID: 2800000, guid: 1e8e60fb51c300845950db4e642d8f3f, type: 3}

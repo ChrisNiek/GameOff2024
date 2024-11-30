@@ -11,19 +11,39 @@ ScriptsOnlyBuild:
     - ColorPalette
     - FadeOutAndDeactivate
     - GameRestart
+    - HideButtonIfNoSave
     - InkyStoryManager
     - LightFlicker
+    - NewGameButton
     - SaveAndExit
+    - SaveManager
     - SceneDataSO
     - SceneTransitionScript
+    - SecretUnlockManager
     - SoundEffectsManager
     - SoundManager
     - TogglePanel
+    - ToggleSecretMenu
+    - TooltipFollowMouse
     - UICursor
+    - VolumeControl
     InkEditor.dll:
     - Ink.UnityIntegration.InkCompiler
     - Ink.UnityIntegration.InkLibrary
     - Ink.UnityIntegration.InkPlayerWindow
+    Unity.Addressables.Editor.dll:
+    - UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject
+    - UnityEditor.AddressableAssets.Build.DataBuilders.BuildScriptFastMode
+    - UnityEditor.AddressableAssets.Build.DataBuilders.BuildScriptPackedMode
+    - UnityEditor.AddressableAssets.Build.DataBuilders.BuildScriptPackedPlayMode
+    - UnityEditor.AddressableAssets.Build.DataBuilders.BuildScriptVirtualMode
+    - UnityEditor.AddressableAssets.BuildReportVisualizer.BuildReportWindow
+    - UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+    - UnityEditor.AddressableAssets.Settings.AddressableAssetGroupTemplate
+    - UnityEditor.AddressableAssets.Settings.AddressableAssetSettings
+    - UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema
+    - UnityEditor.AddressableAssets.Settings.GroupSchemas.ContentUpdateGroupSchema
+    - UnityEditor.AddressableAssets.Settings.GroupSchemas.PlayerDataGroupSchema
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
     - UnityEngine.Rendering.PostProcessing.AutoExposure
@@ -66,13 +86,18 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
+    - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.Mask
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Slider
     - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
     Assembly-CSharp:
@@ -80,6 +105,8 @@ ScriptsOnlyBuild:
     - BrewedInk.CRT.ColorChannels
     - BrewedInk.CRT.ColorScan
     - BrewedInk.CRT.ScreenDimensions
+    - SecretUnlockManager/Secret
+    - TooltipFollowMouse/PanelTooltipPair
     Unity.Postprocessing.Runtime:
     - UnityEngine.Rendering.PostProcessing.BoolParameter
     - UnityEngine.Rendering.PostProcessing.ColorParameter
@@ -126,16 +153,16 @@ ScriptsOnlyBuild:
     - UnityEngine.TextCore.GlyphMetrics
     - UnityEngine.TextCore.GlyphRect
     UnityEngine.UI:
+    - UnityEngine.EventSystems.EventTrigger/Entry
+    - UnityEngine.EventSystems.EventTrigger/TriggerEvent
     - UnityEngine.UI.AnimationTriggers
     - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
+    - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
-  - assembly: Assembly-CSharp
-    fullTypeName: SaveAndExit
-    methodName: ExitGame
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitionScript
     methodName: StartSceneTransition
@@ -143,14 +170,230 @@ ScriptsOnlyBuild:
     fullTypeName: SaveAndExit
     methodName: ExitGame
   - assembly: Assembly-CSharp
-    fullTypeName: GameRestart
-    methodName: LoadLevel
+    fullTypeName: NewGameButton
+    methodName: RestartStory
+  - assembly: Assembly-CSharp
+    fullTypeName: SceneTransitionScript
+    methodName: StartSceneTransition
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SaveAndExit
+    methodName: ExitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: ToggleSecretMenu
+    methodName: Toggle
+  - assembly: Assembly-CSharp
+    fullTypeName: TogglePanel
+    methodName: MenuClose
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: InkyStoryManager
+    methodName: ReloadStory
+  - assembly: Assembly-CSharp
+    fullTypeName: TogglePanel
+    methodName: Toggle
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
   - assembly: Assembly-CSharp
     fullTypeName: TogglePanel
     methodName: Toggle
   - assembly: Assembly-CSharp
     fullTypeName: TogglePanel
     methodName: Toggle
+  - assembly: Assembly-CSharp
+    fullTypeName: ToggleSecretMenu
+    methodName: MenuClose
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TogglePanel
+    methodName: Toggle
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: TooltipFollowMouse
+    methodName: OnPointerExit
   sceneClasses:
     Assets/Scenes/MainLevel.unity:
     - Class: 1
@@ -192,69 +435,89 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16710}
+      Script: {instanceID: 16714}
     - Class: 114
       Script: {instanceID: 16716}
     - Class: 114
-      Script: {instanceID: 16764}
+      Script: {instanceID: 16720}
     - Class: 114
-      Script: {instanceID: 17222}
+      Script: {instanceID: 16722}
     - Class: 114
-      Script: {instanceID: 17494}
+      Script: {instanceID: 16770}
     - Class: 114
-      Script: {instanceID: 17542}
+      Script: {instanceID: 16806}
     - Class: 114
-      Script: {instanceID: 17564}
+      Script: {instanceID: 17230}
     - Class: 114
-      Script: {instanceID: 17644}
+      Script: {instanceID: 17502}
     - Class: 114
-      Script: {instanceID: 17746}
+      Script: {instanceID: 17550}
     - Class: 114
-      Script: {instanceID: 18060}
+      Script: {instanceID: 17572}
     - Class: 114
-      Script: {instanceID: 18304}
+      Script: {instanceID: 17652}
     - Class: 114
-      Script: {instanceID: 18360}
+      Script: {instanceID: 17754}
     - Class: 114
-      Script: {instanceID: 18964}
+      Script: {instanceID: 18068}
     - Class: 114
-      Script: {instanceID: 19242}
+      Script: {instanceID: 18312}
     - Class: 114
-      Script: {instanceID: 19648}
+      Script: {instanceID: 18368}
     - Class: 114
-      Script: {instanceID: 20586}
+      Script: {instanceID: 18972}
     - Class: 114
-      Script: {instanceID: 20728}
+      Script: {instanceID: 19250}
     - Class: 114
-      Script: {instanceID: 20764}
+      Script: {instanceID: 19620}
     - Class: 114
-      Script: {instanceID: 21156}
+      Script: {instanceID: 19660}
     - Class: 114
-      Script: {instanceID: 21172}
+      Script: {instanceID: 20598}
     - Class: 114
-      Script: {instanceID: 22036}
+      Script: {instanceID: 20734}
     - Class: 114
-      Script: {instanceID: 22446}
+      Script: {instanceID: 20740}
     - Class: 114
-      Script: {instanceID: 22710}
+      Script: {instanceID: 20776}
     - Class: 114
-      Script: {instanceID: 22748}
+      Script: {instanceID: 21076}
     - Class: 114
-      Script: {instanceID: 22820}
+      Script: {instanceID: 21170}
     - Class: 114
-      Script: {instanceID: 22952}
+      Script: {instanceID: 21186}
     - Class: 114
-      Script: {instanceID: 23160}
+      Script: {instanceID: 21216}
     - Class: 114
-      Script: {instanceID: 23224}
+      Script: {instanceID: 22052}
     - Class: 114
-      Script: {instanceID: 23252}
+      Script: {instanceID: 22462}
     - Class: 114
-      Script: {instanceID: 23730}
+      Script: {instanceID: 22726}
     - Class: 114
-      Script: {instanceID: 24326}
+      Script: {instanceID: 22764}
     - Class: 114
-      Script: {instanceID: 24550}
+      Script: {instanceID: 22836}
+    - Class: 114
+      Script: {instanceID: 22968}
+    - Class: 114
+      Script: {instanceID: 23176}
+    - Class: 114
+      Script: {instanceID: 23192}
+    - Class: 114
+      Script: {instanceID: 23242}
+    - Class: 114
+      Script: {instanceID: 23270}
+    - Class: 114
+      Script: {instanceID: 23350}
+    - Class: 114
+      Script: {instanceID: 23748}
+    - Class: 114
+      Script: {instanceID: 23856}
+    - Class: 114
+      Script: {instanceID: 24346}
+    - Class: 114
+      Script: {instanceID: 24570}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -315,57 +578,65 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16710}
+      Script: {instanceID: 16714}
     - Class: 114
       Script: {instanceID: 16716}
     - Class: 114
-      Script: {instanceID: 16764}
+      Script: {instanceID: 16722}
     - Class: 114
-      Script: {instanceID: 17222}
+      Script: {instanceID: 16770}
     - Class: 114
-      Script: {instanceID: 17476}
+      Script: {instanceID: 17230}
     - Class: 114
-      Script: {instanceID: 17494}
+      Script: {instanceID: 17484}
     - Class: 114
-      Script: {instanceID: 17746}
+      Script: {instanceID: 17502}
     - Class: 114
-      Script: {instanceID: 18060}
+      Script: {instanceID: 17754}
     - Class: 114
-      Script: {instanceID: 18304}
+      Script: {instanceID: 18068}
     - Class: 114
-      Script: {instanceID: 18964}
+      Script: {instanceID: 18312}
     - Class: 114
-      Script: {instanceID: 19242}
+      Script: {instanceID: 18972}
     - Class: 114
-      Script: {instanceID: 19484}
+      Script: {instanceID: 19250}
     - Class: 114
-      Script: {instanceID: 19802}
+      Script: {instanceID: 19494}
     - Class: 114
-      Script: {instanceID: 19926}
+      Script: {instanceID: 19814}
     - Class: 114
-      Script: {instanceID: 19948}
+      Script: {instanceID: 19938}
     - Class: 114
-      Script: {instanceID: 20260}
+      Script: {instanceID: 19960}
     - Class: 114
-      Script: {instanceID: 20586}
+      Script: {instanceID: 20272}
     - Class: 114
-      Script: {instanceID: 20764}
+      Script: {instanceID: 20598}
     - Class: 114
-      Script: {instanceID: 21156}
+      Script: {instanceID: 20776}
     - Class: 114
-      Script: {instanceID: 21172}
+      Script: {instanceID: 20972}
     - Class: 114
-      Script: {instanceID: 22036}
+      Script: {instanceID: 21170}
     - Class: 114
-      Script: {instanceID: 22446}
+      Script: {instanceID: 21186}
     - Class: 114
-      Script: {instanceID: 22836}
+      Script: {instanceID: 22052}
     - Class: 114
-      Script: {instanceID: 23730}
+      Script: {instanceID: 22462}
     - Class: 114
-      Script: {instanceID: 24036}
+      Script: {instanceID: 22852}
     - Class: 114
-      Script: {instanceID: 24550}
+      Script: {instanceID: 22968}
+    - Class: 114
+      Script: {instanceID: 23748}
+    - Class: 114
+      Script: {instanceID: 24056}
+    - Class: 114
+      Script: {instanceID: 24570}
+    - Class: 114
+      Script: {instanceID: 94594}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -435,6 +706,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: dae7df0e77af3113bf7796160e073649
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SecretUnlockManager
   - hash:
       serializedVersion: 2
       Hash: f45600bcc886206dd55a3208474aad61
@@ -545,7 +822,7 @@ ScriptsOnlyBuild:
     className: UnityOnJointBreakMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d0f8ad9e2918b014e077911f5ed139e9
+      Hash: 270e51dcdb10e5d7921248f522465737
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: ColorManager
@@ -851,6 +1128,12 @@ ScriptsOnlyBuild:
     className: BasicInkExample
   - hash:
       serializedVersion: 2
+      Hash: bba3561203062e8d06188f9ecebecb01
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PreloadSoundEffects
+  - hash:
+      serializedVersion: 2
       Hash: 0a3f328f3ea906bbbcf794f4c27ee59d
     assemblyName: Unity.VisualScripting.Flow
     namespaceName: Unity.VisualScripting
@@ -885,6 +1168,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnvMapAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 24b7f5b30a268fc2d1e531b34a80db37
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: VolumeControl
   - hash:
       serializedVersion: 2
       Hash: 665da785348a8806bf1524fe10742a60
@@ -1145,6 +1434,12 @@ ScriptsOnlyBuild:
     className: ShaderPropAnimator
   - hash:
       serializedVersion: 2
+      Hash: e16bd9adb9247e2828bdfc2a1f67f922
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: NewGameButton
+  - hash:
+      serializedVersion: 2
       Hash: 10c17b309bdca62b4d7fbaf113ed4ca0
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -1191,6 +1486,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Postprocessing.Runtime
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: Vignette
+  - hash:
+      serializedVersion: 2
+      Hash: d19fe7b31d2cc4cf0d69bfaf050c8bce
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SaveManager
   - hash:
       serializedVersion: 2
       Hash: c65fb8f721cc4462e7a642974c37d3c0
@@ -1349,7 +1650,7 @@ ScriptsOnlyBuild:
     className: AdaptiveMusicManager
   - hash:
       serializedVersion: 2
-      Hash: 81eefaee72b78f38c73c7ff92824d901
+      Hash: 25ca18ddd4d931e8b27e5c55fabe5ce0
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: SoundEffectsManager
@@ -1367,7 +1668,7 @@ ScriptsOnlyBuild:
     className: FadeOutAndDeactivate
   - hash:
       serializedVersion: 2
-      Hash: 1e5358cafc74215723f9dd406506790b
+      Hash: c212486bca71dcb9a420f9b69e4a506e
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: CameraDollyAndWobble
@@ -1451,13 +1752,19 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
+      Hash: 90822e307fdbcc1d2d9cabf270e9db52
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ToggleSecretMenu
+  - hash:
+      serializedVersion: 2
       Hash: 6a0b5b415c00f783202fd1ae2d556cb2
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
     className: AudioPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: daaeb844453df2fbd508e563c45c0926
+      Hash: ed99b1b38c53a0fcc653996e4a6872ed
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: InkyStoryManager
@@ -1557,6 +1864,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.ScriptableBuildPipeline
     namespaceName: UnityEngine.Build.Pipeline
     className: CompatibilityAssetBundleManifest
+  - hash:
+      serializedVersion: 2
+      Hash: e534fa0131492f32735efa2169ea0bf1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TooltipFollowMouse
   - hash:
       serializedVersion: 2
       Hash: 9a174471d4db2c0c6d3ac47d2f818db1
@@ -1707,8 +2020,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: fc493601b68c01c526e3bd787dc3803a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: HideButtonIfNoSave
   platform: 20
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/MainLevel.unity
-  playerPath: G:/Chris/Games/GameOff2024/ThePersonaTapes/WebGL Build
+  playerPath: G:/Chris/Games/GameOff2024/ThePersonaTapes/Logs
