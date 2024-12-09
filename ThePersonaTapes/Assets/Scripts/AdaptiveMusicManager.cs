@@ -6,14 +6,14 @@ public class AdaptiveMusicManager : MonoBehaviour
     // AudioSource to play the current music
     public AudioSource audioSource;
 
-    // List of audio clips to crossfade between
-    public AudioClip[] musicClips;
-
     // Currently playing audio clip
     private AudioClip currentClip;
 
     // Duration of the fade (in seconds)
     public float fadeDuration = 2f;
+
+    // List of audio clips
+    private AudioClip[] musicClips;
 
     void Start()
     {
@@ -21,6 +21,14 @@ public class AdaptiveMusicManager : MonoBehaviour
         if (audioSource == null)
         {
             Debug.LogError("AudioSource is not assigned in AdaptiveMusicManager!");
+            return;
+        }
+
+        // Load all AudioClips from Resources/Audio/Music
+        musicClips = Resources.LoadAll<AudioClip>("Audio/Music");
+        if (musicClips.Length == 0)
+        {
+            Debug.LogError("No AudioClips found in Resources/Audio/Music!");
         }
     }
 
@@ -38,7 +46,7 @@ public class AdaptiveMusicManager : MonoBehaviour
         AudioClip newClip = System.Array.Find(musicClips, clip => clip.name == songName);
         if (newClip == null)
         {
-            Debug.LogError($"AudioClip with name {songName} not found in musicClips.");
+            Debug.LogError($"AudioClip with name {songName} not found in Resources/Audio/Music.");
             return;
         }
 
@@ -99,5 +107,4 @@ public class AdaptiveMusicManager : MonoBehaviour
         // Set the currently playing track to 'none'
         currentClip = null;
     }
-
 }

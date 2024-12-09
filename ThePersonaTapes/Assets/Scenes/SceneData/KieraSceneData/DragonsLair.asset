@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3efb1f3a7520b043ae58eee6e4167e0, type: 3}
+  m_Name: DragonsLair
+  m_EditorClassIdentifier: 
+  sceneName: DragonsLair
+  foreground: {fileID: 2800000, guid: 3968de08bd8834046ab48aaeea6b6bb4, type: 3}
+  frontMidground: {fileID: 2800000, guid: c49eeb5d8882bbe478e940f060302f2e, type: 3}
+  rearMidground: {fileID: 2800000, guid: 1383405fc489b9f4a957a7732ef24e4d, type: 3}
+  background: {fileID: 2800000, guid: 3ebcfec5bd162724e9b0cf6ea8ea76a0, type: 3}

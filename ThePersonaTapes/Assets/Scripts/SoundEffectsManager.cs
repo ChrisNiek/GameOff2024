@@ -43,38 +43,17 @@ public class SoundEffectsManager : MonoBehaviour
                 {
                     // Use the sound effect's name as a case-insensitive key in the dictionary
                     sfxDictionary[sfx.name.ToLower()] = sfx;
-                    Debug.Log($"Loaded SFX: {sfx.name}");
+    
                 }
                 else
                 {
                     Debug.LogWarning("An unassigned sound effect was found in the array!");
                 }
             }
-            Debug.Log($"Total SFX loaded: {sfxDictionary.Count}");
-
-            // Debug: List all loaded sound effects
-            ListLoadedSFX();
         }
     }
 
-    // Method to list all the loaded sound effects in the dictionary
-    void ListLoadedSFX()
-    {
-        Debug.Log("List of Loaded SFX:");
 
-        // Check if there are any loaded SFX
-        if (sfxDictionary.Count > 0)
-        {
-            foreach (var sfx in sfxDictionary)
-            {
-                Debug.Log($"- {sfx.Key}");
-            }
-        }
-        else
-        {
-            Debug.Log("No sound effects are loaded.");
-        }
-    }
 
     // Method to play a sound effect by name
     public void PlaySFX(string sfxName)

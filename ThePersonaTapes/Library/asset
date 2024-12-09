@@ -22,77 +22,114 @@ MonoBehaviour:
     warnings: []
     todos:
     - type: 0
-      content: Add MyData Spacejunk in intro images
+      content: add city street scene
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 35
-    - type: 0
-      content: maybe add some clean apartment music?
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 68
-    - type: 0
-      content: caselog for current clues related to the case
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 437
-    - type: 0
-      content: Persona Tapes Case Log entry
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 468
-    - type: 0
-      content: The Witnesses case log entry
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 474
-    - type: 0
-      content: Recollective Investigation case log entry
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 481
-    - type: 0
-      content: Update persona options as they are completed
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 496
-    - type: 0
-      content: Jamies case file
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 539
-    - type: 0
-      content: Jamie bio
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 542
-    - type: 0
-      content: Estelles case file
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 551
-    - type: 0
-      content: Torelins case file
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 566
-    - type: 0
-      content: Kiera
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 579
-    - type: 0
-      content: Winfred
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 584
-    - type: 0
-      content: Jamie
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 589
-    - type: 0
-      content: Estelle
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 594
-    - type: 0
-      content: Torelin
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 599
-    - type: 0
-      content: Walk sequence that describes the setting a bit
-      relativeFilePath: The Persona Tapes.ink
-      lineNumber: 681
+      lineNumber: 432
     - type: 0
       content: Show how horrible MyDatas new web is
       relativeFilePath: The Persona Tapes.ink
-      lineNumber: 698
+      lineNumber: 531
+    - type: 0
+      content: Employee code component
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 672
+    - type: 0
+      content: caselog for current clues related to the case
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 703
+    - type: 0
+      content: The Witnesses case log entry
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 764
+    - type: 0
+      content: Recollective Investigation case log entry
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 771
+    - type: 0
+      content: Update persona options as they are completed
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 787
+    - type: 0
+      content: Jamies case file
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 829
+    - type: 0
+      content: Jamie bio
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 832
+    - type: 0
+      content: Estelles case file
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 841
+    - type: 0
+      content: Torelins case file
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 856
+    - type: 0
+      content: Include a konami code easter egg
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 927
+    - type: 0
+      content: defeat the dragon
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 967
+    - type: 0
+      content: freedom scene
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 980
+    - type: 0
+      content: Kiera does something to ease her boredom
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1015
+    - type: 0
+      content: Stealing food
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1019
+    - type: 0
+      content: Try to convince Jamie to give you food
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1023
+    - type: 0
+      content: Following Torelin and stealing a package
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1039
+    - type: 0
+      content: Winfred
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1042
+    - type: 0
+      content: Jamie
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1050
+    - type: 0
+      content: Estelle
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1055
+    - type: 0
+      content: 
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1061
+    - type: 0
+      content: fix logic
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1156
+    - type: 0
+      content: 
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1164
+    - type: 0
+      content: wrap up Estelle's tape and go back to the apartment
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1247
+    - type: 0
+      content: Torelin
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1252
+    - type: 0
+      content: Regular apartment choices and random events based on how many tapes
+        have been explored
+      relativeFilePath: The Persona Tapes.ink
+      lineNumber: 1352
     masterInkAssets: []
     localIncludePaths: []
     includes: []

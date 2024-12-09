@@ -75,27 +75,35 @@ public class InkyStoryManager : MonoBehaviour
 
     private IEnumerator DisplayCurrentParagraph()
     {
+        // Clear the story text and reset typing state
         storyText.text = "";
+        isTyping = false;
 
-        if (inkStory.canContinue)
+        // Check if the story can continue
+        while (inkStory.canContinue)
         {
             string paragraph = inkStory.Continue();
-            storyText.text = "";
 
-            ProcessTags(inkStory.currentTags); // Process tags including music triggers
+            // Process tags (e.g., for logic, animations, etc.)
+            ProcessTags(inkStory.currentTags);
 
-            CanvasGroup storyCanvasGroup = storyText.GetComponent<CanvasGroup>();
-            if (storyCanvasGroup == null)
+            // Ignore paragraphs that are just tags
+            if (string.IsNullOrWhiteSpace(paragraph))
             {
-                storyCanvasGroup = storyText.gameObject.AddComponent<CanvasGroup>();
+                continue;
             }
-            storyCanvasGroup.alpha = 1f;
 
+            // Display the paragraph with a typewriter effect
             yield return StartCoroutine(TypewriterEffect(paragraph));
-
-            RefreshChoices();
+            break; // Exit loop after displaying the valid paragraph
         }
+
+        // Refresh choices (or show the continue button if no choices are available)
+        RefreshChoices();
     }
+
+
+
 
     private IEnumerator TypewriterEffect(string text)
     {
@@ -130,14 +138,14 @@ public class InkyStoryManager : MonoBehaviour
         foreach (string tag in tags)
         {
             if (tag.StartsWith("scene:"))
+        {
+            string sceneName = tag.Substring(6).Trim(); // Extract scene name
+            if (sceneName != currentScene)  // Check if it's a new scene
             {
-                string sceneName = tag.Substring(6);
-                if (sceneName != currentScene)
-                {
-                    currentScene = sceneName;
-                    ChangeScene(sceneName);
-                }
+                currentScene = sceneName;
+                ChangeScene(sceneName);  // Change the scene visuals
             }
+        }
 
             // Inside InkyStoryManager
 
@@ -256,10 +264,12 @@ public class InkyStoryManager : MonoBehaviour
 
     private void RefreshChoices()
     {
+        // Clear any existing choice buttons
         ClearChoices();
 
         if (inkStory.currentChoices.Count > 0)
         {
+            // Display choice buttons for the player to select
             foreach (Ink.Runtime.Choice choice in inkStory.currentChoices)
             {
                 Button choiceButton = Instantiate(choiceButtonPrefab, choicesContainer.transform);
@@ -267,18 +277,8 @@ public class InkyStoryManager : MonoBehaviour
                 buttonText.text = choice.text;
 
                 // Apply color to the button and text
-                colorManager.ApplyColorToButton(choiceButton); // Apply color to the button
-                colorManager.ApplyColorToText(buttonText); // Apply color to the text
-
-                // Special effect for the button (if applicable)
-                if (inkStory.currentTags.Contains("bfx:") && specialEffectMaterial != null)
-                {
-                    Image buttonImage = choiceButton.GetComponent<Image>();
-                    if (buttonImage != null)
-                    {
-                        buttonImage.material = specialEffectMaterial;
-                    }
-                }
+                colorManager.ApplyColorToButton(choiceButton);
+                colorManager.ApplyColorToText(buttonText);
 
                 // Add listener for the button click
                 choiceButton.onClick.AddListener(() => OnChoiceSelected(choice));
@@ -290,18 +290,21 @@ public class InkyStoryManager : MonoBehaviour
                 canvasGroup.alpha = 0f;
             }
 
+            // Fade in the choices
             fadeInCoroutine = StartCoroutine(FadeInChoices());
         }
         else
         {
+            // Display the continue button if there are no choices
             Button continueButton = Instantiate(choiceButtonPrefab, choicesContainer.transform);
             TextMeshProUGUI continueButtonText = continueButton.GetComponentInChildren<TextMeshProUGUI>();
             continueButtonText.text = "Click to continue";
 
             // Apply color to the continue button and text
-            colorManager.ApplyColorToButton(continueButton); // Apply color to the button
-            colorManager.ApplyColorToText(continueButtonText); // Apply color to the text
+            colorManager.ApplyColorToButton(continueButton);
+            colorManager.ApplyColorToText(continueButtonText);
 
+            // Add listener for the continue button
             continueButton.onClick.AddListener(OnContinueClicked);
 
             // Setup CanvasGroup for fading
@@ -310,9 +313,12 @@ public class InkyStoryManager : MonoBehaviour
                 canvasGroup = continueButton.gameObject.AddComponent<CanvasGroup>();
             canvasGroup.alpha = 0f;
 
+            // Fade in the continue button
             fadeInCoroutine = StartCoroutine(FadeInChoices());
         }
     }
+
+
 
 
     private IEnumerator FadeInChoices()
@@ -331,7 +337,7 @@ public class InkyStoryManager : MonoBehaviour
             }
             canvasGroup.alpha = 1f;
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
@@ -424,8 +430,9 @@ public class InkyStoryManager : MonoBehaviour
     }
 public void RestartStory()
 {
-    // Reset the Ink story by reloading the Ink JSON text
-    if (inkJSONAsset != null)
+        StopAllCoroutines();
+        // Reset the Ink story by reloading the Ink JSON text
+        if (inkJSONAsset != null)
     {
         inkStory = new Story(inkJSONAsset.text); // Reload the story from JSON
     }
@@ -434,18 +441,19 @@ public void RestartStory()
         Debug.LogError("Ink JSON asset is missing or not assigned.");
     }
 
-    /* Optionally reset other game variables like secrets, colors, or sound effects
-    if (secretUnlockManager != null)
-    {
-        secretUnlockManager.ResetSecrets(); // Reset secrets
-    }
-    else
-    {
-        Debug.LogWarning("SecretUnlockManager is not assigned.");
-    }
-    */
+     
+        /* Optionally reset other game variables like secrets, colors, or sound effects
+        if (secretUnlockManager != null)
+        {
+            secretUnlockManager.ResetSecrets(); // Reset secrets
+        }
+        else
+        {
+            Debug.LogWarning("SecretUnlockManager is not assigned.");
+        }
+        */
 
-    if (colorManager != null)
+        if (colorManager != null)
     {
         colorManager.ResetPalette(); // Reset the color palette
     }
@@ -462,8 +470,13 @@ public void RestartStory()
 
     ClearChoices(); // Make sure this method exists to clear any displayed choices
 
+        // Restart the story by displaying the first paragraph
+    StartCoroutine(DisplayCurrentParagraph());
+
+
+
         // Optionally, reset music, effects, or other UI elements
-    if (musicManager != null)
+        if (musicManager != null)
     {
         musicManager.StopMusic(); // Stop any music currently playing
     }
@@ -472,9 +485,8 @@ public void RestartStory()
         Debug.LogWarning("MusicManager is not assigned.");
     }
 
-    // Restart the story by displaying the first paragraph
-    StartCoroutine(DisplayCurrentParagraph());
-}
+
+    }
 
 
 

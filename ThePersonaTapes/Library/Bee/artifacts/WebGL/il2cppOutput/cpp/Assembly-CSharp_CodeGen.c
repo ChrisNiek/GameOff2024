@@ -232,7 +232,6 @@ extern void U3CFlashButtonImageFillCenterU3Ed__11_System_Collections_IEnumerator
 extern void U3CFlashButtonImageFillCenterU3Ed__11_System_Collections_IEnumerator_get_Current_m9B87A2366568424C5D0CC0C03D649F76C17156A6 (void);
 extern void SoundEffectsManager_Awake_m0B5F4E147B7E0633C54B90DCE5F9C69914A2CC32 (void);
 extern void SoundEffectsManager_InitializeSoundEffects_m9DFF520000CCBEB10B802571CF07C82DF7CC25E0 (void);
-extern void SoundEffectsManager_ListLoadedSFX_mA2E7E24868AAA4A2581D32376FD3630488C1A97E (void);
 extern void SoundEffectsManager_PlaySFX_mCE474F375C95C1CD584945F25E0D3E93F843122B (void);
 extern void SoundEffectsManager_PlaySFXFromResources_mF1D0880810240E6ADAF4728266F9B7B7823EA49C (void);
 extern void SoundEffectsManager__ctor_m7C531429C74F4B9E8DF1F3FBD50245A0503A57A8 (void);
@@ -569,7 +568,7 @@ extern void U3CU3CZoomInU3Eg__AnimationU7C0U3Ed_System_Collections_Generic_IEnum
 extern void U3CU3CZoomInU3Eg__AnimationU7C0U3Ed_System_Collections_IEnumerator_Reset_mD3EB3EBF76C4E1A2BF95CAC33DC6CC1CB9ED71FE (void);
 extern void U3CU3CZoomInU3Eg__AnimationU7C0U3Ed_System_Collections_IEnumerator_get_Current_m5C5DA115094D398BF0A2F555047C768D345DA8D8 (void);
 extern void CRTRenderSettingsObject__ctor_m4E6A2B96E65BC644D4E48DDC80FCC32BF5393522 (void);
-static Il2CppMethodPointer s_methodPointers[557] = 
+static Il2CppMethodPointer s_methodPointers[556] = 
 {
 	BasicInkExample_add_OnCreateStory_m58548A00C8687F8A945F8104EDD7758F7EFBF239,
 	BasicInkExample_remove_OnCreateStory_m834CC166E2843A10D80673E98BB5D5649E54A059,
@@ -791,7 +790,6 @@ static Il2CppMethodPointer s_methodPointers[557] =
 	U3CFlashButtonImageFillCenterU3Ed__11_System_Collections_IEnumerator_get_Current_m9B87A2366568424C5D0CC0C03D649F76C17156A6,
 	SoundEffectsManager_Awake_m0B5F4E147B7E0633C54B90DCE5F9C69914A2CC32,
 	SoundEffectsManager_InitializeSoundEffects_m9DFF520000CCBEB10B802571CF07C82DF7CC25E0,
-	SoundEffectsManager_ListLoadedSFX_mA2E7E24868AAA4A2581D32376FD3630488C1A97E,
 	SoundEffectsManager_PlaySFX_mCE474F375C95C1CD584945F25E0D3E93F843122B,
 	SoundEffectsManager_PlaySFXFromResources_mF1D0880810240E6ADAF4728266F9B7B7823EA49C,
 	SoundEffectsManager__ctor_m7C531429C74F4B9E8DF1F3FBD50245A0503A57A8,
@@ -1129,7 +1127,7 @@ static Il2CppMethodPointer s_methodPointers[557] =
 	U3CU3CZoomInU3Eg__AnimationU7C0U3Ed_System_Collections_IEnumerator_get_Current_m5C5DA115094D398BF0A2F555047C768D345DA8D8,
 	CRTRenderSettingsObject__ctor_m4E6A2B96E65BC644D4E48DDC80FCC32BF5393522,
 };
-static const int32_t s_InvokerIndices[557] = 
+static const int32_t s_InvokerIndices[556] = 
 {
 	7314,
 	7314,
@@ -1349,7 +1347,6 @@ static const int32_t s_InvokerIndices[557] =
 	5138,
 	5242,
 	5138,
-	5242,
 	5242,
 	5242,
 	4235,
@@ -1693,7 +1690,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	557,
+	556,
 	s_methodPointers,
 	0,
 	NULL,
